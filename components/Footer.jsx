@@ -220,7 +220,7 @@ export default function Footer() {
         </div>
 
         {/* ── MOBILE ACCORDION COLUMNS ── */}
-        <div className="footer-mobile-cols" style={{ display:"none", flexDirection:"column", gap:4, marginBottom:40 }}>
+        <div className="footer-mobile-cols" style={{ flexDirection:"column", gap:4, marginBottom:40 }}>
           {FOOTER_COLS.map((col,ci)=>(
             <div key={ci} style={{
               border:"1px solid rgba(255,255,255,0.07)",
@@ -324,7 +324,6 @@ export default function Footer() {
 
       {/* ══ MOBILE STICKY BOTTOM NAV BAR ══ */}
       <div className="mobile-bottom-nav" style={{
-        display:"none",
         position:"fixed", bottom:0, left:0, right:0, zIndex:200,
         background:"rgba(17,17,17,0.97)",
         backdropFilter:"blur(20px)",

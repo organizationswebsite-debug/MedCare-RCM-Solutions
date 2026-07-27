@@ -251,3 +251,23 @@ img[loading="lazy"].loaded {
     padding-right: 18px !important;
   }
 }
+
+/* ── Mobile / responsive helpers ── */
+@media (max-width: 880px) {
+  /* Navbar: show hamburger, hide desktop links */
+  .nav-desktop { display: none !important; }
+  .nav-hamburger { display: flex !important; }
+  nav { padding: 8px 12px !important; }
+
+  /* Footer: show mobile columns, hide desktop columns */
+  .footer-desktop-cols { display: none !important; }
+  .footer-mobile-cols { display: flex !important; }
+  .mobile-bottom-nav { display: block !important; }
+
+  /* Make major grids single-column on small screens */
+  .cards-grid, .cards-grid * { grid-template-columns: 1fr !important; }
+
+  /* Reduce large paddings used inline where possible using important overrides */
+  section[style*="padding: \"150px"] { padding: 80px 16px 48px !important; }
+  section[style*="padding: \"180px"] { padding: 100px 16px 56px !important; }
+}

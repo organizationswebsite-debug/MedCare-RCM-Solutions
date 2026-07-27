@@ -168,7 +168,7 @@ export default function Navbar() {
                 width:40, height:40, borderRadius:"50%",
                 background: menuOpen ? "#111111" : "rgba(17,17,17,0.07)",
                 border:"1px solid rgba(17,17,17,0.12)",
-                display:"none", alignItems:"center", justifyContent:"center",
+                alignItems:"center", justifyContent:"center",
                 cursor:"pointer", flexShrink:0, position:"relative",
                 transition:"background 0.25s, transform 0.25s",
                 transform: menuOpen ? "rotate(90deg)" : "rotate(0)",
