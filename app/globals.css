@@ -253,6 +253,12 @@ img[loading="lazy"].loaded {
 }
 
 /* ── Mobile / responsive helpers ── */
+/* Default desktop-first visibility for components */
+.nav-desktop { display: flex !important; }
+.nav-hamburger { display: none !important; }
+.footer-mobile-cols { display: none !important; }
+.mobile-bottom-nav { display: none !important; }
+
 @media (max-width: 880px) {
   /* Navbar: show hamburger, hide desktop links */
   .nav-desktop { display: none !important; }
