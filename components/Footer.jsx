@@ -322,58 +322,5 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* ══ MOBILE STICKY BOTTOM NAV BAR ══ */}
-      <div className="mobile-bottom-nav" style={{
-        position:"fixed", bottom:0, left:0, right:0, zIndex:200,
-        background:"rgba(17,17,17,0.97)",
-        backdropFilter:"blur(20px)",
-        borderTop:"1px solid rgba(255,255,255,0.09)",
-        padding:"10px 0 max(10px,env(safe-area-inset-bottom))",
-      }}>
-        <div style={{ display:"grid", gridTemplateColumns:"repeat(5,1fr)", maxWidth:500, margin:"0 auto" }}>
-          {[
-            { icon:"🏠", label:"Home",       href:"/" },
-            { icon:"💼", label:"Services",   href:"/services" },
-            { icon:"📞", label:"Contact",    href:"/contact", primary:true },
-            { icon:"🏥", label:"Specialties",href:"/specialties" },
-            { icon:"📝", label:"Blog",       href:"/blog" },
-          ].map((item,i)=>(
-            <Link key={i} href={item.href}
-              style={{
-                display:"flex", flexDirection:"column", alignItems:"center", gap:4,
-                padding:"6px 4px",
-                textDecoration:"none",
-                position:"relative",
-              }}>
-              {item.primary ? (
-                /* Center call-to-action raised button */
-                <div style={{
-                  width:48, height:48, borderRadius:"50%",
-                  background:"#F5E6A3",
-                  display:"flex", alignItems:"center", justifyContent:"center",
-                  fontSize:20,
-                  boxShadow:"0 -4px 20px rgba(245,230,163,0.4)",
-                  marginTop:-18,
-                  border:"3px solid #111111",
-                  transition:"transform 0.2s",
-                }}
-                  onMouseEnter={e=>e.currentTarget.style.transform="scale(1.08)"}
-                  onMouseLeave={e=>e.currentTarget.style.transform="scale(1)"}>
-                  {item.icon}
-                </div>
-              ) : (
-                <div style={{ width:28, height:28, borderRadius:8, display:"flex", alignItems:"center", justifyContent:"center", fontSize:18 }}>
-                  {item.icon}
-                </div>
-              )}
-              <span style={{ fontSize:9.5, fontWeight:600, color: item.primary ? "#F5E6A3" : "rgba(255,255,255,0.45)", textTransform:"uppercase", letterSpacing:0.5 }}>
-                {item.label}
-              </span>
-            </Link>
-          ))}
-        </div>
-      </div>
 
-    </footer>
-  );
 }

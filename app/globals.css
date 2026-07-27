@@ -283,7 +283,6 @@ img[loading="lazy"].loaded {
   /* Footer: show mobile columns, hide desktop columns */
   .footer-desktop-cols { display: none !important; }
   .footer-mobile-cols { display: flex !important; }
-  .mobile-bottom-nav { display: block !important; }
 
   /* Strong stacking and spacing for mobile footer */
   footer .footer-mobile-cols > div { width: 100% !important; display: block !important; box-sizing: border-box !important; }
@@ -291,13 +290,6 @@ img[loading="lazy"].loaded {
   footer .footer-mobile-cols a { display: block !important; width: 100% !important; padding: 10px 16px !important; }
   /* Ensure trust badges and bottom bar wrap nicely */
   footer .footer-bottom { flex-direction: column !important; gap: 12px !important; align-items: flex-start !important; }
-
-  /* Mobile bottom nav: make a single horizontal bar with evenly spaced icons */
-  .mobile-bottom-nav { padding: 8px 0 10px !important; }
-  .mobile-bottom-nav > div { display: flex !important; flex-direction: row !important; justify-content: space-around !important; align-items: center !important; gap: 6px !important; max-width: 100% !important; margin: 0 8px !important; }
-  .mobile-bottom-nav a { flex: 1 1 auto !important; display: flex !important; flex-direction: column !important; align-items: center !important; justify-content: center !important; padding: 6px 6px !important; font-size: 10.5px !important; }
-  .mobile-bottom-nav a div[style*="width:48px"] { width:44px !important; height:44px !important; margin-top:-12px !important; }
-  .mobile-bottom-nav span { font-size:10px !important; font-weight:700 !important; color: rgba(255,255,255,0.85) !important; }
 
   /* Make major grids single-column on small screens */
   .cards-grid, .cards-grid * { grid-template-columns: 1fr !important; }
