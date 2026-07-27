@@ -35,6 +35,21 @@ body {
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
   overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Make the page content grow so footer sits at the bottom */
+main {
+  flex: 1 0 auto;
+}
+
+/* Ensure footer doesn't push the page beyond the viewport and keep padding compact */
+footer {
+  margin-top: auto;
+  flex-shrink: 0;
+  padding: 24px 16px;
 }
 
 /* ── Links ── */
