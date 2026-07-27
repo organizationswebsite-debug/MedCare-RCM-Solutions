@@ -207,9 +207,10 @@ export default function TestimonialsPage() {
           style={{
             position: "relative",
             backgroundImage: `linear-gradient(180deg, rgba(245,240,232,0.88) 0%, #F5F0E8 100%),
-              url('https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=2000&q=80')`,
+              url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnDtlAtCHuDP0Ct6v8G4wVhrMJLYQdPvIL8QE9JaYugg&s=10')`,
             backgroundSize: "cover",
             backgroundPosition: "center",
+            backgroundattachment: "fixed",
             padding: "180px 24px 100px",
             textAlign: "center",
             overflow: "hidden",
