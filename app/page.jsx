@@ -631,11 +631,12 @@ function PricingModal({ plan, onClose }) {
         display:"flex",alignItems:"center",justifyContent:"center",padding:"20px 16px",
         background:"rgba(17,17,17,0.55)",backdropFilter:"blur(8px)",WebkitBackdropFilter:"blur(8px)",
         opacity:visible?1:0, transition:"opacity 0.22s ease",
+        overflowY:"auto",
       }}>
       <div style={{
         width:"100%",maxWidth:540,background:"#fff",borderRadius:24,
         boxShadow:"0 32px 80px rgba(17,17,17,0.22),0 0 0 1px rgba(17,17,17,0.08)",
-        overflow:"hidden",maxHeight:"92vh",overflowY:"auto",
+        overflow:"hidden",maxHeight:"calc(100vh - 40px)",overflowY:"auto",margin:"auto",
         transform:visible?"scale(1) translateY(0)":"scale(0.95) translateY(14px)",
         transition:"transform 0.32s cubic-bezier(0.34,1.56,0.64,1), opacity 0.22s ease",
         opacity:visible?1:0,
