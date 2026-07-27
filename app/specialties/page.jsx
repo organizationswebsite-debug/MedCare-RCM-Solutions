@@ -362,7 +362,15 @@ export default function SpecialtiesPage() {
       <main style={{ background: "#F5F0E8" }}>
 
         {/* ── HERO ── */}
-        <section style={{ background: "linear-gradient(160deg,#F5F0E8 0%,#FDFAF5 50%,#F0EBE0 100%)", padding: "150px 24px 90px", position: "relative", overflow: "hidden" }}>
+        <section style={{
+            backgroundImage: `linear-gradient(160deg,#F5F0E8 0%,#FDFAF5 50%,#F0EBE0 100%), url('https://appinventiv.com/wp-content/uploads/2025/06/Smart-Hospitals-How-Modern-Technology-Is-Enhancing-Healthcare-Operations-8.webp')`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+            padding: "150px 24px 90px",
+            position: "relative",
+            overflow: "hidden",
+          }}>
           <div style={{ position: "absolute", top: -120, right: -120, width: 600, height: 600, borderRadius: "50%", background: "radial-gradient(circle,rgba(245,230,163,0.3),transparent 70%)", pointerEvents: "none" }} />
           <div style={{ position: "absolute", bottom: -60, left: -60, width: 380, height: 380, borderRadius: "50%", background: "radial-gradient(circle,rgba(17,17,17,0.04),transparent 70%)", pointerEvents: "none" }} />
 
