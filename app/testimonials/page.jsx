@@ -207,10 +207,10 @@ export default function TestimonialsPage() {
           style={{
             position: "relative",
             backgroundImage: `linear-gradient(180deg, rgba(245,240,232,0.88) 0%, #F5F0E8 100%),
-              url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnDtlAtCHuDP0Ct6v8G4wVhrMJLYQdPvIL8QE9JaYugg&s=10')`,
+              url('https://cdn.searchenginejournal.com/wp-content/uploads/2021/04/10-steps-to-help-you-turn-client-testimonials-into-seo-wins-2-608bf543c9a23-1280x720.png')`,
             backgroundSize: "cover",
             backgroundPosition: "center",
-            backgroundattachment: "fixed",
+            backgroundAttachment: "fixed",
             padding: "180px 24px 100px",
             textAlign: "center",
             overflow: "hidden",
