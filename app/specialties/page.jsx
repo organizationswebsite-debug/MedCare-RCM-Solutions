@@ -284,15 +284,22 @@ function SpecialtyCard({ item, index }) {
         {/* Image */}
         <div style={{ position: "relative", height: 180, overflow: "hidden", flexShrink: 0 }}>
           {!imgErr ? (
-            <img
-              src={item.image}
-              alt={item.title}
+            // Use a background image for the hero area so it covers the whole card nicely
+            <div
               style={{
-                width: "100%", height: "100%", objectFit: "cover", display: "block",
+                width: "100%",
+                height: "100%",
+                // use the actual item.image (works with local paths/public folder)
+                  backgroundImage: item.image ? `url('${item.image}')` : undefined,
+                backgroundSize: "cover",
+                // avoid fixed attachment which can cause rendering issues on some setups
+                backgroundAttachment: "scroll",
+                backgroundPosition: "center",
+                backgroundRepeat: "no-repeat",
+                display: "block",
                 transform: hovered ? "scale(1.08)" : "scale(1)",
                 transition: "transform 0.5s ease",
               }}
-              onError={() => setImgErr(true)}
             />
           ) : (
             <div style={{ width: "100%", height: "100%", background: "linear-gradient(135deg,#F5F0E8,#F0EBE0)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 56 }}>
