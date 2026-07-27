@@ -299,4 +299,7 @@ img[loading="lazy"].loaded {
 
   /* Prevent background-attachment fixed on mobile which can be janky */
   [style*="backgroundAttachment"], [style*="background-attachment"] { background-attachment: scroll !important; }
+
+  /* Hide bottom nav while mobile nav/drawer is open */
+  .nav-open .mobile-bottom-nav { display: none !important; }
 }

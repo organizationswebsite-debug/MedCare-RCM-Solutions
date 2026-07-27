@@ -94,7 +94,8 @@ export default function Navbar() {
   /* lock body scroll when mobile menu open */
   useEffect(() => {
     document.body.style.overflow = menuOpen ? "hidden" : "";
-    return () => { document.body.style.overflow = ""; };
+    if (menuOpen) document.body.classList.add("nav-open"); else document.body.classList.remove("nav-open");
+    return () => { document.body.style.overflow = ""; document.body.classList.remove("nav-open"); };
   }, [menuOpen]);
 
   const openMenu  = (n) => { clearTimeout(closeTimer.current); setActiveMenu(n); };
