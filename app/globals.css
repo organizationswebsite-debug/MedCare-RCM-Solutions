@@ -272,7 +272,6 @@ img[loading="lazy"].loaded {
 .nav-desktop { display: flex !important; }
 .nav-hamburger { display: none !important; }
 .footer-mobile-cols { display: none !important; }
-.mobile-bottom-nav { display: none !important; }
 
 @media (max-width: 880px) {
   /* Navbar: show hamburger, hide desktop links */
