@@ -42,67 +42,67 @@ function useCountUp(target, duration = 1800, active = false, suffix = "") {
 const SPECIALTIES = [
   {
     icon: "👨‍⚕️", title: "Family Medicine", slug: "family-medicine",
-    image: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=400&q=75&fit=crop",
+    image: "https://healthexpressclinics.com/wp-content/uploads/sites/3/2024/09/Areas-Served-Body-1.png&fit=crop",
     desc: "Comprehensive primary care billing for family practices — from preventive visits to chronic disease management.",
   },
   {
     icon: "🏥", title: "Internal Medicine", slug: "internal-medicine",
-    image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=400&q=75&fit=crop",
+    image: "https://suncityhospital.in/wp-content/uploads/2025/02/Internal-Medicine-1.webp?auto=format&fit=crop",
     desc: "Complex E&M coding and multi-system billing optimized for internal medicine physicians.",
   },
   {
     icon: "👶", title: "Pediatrics", slug: "pediatrics",
-    image: "https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?w=400&q=75&fit=crop",
+    image: "https://balunihospital.com/img/blog/a0bbad22c810b4d4e905f05d2f9a18e8.jpg?auto=format&fit=crop",
     desc: "Pediatric-specific billing including well-child visits, vaccine administration, and developmental screenings.",
   },
   {
     icon: "❤️", title: "Cardiology", slug: "cardiology",
-    image: "https://images.unsplash.com/photo-1628348068343-c6a848d2b6dd?w=400&q=75&fit=crop",
+    image: "https://saifeehospital.com.pk/wp-content/uploads/2024/10/cardiology-images.jpg?auto=format&fit=crop",
     desc: "Cardiology RCM covering catheterizations, echocardiograms, stress tests, and interventional procedures.",
   },
   {
     icon: "🫀", title: "Cardiovascular", slug: "cardiovascular",
-    image: "https://images.unsplash.com/photo-1530026405186-ed1f139313f8?w=400&q=75&fit=crop",
+    image: "https://www.uclahealth.org/sites/default/files/styles/portrait_3x4_012000_360x480/public/images/cardiology-medical-service.jpg?h=9c86ceb9&itok=0EyASc8u",
     desc: "Vascular and cardiovascular surgical billing with precise procedure coding and modifier compliance.",
   },
   {
     icon: "🦴", title: "Orthopedics", slug: "orthopedics",
-    image: "https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=400&q=75&fit=crop",
+    image: "https://www.premier-ortho.com/wp-content/uploads/2020/11/orthopedic-doctor-1200x675.jpg?auto=format&fit=crop",
     desc: "Orthopedic billing for fracture care, joint replacements, arthroscopy, and physical medicine services.",
   },
   {
     icon: "🧠", title: "Mental Health", slug: "mental-health",
-    image: "https://images.unsplash.com/photo-1527689368864-3a821dbccc34?w=400&q=75&fit=crop",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRH-XxOrozrVxSftxAqEHBAtWs_hp9d6nA9K_5IU90ls9-1wGzwcgWklJA&s=10&fit=crop",
     desc: "Therapy and psychiatric billing with parity compliance, telehealth coding, and authorization tracking.",
   },
   {
     icon: "✨", title: "Dermatology", slug: "dermatology",
-    image: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=400&q=75&fit=crop",
+    image: "https://smb.ibsrv.net/imageresizer/image/article_manager/1200x1200/107496/1101930/heroimage0.828788001705088048.jpg?auto=format&fit=crop",
     desc: "Dermatology billing for skin biopsies, Mohs surgery, cosmetic procedures, and pathology submissions.",
   },
   {
     icon: "⚡", title: "Neurology", slug: "neurology",
-    image: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=400&q=75&fit=crop",
+    image: "https://bolgehospitalinternational.com/wp-content/uploads/2023/11/Noroloji.jpg?auto=format&fit=crop",
     desc: "Neurology RCM covering EEGs, EMGs, sleep studies, and complex neurological evaluation coding.",
   },
   {
     icon: "🩺", title: "Primary Care", slug: "primary-care",
-    image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=400&q=75&fit=crop",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQ0eiaVdAAtOTrV5X4QOsGjAyKxjP5oozV4eso-werDy9DjlyKiQuSDx4&s=10&fit=crop",
     desc: "End-to-end primary care billing with wellness visit coding, chronic care management, and annual AWVs.",
   },
   {
     icon: "🩹", title: "Wound Care", slug: "wound-care",
-    image: "https://images.unsplash.com/photo-1584515933487-779824d29309?w=400&q=75&fit=crop",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHnxdAeBxOenzqwy-e0SuLmSWaxdS_O8Zw7H_OM2kQrw&s=10",
     desc: "Wound care billing covering debridements, skin grafts, negative pressure therapy, and hyperbaric oxygen.",
   },
   {
     icon: "🦶", title: "Podiatry", slug: "podiatry",
-    image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&q=75&fit=crop",
+    image: "https://www.cfaortho.com/docs/blog/podiatrist-foot-doctor.jpg",
     desc: "Podiatry-specific coding for routine foot care, surgery, orthotics, and diabetic foot care protocols.",
   },
   {
     icon: "📸", title: "Radiology", slug: "radiology",
-    image: "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=400&q=75&fit=crop",
+    image: "https://i.ytimg.com/vi/Mhd4lcOy0pY/hq720.jpg?sqp=-oaymwE7CK4FEIIDSFryq4qpAy0IARUAAAAAGAElAADIQj0AgKJD8AEB-AH-CYAC0AWKAgwIABABGGUgZShlMA8=&rs=AOn4CLDajW2MA6Ba6GdZcsj1xERnZ8pAWQ&fit=crop",
     desc: "Radiology billing with professional and technical component splits for MRI, CT, PET, and X-ray.",
   },
   {
@@ -112,18 +112,13 @@ const SPECIALTIES = [
   },
   {
     icon: "🏡", title: "Nursing Home", slug: "nursing-home",
-    image: "https://images.unsplash.com/photo-1576765607924-3f7b8410a787?w=400&q=75&fit=crop",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0g6ZWe5vq58p5hgqPvFbCYHfVUENWBecbPIzBPTT4f-bygK_rA9vTk3M&s=10",
     desc: "Long-term care and SNF billing including nursing facility visits, care plan oversight, and MDS coding.",
   },
   {
     icon: "🫘", title: "Nephrology", slug: "nephrology",
-    image: "https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=400&q=75&fit=crop",
+    image: "https://www.omegahospitals.com/_next/image?url=https%3A%2F%2Fomegafilesstore.s3.ap-south-1.amazonaws.com%2Fwebsite%2Fspecializations%2Fnephrology.png&w=3840&q=75",
     desc: "Nephrology billing for dialysis services, ESRD management, kidney biopsies, and transplant follow-up.",
-  },
-  {
-    icon: "🏥", title: "Medical Clinics", slug: "medical-clinics",
-    image: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=400&q=75&fit=crop",
-    desc: "Multi-specialty clinic billing with payer contract management and high-volume claim throughput.",
   },
   {
     icon: "🔪", title: "General Surgery", slug: "general-surgery",
@@ -363,7 +358,7 @@ export default function SpecialtiesPage() {
 
         {/* ── HERO ── */}
         <section style={{
-            backgroundImage: `linear-gradient(160deg,#F5F0E8 0%,#FDFAF5 50%,#F0EBE0 100%), url('https://appinventiv.com/wp-content/uploads/2025/06/Smart-Hospitals-How-Modern-Technology-Is-Enhancing-Healthcare-Operations-8.webp')`,
+            backgroundImage: `linear-gradient(160deg,#F5F0E8 0%,#FDFAF5 50%,#F0EBE0 100%), url('https://images.unsplash.com/photo-1494173853739-c21f58b16055?auto=format&fit=crop&w=1600&q=80')`,
             backgroundSize: "cover",
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",

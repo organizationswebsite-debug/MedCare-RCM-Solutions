@@ -115,9 +115,11 @@ export default function Navbar() {
           backdropFilter:"blur(22px)", WebkitBackdropFilter:"blur(22px)",
           border:"1px solid rgba(17,17,17,0.10)", borderRadius:100,
           boxShadow: scrolled ? "0 8px 32px rgba(17,17,17,0.10)" : "0 2px 16px rgba(17,17,17,0.06)",
-          transition:"all 0.3s ease",
+          transition:"opacity 0.25s ease, transform 0.25s ease, background 0.3s ease",
           display:"inline-flex", alignItems:"center", padding:"6px 8px 6px 8px",
-          gap:2, position:"relative", pointerEvents:"all", flexShrink:0,
+          gap:2, position:"relative", pointerEvents: menuOpen ? "none" : "all", flexShrink:0,
+          opacity: menuOpen ? 0 : 1,
+          transform: menuOpen ? "translateY(-12px)" : "translateY(0)",
         }}>
           {/* Logo inside pill — desktop */}
           <Link href="/" className="nav-logo-pill" style={{ flexShrink:0, marginRight:14, display:"flex", alignItems:"center" }}>
@@ -223,8 +225,7 @@ export default function Navbar() {
         }}>
           {/* Top bar */}
           <div style={{ padding:"16px 20px 12px", display:"flex", alignItems:"center", justifyContent:"space-between", borderBottom:"1px solid rgba(17,17,17,0.08)", position:"sticky", top:0, background:"rgba(253,250,245,0.96)", backdropFilter:"blur(12px)", zIndex:2 }}>
-            <Image src="/logo.png" alt="MedCare RCM" width={140} height={42}
-              style={{ objectFit:"contain", height:44, width:"auto" }} />
+            <div style={{ width:140, height:44 }} />
             <button onClick={()=>setMenuOpen(false)}
               style={{ width:36, height:36, borderRadius:"50%", background:"rgba(17,17,17,0.08)", border:"none", cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"center", fontSize:16, color:"#111111", transition:"background 0.2s, transform 0.2s" }}
               onMouseEnter={e=>{ e.currentTarget.style.background="rgba(17,17,17,0.15)"; e.currentTarget.style.transform="rotate(90deg)"; }}

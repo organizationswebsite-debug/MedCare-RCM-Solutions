@@ -66,7 +66,7 @@ const SPECIALTIES = {
   "family-medicine": {
     title: "Family Medicine Billing",
     tagline: "Full-cycle RCM for multi-generational primary care practices",
-    image: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=1400&q=85&fit=crop",
+    image: "https://healthexpressclinics.com/wp-content/uploads/sites/3/2024/09/Areas-Served-Body-1.png&fit=crop",
     overview: "Family medicine is the backbone of American healthcare — and one of the most billing-intensive specialties in medicine. High patient volumes, diverse encounter types, and complex preventive care coding make revenue leakage a constant risk. MedCare RCM delivers end-to-end billing support that keeps your clean claim rate above 98% and your AR days under 30.",
     keyPoints: [
       "Modifier 25 validation for same-day preventive and acute encounters",
@@ -88,7 +88,7 @@ const SPECIALTIES = {
   "internal-medicine": {
     title: "Internal Medicine Billing",
     tagline: "Complex multi-system billing for adult medicine specialists",
-    image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=1400&q=85&fit=crop",
+    image: "https://suncityhospital.in/wp-content/uploads/2025/02/Internal-Medicine-1.webp?auto=format&fit=crop",
     overview: "Internal medicine billing is among the most cognitively complex in outpatient medicine. Overlapping chronic conditions, transitional care management, and remote monitoring services require precision coding and proactive follow-up. MedCare RCM ensures every encounter is fully documented and billed at the correct complexity level.",
     keyPoints: [
       "High-complexity E&M (99215) documentation and coding support",
@@ -110,7 +110,7 @@ const SPECIALTIES = {
   "pediatrics": {
     title: "Pediatrics Billing",
     tagline: "Age-specific billing for well-child visits, vaccines, and developmental care",
-    image: "https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?w=1400&q=85&fit=crop",
+    image: "https://balunihospital.com/img/blog/a0bbad22c810b4d4e905f05d2f9a18e8.jpg?auto=format&fit=crop",
     overview: "Pediatric billing requires navigating Medicaid-specific rules, EPSDT mandates, and complex immunization sequencing — all while managing high patient volumes. MedCare RCM protects your pediatric revenue cycle by ensuring age-specific code groupings, vaccine documentation, and developmental screening claims are always accurate.",
     keyPoints: [
       "EPSDT compliance and state-specific Medicaid billing expertise",
@@ -132,7 +132,7 @@ const SPECIALTIES = {
   "cardiology": {
     title: "Cardiology Billing",
     tagline: "Precision RCM for interventional, diagnostic, and electrophysiology services",
-    image: "https://images.unsplash.com/photo-1628348068343-c6a848d2b6dd?w=1400&q=85&fit=crop",
+    image: "https://saifeehospital.com.pk/wp-content/uploads/2024/10/cardiology-images.jpg?auto=format&fit=crop",
     overview: "Cardiology billing involves navigating complex global surgical packages, professional and technical component splits, and high-value interventional procedure coding. MedCare RCM manages every layer of your cardiovascular revenue cycle — from routine EKGs to complex catheterizations — ensuring maximum reimbursement on every claim.",
     keyPoints: [
       "Professional and technical component billing splits (Modifier 26 / TC)",
@@ -154,7 +154,7 @@ const SPECIALTIES = {
   "orthopedics": {
     title: "Orthopedic Surgery Billing",
     tagline: "High-value surgical billing with precise global period and implant tracking",
-    image: "https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=1400&q=85&fit=crop",
+    image: "https://www.premier-ortho.com/wp-content/uploads/2020/11/orthopedic-doctor-1200x675.jpg?auto=format&fit=crop",
     overview: "Orthopedic billing involves managing high-value surgical claims, complex global periods, DME coding, and frequent bundling denials. MedCare RCM keeps your revenue velocity high by managing the full surgical cycle — from pre-auth to post-op follow-up — with zero revenue leakage on implants, supplies, or secondary procedures.",
     keyPoints: [
       "Global surgical period management — separating related from unrelated visits",
@@ -176,7 +176,7 @@ const SPECIALTIES = {
   "mental-health": {
     title: "Mental Health & Psychiatry Billing",
     tagline: "Time-indexed behavioral health billing with parity compliance and telehealth expertise",
-    image: "https://images.unsplash.com/photo-1527689368864-3a821dbccc34?w=1400&q=85&fit=crop",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRH-XxOrozrVxSftxAqEHBAtWs_hp9d6nA9K_5IU90ls9-1wGzwcgWklJA&s=10&fit=crop",
     overview: "Mental health billing requires precise session-length documentation, telehealth code compliance, and proactive authorization tracking. MedCare RCM keeps your behavioral health revenue steady by managing parity laws, tracking authorization limits before they lapse, and ensuring every therapy session is billed at the correct time-based code.",
     keyPoints: [
       "Session-length documentation matching carrier medical necessity guidelines",
@@ -198,7 +198,7 @@ const SPECIALTIES = {
   "dermatology": {
     title: "Dermatology Billing",
     tagline: "High-volume lesion, biopsy, and Mohs surgery billing with medical necessity precision",
-    image: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=1400&q=85&fit=crop",
+    image: "https://smb.ibsrv.net/imageresizer/image/article_manager/1200x1200/107496/1101930/heroimage0.828788001705088048.jpg?auto=format&fit=crop",
     overview: "Dermatology practices perform dozens of procedures daily — from biopsies and lesion destructions to complex Mohs micrographic surgery. Each requires precise lesion count tracking, anatomical site documentation, and clear separation between cosmetic and medical services. MedCare RCM keeps your high-volume dermatology billing clean and profitable.",
     keyPoints: [
       "Lesion count and anatomical site tracking for multi-lesion billing",
@@ -220,7 +220,7 @@ const SPECIALTIES = {
   "neurology": {
     title: "Neurology Billing",
     tagline: "Advanced neuro-diagnostic and infusion billing with prior auth management",
-    image: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=1400&q=85&fit=crop",
+    image: "https://bolgehospitalinternational.com/wp-content/uploads/2023/11/Noroloji.jpg?auto=format&fit=crop",
     overview: "Neurology billing involves complex diagnostic modalities, expensive therapeutic infusions, and strict medical necessity criteria. From EEG monitoring to nerve conduction studies, every service must be meticulously coded and backed by clear documentation. MedCare RCM ensures your neurological services are billed correctly and paid on the first submission.",
     keyPoints: [
       "EEG and continuous telemetry monitoring billing compliance",
@@ -242,7 +242,7 @@ const SPECIALTIES = {
   "radiology": {
     title: "Radiology & Imaging Billing",
     tagline: "High-volume diagnostic imaging billing with professional and technical component precision",
-    image: "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=1400&q=85&fit=crop",
+    image: "https://i.ytimg.com/vi/Mhd4lcOy0pY/hq720.jpg?sqp=-oaymwE7CK4FEIIDSFryq4qpAy0IARUAAAAAGAElAADIQj0AgKJD8AEB-AH-CYAC0AWKAgwIABABGGUgZShlMA8=&rs=AOn4CLDajW2MA6Ba6GdZcsj1xERnZ8pAWQ&fit=crop",
     overview: "Radiology billing demands speed, accuracy, and precise separation of professional and technical billing components. MedCare RCM manages high-volume imaging pipelines — from X-ray to PET scan — ensuring every study is coded correctly, component splits are applied accurately, and payer downcoding is actively challenged.",
     keyPoints: [
       "Modifier 26 (professional component) and TC (technical component) splits",
@@ -264,7 +264,7 @@ const SPECIALTIES = {
   "oncology": {
     title: "Oncology Billing",
     tagline: "High-stakes chemotherapy, infusion, and radiation billing with real-time auth management",
-    image: "https://images.unsplash.com/photo-1579684453423-f84349ef60b0?w=1400&q=85&fit=crop",
+    image: "https://advancedinnovativepartners.com/wp-content/uploads/2024/07/Medical-Oncology-01.png?auto=format&fit=crop",
     overview: "Oncology billing carries the highest financial stakes in medicine. Chemotherapy drug costs, radiation planning complexity, and constant prior authorization demands create significant revenue risk. MedCare RCM protects your oncology revenue cycle with real-time authorization monitoring, drug waste tracking, and proactive appeal management.",
     keyPoints: [
       "Real-time prior authorization for all chemotherapy and biologic agents",
@@ -286,8 +286,8 @@ const SPECIALTIES = {
   "gastroenterology": {
     title: "Gastroenterology Billing",
     tagline: "High-volume endoscopy billing with precise screening-to-diagnostic conversion tracking",
-    image: "https://images.unsplash.com/photo-1530026405186-ed1f139313f8?w=1400&q=85&fit=crop",
-    overview: "GI billing requires precise tracking of polyp removal methods, biopsy counts, and the critical transition from screening to diagnostic colonoscopy billing. MedCare RCM manages your high-volume endoscopy schedule with automated coding validation — ensuring every procedure is billed at its highest appropriate level.",
+    image: "https://mmi.edu.pk/wp-content/uploads/2020/04/gastro.jpg?auto=format&fit=crop",
+    overview: "GI billing requires precise tracking ottps://images.unsplash.com/photo-1530026405186-ed1f13859313f8?w=1400&q=f polyp removal methods, biopsy counts, and the critical transition from screening to diagnostic colonoscopy billing. MedCare RCM manages your high-volume endoscopy schedule with automated coding validation — ensuring every procedure is billed at its highest appropriate level.",
     keyPoints: [
       "Screening-to-diagnostic colonoscopy conversion — proper code and modifier application",
       "Polyp removal method tracking — hot forceps, cold snare, EMR",
@@ -308,7 +308,7 @@ const SPECIALTIES = {
   "urology": {
     title: "Urology Billing",
     tagline: "Precise surgical and diagnostic billing for urological procedures and office-based care",
-    image: "https://images.unsplash.com/photo-1551190822-a9333d879b1f?w=1400&q=85&fit=crop",
+    image: "https://wp04-media.cdn.ihealthspot.com/wp-content/uploads/sites/374/2023/08/istockphoto-1164464390-612x612-1.jpg&fit=crop",
     overview: "Urology billing covers a wide spectrum — from routine office visits to complex robotic surgical procedures. Global period management, device documentation, and supply cost recovery are all critical to keeping your urology revenue cycle healthy. MedCare RCM handles every layer of urological billing with surgical precision.",
     keyPoints: [
       "Global surgical period management for urological procedures",
@@ -330,7 +330,7 @@ const SPECIALTIES = {
   "physical-therapy": {
     title: "Physical Therapy Billing",
     tagline: "Time-based rehabilitation billing with 8-minute rule compliance and cap management",
-    image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=1400&q=85&fit=crop",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSX8x148N6GYpp0IhWVI81hAkoqumnyGXDGo-tcUuVQPRflavmY-eQbfQeI&s=10&fit=crop",
     overview: "Physical therapy billing is highly time-sensitive and subject to strict insurance caps, daily treatment limits, and the 8-Minute Rule. MedCare RCM keeps your PT revenue clean by automating time-based documentation checks, tracking therapy cap thresholds, and applying Modifier KX correctly when medically necessary care extends beyond standard limits.",
     keyPoints: [
       "8-Minute Rule compliance for time-based service billing",
@@ -352,7 +352,7 @@ const SPECIALTIES = {
   "pain-management": {
     title: "Pain Management Billing",
     tagline: "Interventional injection and nerve block billing with imaging compliance",
-    image: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=1400&q=85&fit=crop",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-Vt08DXFAL5neq4eElzjy-OZ5qazRtJMUlZNG-4jIWg0UV6pscswJXstw&s=10&fit=crop",
     overview: "Pain management billing demands extreme precision regarding radiological guidance documentation, exact anatomical injection sites, and frequent payer policy changes. MedCare RCM validates every interventional claim before submission — ensuring imaging guidance is properly linked, frequency limits are tracked, and high-value injection claims are never downgraded.",
     keyPoints: [
       "Radiology guidance (fluoroscopy / ultrasound) documentation and billing",
@@ -374,7 +374,7 @@ const SPECIALTIES = {
   "urgent-care": {
     title: "Urgent Care Billing",
     tagline: "High-volume episodic care billing with rapid claim submission and modifier precision",
-    image: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=1400&q=85&fit=crop",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQ0eiaVdAAtOTrV5X4QOsGjAyKxjP5oozV4eso-werDy9DjlyKiQuSDx4&s=10&fit=crop",
     overview: "Urgent care centers see high volumes of episodic patients with diverse clinical needs — requiring fast, accurate coding across dozens of encounter types daily. MedCare RCM keeps your urgent care revenue moving with same-day claim submission, correct E&M level documentation, and proper after-hours modifier application.",
     keyPoints: [
       "E&M level determination and documentation support for walk-in encounters",
@@ -396,7 +396,7 @@ const SPECIALTIES = {
   "ob-gyn": {
     title: "OB/GYN Billing",
     tagline: "Global maternity package billing and gynecological surgical RCM",
-    image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=1400&q=85&fit=crop",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRuuWgkSe52LzB5d3yKGIytRzi2cRb_-qfSW-zrfudeVV0wzxn7UTUiJuo&s=10&fit=crop",
     overview: "OB/GYN billing spans long-term global maternity bundles across multiple months, alongside independent gynecological surgeries, diagnostic tests, and preventive screenings. MedCare RCM manages the full complexity of obstetric and gynecological revenue — from first trimester through postpartum — without losing a single billable encounter.",
     keyPoints: [
       "Global obstetric package management across changing insurance coverage",
