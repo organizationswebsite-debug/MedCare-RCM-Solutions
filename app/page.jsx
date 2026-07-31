@@ -238,7 +238,7 @@ function Hero() {
             <span style={{ fontSize:18 }}>🔒</span>
             <div>
               <div style={{ fontSize:12, fontWeight:700, color:"#111111" }}>HIPAA Certified</div>
-              <div style={{ fontSize:10, color:"rgba(17,17,17,0.55)" }}>100% Compliant</div>
+              <div style={{ fontSize:10, color:"#1F2937" }}>100% Compliant</div>
             </div>
           </div>
         </div>
