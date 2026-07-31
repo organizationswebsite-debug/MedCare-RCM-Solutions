@@ -205,6 +205,31 @@ img[loading="lazy"].loaded {
 
 @media (max-width: 520px) {
   .modal-row { grid-template-columns: 1fr !important; }
+  .pricing-cards { grid-template-columns: 1fr !important; gap: 14px !important; }
+  .pricing-card { padding: 24px 20px !important; }
+  .home-hero { padding-top: 56px !important; min-height: auto !important; }
+  .hero-grid { grid-template-columns: 1fr !important; gap: 24px !important; padding: 36px 16px 48px !important; }
+  .hero-grid h1 { font-size: clamp(30px, 8vw, 40px) !important; }
+  .hero-grid p { font-size: 15px !important; }
+  .hero-cta { flex-direction: column !important; align-items: stretch !important; }
+  .hero-cta a { width: 100% !important; justify-content: center !important; }
+  .hero-stats { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+  .hero-animation-side { display: none !important; }
+  .mobile-stat-cards { display: flex !important; }
+}
+
+.pricing-cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+  align-items: stretch;
+}
+
+.pricing-card {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 /* ── Reduce mobile motion and repaint cost ── */
@@ -289,6 +314,7 @@ img[loading="lazy"].loaded {
 @media (max-width: 880px) {
   /* Navbar: show hamburger, hide desktop links */
   .nav-desktop { display: none !important; }
+  .pricing-cards { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 16px !important; }
   .nav-hamburger { display: flex !important; }
   nav { padding: 8px 12px !important; }
 

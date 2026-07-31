@@ -127,7 +127,7 @@ function Hero() {
   });
 
   return (
-    <section style={{ minHeight:"100vh", paddingTop:80, background:"linear-gradient(160deg, #F5F0E8 0%, #FDFAF5 45%, #F0EBE0 100%)", position:"relative", overflow:"hidden", display:"flex", flexDirection:"column", justifyContent:"center" }}>
+    <section className="home-hero" style={{ minHeight:"100vh", paddingTop:80, background:"linear-gradient(160deg, #F5F0E8 0%, #FDFAF5 45%, #F0EBE0 100%)", position:"relative", overflow:"hidden", display:"flex", flexDirection:"column", justifyContent:"center" }}>
       <div style={{ position:"absolute", inset:0, pointerEvents:"none", backgroundImage:"radial-gradient(circle, rgba(17,17,17,0.08) 1.5px, transparent 1.5px)", backgroundSize:"40px 40px", animation:"dotsShift 30s linear infinite" , willChange:"transform" }} />
       <div style={{ position:"absolute", top:-70, right:-70, width:320, height:320, borderRadius:"50%", background:"radial-gradient(circle, rgba(245,230,163,0.24) 0%, transparent 70%)", pointerEvents:"none" }} />
       <div style={{ position:"absolute", bottom:-45, left:-45, width:260, height:260, borderRadius:"50%", background:"radial-gradient(circle, rgba(17,17,17,0.05) 0%, transparent 72%)", pointerEvents:"none" }} />
@@ -158,7 +158,7 @@ function Hero() {
           <p style={{ ...rise(0.32), fontSize:16, color:"#666666", lineHeight:1.8, marginBottom:32, maxWidth:460 }}>
             MedCare RCM Solutions manages your complete revenue cycle — from claim submission to final payment — so you collect every dollar you've earned.
           </p>
-          <div style={{ ...rise(0.44), display:"flex", gap:12, flexWrap:"wrap", marginBottom:36 }}>
+          <div className="hero-cta" style={{ ...rise(0.44), display:"flex", gap:12, flexWrap:"wrap", marginBottom:36 }}>
             <Link href="/contact" style={{ background:"#111111", color:"#fff", padding:"14px 26px", borderRadius:100, fontSize:15, fontWeight:700, display:"inline-flex", alignItems:"center", gap:10, boxShadow:"0 4px 24px rgba(17,17,17,0.25)", transition:"transform 0.2s, box-shadow 0.2s" }}
               onMouseEnter={e=>{ e.currentTarget.style.transform="translateY(-2px)"; e.currentTarget.style.boxShadow="0 8px 32px rgba(17,17,17,0.35)"; }}
               onMouseLeave={e=>{ e.currentTarget.style.transform="translateY(0)"; e.currentTarget.style.boxShadow="0 4px 24px rgba(17,17,17,0.25)"; }}>
@@ -780,10 +780,10 @@ function PricingPreview() {
           </div>
         </Reveal>
 
-        <div className="cards-3" style={{ display:"grid", gridTemplateColumns:"repeat(3,1fr)", gap:20, alignItems:"stretch" }}>
+        <div className="pricing-cards">
           {PRICING_TIERS.map((tier,i)=>(
             <Reveal key={i} delay={i*0.1} dir={i===1?"scale":"up"}>
-              <div style={{
+              <div className="pricing-card" style={{
                 background:tier.color, borderRadius:24, padding:"36px 30px",
                 border:tier.popular?"2px solid #111111":"1px solid rgba(17,17,17,0.1)",
                 boxShadow:tier.popular?"0 24px 56px rgba(17,17,17,0.14)":"0 4px 20px rgba(17,17,17,0.05)",
