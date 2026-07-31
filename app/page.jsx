@@ -627,7 +627,8 @@ function PricingModal({ plan, onClose }) {
   return (
     <div ref={overlayRef} onClick={e=>{ if(e.target===overlayRef.current) handleClose(); }}
       style={{
-        position:"fixed",inset:0,zIndex:1000,
+        position:"fixed",top:0,left:0,right:0,bottom:0,zIndex:1000,
+        width:"100vw",height:"100vh",
         display:"flex",alignItems:"center",justifyContent:"center",padding:"16px",
         background:"rgba(17,17,17,0.55)",backdropFilter:"blur(8px)",WebkitBackdropFilter:"blur(8px)",
         opacity:visible?1:0, transition:"opacity 0.18s ease",
