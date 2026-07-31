@@ -42,7 +42,7 @@ function useCountUp(target, duration = 1800, active = false, suffix = "") {
 const SPECIALTIES = [
   {
     icon: "👨‍⚕️", title: "Family Medicine", slug: "family-medicine",
-    image: "https://healthexpressclinics.com/wp-content/uploads/sites/3/2024/09/Areas-Served-Body-1.png&fit=crop",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcScOWpDfgtYC-jn7aUID-QRk1Qs9i6u1_T6fcJNXAuuoPfh8q985gv97ER8&s=10&fit=crop",
     desc: "Comprehensive primary care billing for family practices — from preventive visits to chronic disease management.",
   },
   {
@@ -127,112 +127,107 @@ const SPECIALTIES = [
   },
   {
     icon: "👩‍⚕️", title: "Gynecology", slug: "gynecology",
-    image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=400&q=75&fit=crop",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRuuWgkSe52LzB5d3yKGIytRzi2cRb_-qfSW-zrfudeVV0wzxn7UTUiJuo&s=10&fit=crop",
     desc: "GYN billing for office procedures, surgical cases, preventive screenings, and maternity global billing.",
   },
   {
     icon: "🩸", title: "Hematology", slug: "hematology",
-    image: "https://images.unsplash.com/photo-1579684453423-f84349ef60b0?w=400&q=75&fit=crop",
+    image: "https://www.hopkinsmedicine.org/-/media/images/health/2_-treatment/cardiovascular/blood-tests-teaser.jpg?h=320&iar=0&w=560&hash=5A9A196254BDD6AB60E0D41CF4349321",
     desc: "Hematology RCM covering infusion therapy, bone marrow biopsies, chemotherapy, and blood disorder management.",
   },
   {
     icon: "🛡️", title: "Immunology", slug: "immunology",
-    image: "https://images.unsplash.com/photo-1576671414121-aa2d60f2d9c4?w=400&q=75&fit=crop",
+    image: "https://microbenotes.com/wp-content/uploads/2018/05/Immunology.jpg?w=400&q=75&fit=crop",
     desc: "Allergy and immunology billing for antigen testing, immunotherapy, SLIT, and allergy injection services.",
   },
   {
-    icon: "🦠", title: "Infectious Disease", slug: "infectious-disease",
-    image: "https://images.unsplash.com/photo-1582560475093-ba66accbc424?w=400&q=75&fit=crop",
-    desc: "ID billing for complex hospitalist care, HIV management, antibiotic infusion therapy, and outbreak documentation.",
-  },
-  {
     icon: "🫁", title: "Pulmonology", slug: "pulmonology",
-    image: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=400&q=75&fit=crop",
+    image: "https://www.drjcsuri.com/wp-content/uploads/2024/03/6555.jpg?w=400&q=75&fit=crop",
     desc: "Pulmonology RCM covering spirometry, bronchoscopy, sleep studies, and chronic respiratory disease management.",
   },
   {
     icon: "💊", title: "Oncology", slug: "oncology",
-    image: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=400&q=75&fit=crop",
+    image: "https://advancedinnovativepartners.com/wp-content/uploads/2024/07/Medical-Oncology-01.png?auto=format&fit=crop",
     desc: "Oncology billing for chemotherapy infusions, radiation therapy, immunotherapy, and cancer screenings.",
   },
   {
     icon: "🧪", title: "Endocrinology", slug: "endocrinology",
-    image: "https://images.unsplash.com/photo-1628348068343-c6a848d2b6dd?w=400&q=75&fit=crop",
+    image: "https://eremedium.in/wp-content/uploads/2023/10/Endocrinology.jpg?w=400&q=75&fit=crop",
     desc: "Endocrinology billing for diabetes management, thyroid procedures, hormone therapy, and metabolic disorders.",
   },
   {
     icon: "🧬", title: "Gastroenterology", slug: "gastroenterology",
-    image: "https://images.unsplash.com/photo-1530026405186-ed1f139313f8?w=400&q=75&fit=crop",
+    image: "https://mmi.edu.pk/wp-content/uploads/2020/04/gastro.jpg?auto=format&fit=crop",
     desc: "GI billing for colonoscopies, endoscopies, capsule procedures, and complex GI motility studies.",
   },
   {
     icon: "🧫", title: "Hepatology", slug: "hepatology",
-    image: "https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=400&q=75&fit=crop",
+    image: "https://www.gastropune.com/wp-content/uploads/2024/07/Untitled-design-2024-07-16T115210.358-1024x614.png?w=400&q=75&fit=crop",
     desc: "Hepatology billing for liver biopsies, ERCP, cirrhosis management, and transplant follow-up care.",
   },
   {
     icon: "🚻", title: "Urology", slug: "urology",
-    image: "https://images.unsplash.com/photo-1551190822-a9333d879b1f?w=400&q=75&fit=crop",
+    image: "https://wp04-media.cdn.ihealthspot.com/wp-content/uploads/sites/374/2023/08/istockphoto-1164464390-612x612-1.jpg?w=400&q=75&fit=crop",
     desc: "Urology billing for cystoscopy, prostate procedures, nephrolithiasis treatment, and robotic surgery.",
   },
   {
     icon: "🤲", title: "Rheumatology", slug: "rheumatology",
-    image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&q=75&fit=crop",
+    image: "https://jho.org/wp-content/uploads/2022/04/Rheumatology.jpg?w=400&q=75&fit=crop",
     desc: "Rheumatology RCM for biologic infusions, joint injections, autoimmune disease management, and infusion suites.",
   },
   {
     icon: "🏃", title: "Physical Therapy", slug: "physical-therapy",
-    image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=400&q=75&fit=crop",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSX8x148N6GYpp0IhWVI81hAkoqumnyGXDGo-tcUuVQPRflavmY-eQbfQeI&s=10&fit=crop",
     desc: "PT billing covering therapeutic exercises, manual therapy, modalities, and functional capacity evaluations.",
   },
   {
     icon: "💉", title: "Pain Management", slug: "pain-management",
-    image: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=400&q=75&fit=crop",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-Vt08DXFAL5neq4eElzjy-OZ5qazRtJMUlZNG-4jIWg0UV6pscswJXstw&s=10&fit=crop",
     desc: "Pain management billing for nerve blocks, spinal injections, stimulator implants, and medication management.",
   },
   {
     icon: "👐", title: "Chiropractic", slug: "chiropractic",
-    image: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=400&q=75&fit=crop",
+    image: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=400&q=75&fit=crophttps://www.scuhs.edu/wp-content/uploads/examining-spine.webp",
     desc: "Chiropractic billing for spinal manipulation, maintenance care, Medicare compliance, and personal injury.",
   },
   {
     icon: "🩺", title: "Urgent Care", slug: "urgent-care",
-    image: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=400&q=75&fit=crop",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQ0eiaVdAAtOTrV5X4QOsGjAyKxjP5oozV4eso-werDy9DjlyKiQuSDx4&s=10&fit=crop",
     desc: "Urgent care billing with high-volume claim throughput, walk-in coding compliance, and rapid payment cycles.",
   },
   {
     icon: "⚕️", title: "OB/GYN", slug: "ob-gyn",
-    image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=400&q=75&fit=crop",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRuuWgkSe52LzB5d3yKGIytRzi2cRb_-qfSW-zrfudeVV0wzxn7UTUiJuo&s=10&fit=crop",
     desc: "OB/GYN billing for global maternity packages, antepartum care, delivery coding, and postpartum visits.",
   },
   {
     icon: "👁️", title: "Ophthalmology", slug: "ophthalmology",
-    image: "https://images.unsplash.com/photo-1576765607924-3f7b8410a787?w=400&q=75&fit=crop",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSam_94fTXaz3AfG-LoUQ6r-mMzX225bbKz1-YXG66fka2w34PvEqwAb6HL&s=10",
     desc: "Ophthalmology RCM for cataract surgery, retinal injections, glaucoma procedures, and routine eye exams.",
   },
   {
     icon: "👂", title: "Otolaryngology", slug: "otolaryngology",
-    image: "https://images.unsplash.com/photo-1584515933487-779824d29309?w=400&q=75&fit=crop",
+    image: "https://chblob.icloudhospital.com/thumbnails/4-ENT-994502fb-e400-42f3-a306-ed97022947c0.webp",
     desc: "ENT billing for sinus surgery, tonsillectomies, hearing tests, laryngoscopy, and allergy injections.",
   },
   {
     icon: "🦷", title: "Dentistry", slug: "dentistry",
-    image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&q=75&fit=crop",
+    image: "https://www.aeccglobal.my/images/2022/12/13/study-dentistry-abroad.webp",
     desc: "Dental billing for oral surgery, implants, medical-dental cross-coding, and anesthesia billing compliance.",
   },
   {
     icon: "🧑‍🦽", title: "Rehabilitation", slug: "rehabilitation",
-    image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=400&q=75&fit=crop",
+    image: "https://blog.rehabselect.net/hubfs/Blog/stroke%20rehab%20methods.jpeg?w=400&q=75&fit=crop",
     desc: "Rehab billing for inpatient and outpatient programs, occupational therapy, speech therapy, and functional assessments.",
   },
   {
     icon: "🧑‍🦼", title: "Geriatrics", slug: "geriatrics",
-    image: "https://images.unsplash.com/photo-1576765607924-3f7b8410a787?w=400&q=75&fit=crop",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTiZaz-HBmoRuoQgdTyxVzZZuQgS5r879ER1Vml3iWhffPwfJdllodORJM&s=10&fit=crop",
     desc: "Geriatric billing for annual wellness visits, care transition management, cognitive assessments, and SNF care.",
   },
   {
     icon: "🧑‍🦲", title: "Trichology", slug: "trichology",
-    image: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=400&q=75&fit=crop",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSP5hy9zZdj0svYFw8lbEQjsQDQa4RMaNlOhDBDo8t0NWCke2ywTowP3tEM&s=10&fit=crop",
     desc: "Trichology billing for scalp treatments, hair restoration procedures, and dermatological hair disorder coding.",
   },
 ];

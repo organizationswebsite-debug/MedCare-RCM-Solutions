@@ -98,8 +98,21 @@ export default function Navbar() {
     return () => { document.body.style.overflow = ""; document.body.classList.remove("nav-open"); };
   }, [menuOpen]);
 
-  const openMenu  = (n) => { clearTimeout(closeTimer.current); setActiveMenu(n); };
-  const closeMenu = ()  => { closeTimer.current = setTimeout(()=>setActiveMenu(null),150); };
+  const openMenu = (n) => {
+    clearTimeout(closeTimer.current);
+    setActiveMenu(n);
+  };
+
+  const closeMenu = () => {
+    clearTimeout(closeTimer.current);
+    closeTimer.current = setTimeout(() => setActiveMenu(null), 140);
+  };
+
+  const toggleMenu = (menu, e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setActiveMenu((prev) => (prev === menu ? null : menu));
+  };
 
   const linkStyle = { fontSize:14, fontWeight:500, color:"#111111", padding:"9px 14px", borderRadius:100, whiteSpace:"nowrap", transition:"background 0.18s", background:"transparent" };
   const hoverIn  = e => e.currentTarget.style.background = "rgba(17,17,17,0.07)";
@@ -132,10 +145,18 @@ export default function Navbar() {
             <Link href="/" style={linkStyle} onMouseEnter={hoverIn} onMouseLeave={hoverOut}>Home</Link>
 
             {/* Services */}
-            <div style={{ position:"relative" }} onMouseEnter={()=>openMenu("services")} onMouseLeave={closeMenu}>
-              <button onClick={()=>setActiveMenu(activeMenu==="services"?null:"services")}
+            <div style={{ position:"relative" }} onMouseEnter={() => openMenu("services")} onMouseLeave={closeMenu}>
+              <button
+                onClick={(e) => toggleMenu("services", e)}
+                onFocus={() => openMenu("services")}
+                onBlur={(e) => {
+                  if (!e.currentTarget.parentElement?.contains(e.relatedTarget)) {
+                    closeMenu();
+                  }
+                }}
                 style={{ ...linkStyle, border:"none", cursor:"pointer", fontFamily:"inherit", display:"flex", alignItems:"center", gap:5, background:activeMenu==="services"?"rgba(17,17,17,0.07)":"transparent" }}
-                onMouseEnter={hoverIn} onMouseLeave={hoverOut}>
+                onMouseEnter={(event) => { hoverIn(event); openMenu("services"); }}
+                onMouseLeave={hoverOut}>
                 Services <Chevron open={activeMenu==="services"} />
               </button>
               {activeMenu==="services" && <MegaDropdown items={SERVICES_MENU} columns={2} />}
@@ -145,10 +166,18 @@ export default function Navbar() {
             <Link href="/pricing"     style={linkStyle} onMouseEnter={hoverIn} onMouseLeave={hoverOut}>Pricing</Link>
 
             {/* Company */}
-            <div style={{ position:"relative" }} onMouseEnter={()=>openMenu("company")} onMouseLeave={closeMenu}>
-              <button onClick={()=>setActiveMenu(activeMenu==="company"?null:"company")}
+            <div style={{ position:"relative" }} onMouseEnter={() => openMenu("company")} onMouseLeave={closeMenu}>
+              <button
+                onClick={(e) => toggleMenu("company", e)}
+                onFocus={() => openMenu("company")}
+                onBlur={(e) => {
+                  if (!e.currentTarget.parentElement?.contains(e.relatedTarget)) {
+                    closeMenu();
+                  }
+                }}
                 style={{ ...linkStyle, border:"none", cursor:"pointer", fontFamily:"inherit", display:"flex", alignItems:"center", gap:5, background:activeMenu==="company"?"rgba(17,17,17,0.07)":"transparent" }}
-                onMouseEnter={hoverIn} onMouseLeave={hoverOut}>
+                onMouseEnter={(event) => { hoverIn(event); openMenu("company"); }}
+                onMouseLeave={hoverOut}>
                 Company <Chevron open={activeMenu==="company"} />
               </button>
               {activeMenu==="company" && <MegaDropdown items={COMPANY_MENU} columns={2} isCompany />}

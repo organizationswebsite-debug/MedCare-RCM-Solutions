@@ -66,7 +66,7 @@ const SPECIALTIES = {
   "family-medicine": {
     title: "Family Medicine Billing",
     tagline: "Full-cycle RCM for multi-generational primary care practices",
-    image: "https://healthexpressclinics.com/wp-content/uploads/sites/3/2024/09/Areas-Served-Body-1.png&fit=crop",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcScOWpDfgtYC-jn7aUID-QRk1Qs9i6u1_T6fcJNXAuuoPfh8q985gv97ER8&s=10&fit=crop",
     overview: "Family medicine is the backbone of American healthcare — and one of the most billing-intensive specialties in medicine. High patient volumes, diverse encounter types, and complex preventive care coding make revenue leakage a constant risk. MedCare RCM delivers end-to-end billing support that keeps your clean claim rate above 98% and your AR days under 30.",
     keyPoints: [
       "Modifier 25 validation for same-day preventive and acute encounters",
@@ -421,7 +421,7 @@ const SPECIALTIES = {
 const DEFAULT_SPECIALTY = {
   title: "Medical Billing Services",
   tagline: "Custom RCM solutions for your specialty",
-  image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=1400&q=85&fit=crop",
+  image: "https://static.vecteezy.com/system/resources/thumbnails/026/375/249/small/ai-generative-portrait-of-confident-male-doctor-in-white-coat-and-stethoscope-standing-with-arms-crossed-and-looking-at-camera-photo.jpg",
   overview: "MedCare RCM Solutions delivers end-to-end revenue cycle management for your specialty — from claim submission to final payment. Our certified billing specialists understand your specific payer rules, coding requirements, and reimbursement structures.",
   keyPoints: [
     "Specialty-specific coding by certified billing professionals",

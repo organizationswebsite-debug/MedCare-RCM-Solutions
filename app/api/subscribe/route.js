@@ -1,4 +1,4 @@
-import nodemailer from "nodemailer";
+import { processSubmission } from "@/lib/form-backend";
 
 export async function POST(req) {
   try {
@@ -9,23 +9,23 @@ export async function POST(req) {
       return Response.json({ success: false, error: "Please enter a valid email address." }, { status: 400 });
     }
 
-    const transporter = nodemailer.createTransport({
-      service: "gmail",
-      auth: {
-        user: process.env.GMAIL_USER,
-        pass: process.env.GMAIL_PASS,
-      },
+    const result = await processSubmission({
+      kind: "subscribe",
+      payload: { email: trimmedEmail },
+      fallbackMessage: "Newsletter subscription received and saved locally because email delivery is not configured yet.",
+      mailJobs: [
+        {
+          to: process.env.GMAIL_USER || trimmedEmail,
+          replyTo: trimmedEmail,
+          subject: `New blog subscriber: ${trimmedEmail}`,
+          html: `<p>A new blog subscriber joined the newsletter:</p><p><strong>${trimmedEmail}</strong></p>`,
+          fromName: "MedCare RCM Newsletter",
+          fallbackReason: "SMTP credentials are not configured yet.",
+        },
+      ],
     });
 
-    await transporter.sendMail({
-      from: `"MedCare RCM Newsletter" <${process.env.GMAIL_USER}>`,
-      to: process.env.GMAIL_USER,
-      replyTo: trimmedEmail,
-      subject: `New blog subscriber: ${trimmedEmail}`,
-      html: `<p>A new blog subscriber joined the newsletter:</p><p><strong>${trimmedEmail}</strong></p>`,
-    });
-
-    return Response.json({ success: true });
+    return Response.json(result);
   } catch (error) {
     console.error("Subscribe route error:", error);
     return Response.json({ success: false, error: error.message || "Failed to subscribe." }, { status: 500 });
