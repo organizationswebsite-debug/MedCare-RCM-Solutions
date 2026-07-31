@@ -629,7 +629,8 @@ function PricingModal({ plan, onClose }) {
       style={{
         position:"fixed",top:0,left:0,right:0,bottom:0,zIndex:1000,
         width:"100vw",height:"100vh",
-        display:"flex",alignItems:"center",justifyContent:"center",padding:"16px",
+        display:"grid",placeItems:"center",
+        padding:"16px",
         background:"rgba(17,17,17,0.55)",backdropFilter:"blur(8px)",WebkitBackdropFilter:"blur(8px)",
         opacity:visible?1:0, transition:"opacity 0.18s ease",
         overflowY:"auto", WebkitOverflowScrolling:"touch", overscrollBehavior:"contain",
