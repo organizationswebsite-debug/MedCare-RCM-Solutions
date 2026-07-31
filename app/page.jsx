@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import { useState, useEffect, useRef } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -779,7 +779,7 @@ function PricingPreview() {
           </div>
         </Reveal>
 
-        <div className="pricing-cards" style={{ display:"grid", gridTemplateColumns:"1fr", gap:22, maxWidth:720, margin:"0 auto" }}>
+        <div className="pricing-cards" style={{ display:"grid", gridTemplaterow:"1fr", gap:22, maxWidth:720, margin:"0 auto" }}>
           {PRICING_TIERS.map((tier,i)=>(
             <Reveal key={i} delay={i*0.1} dir={i===1?"scale":"up"}>
               <div className="pricing-card" style={{
