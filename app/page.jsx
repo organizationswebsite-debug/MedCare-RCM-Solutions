@@ -322,15 +322,12 @@ function Services() {
                   onMouseEnter={e=>{ e.currentTarget.style.transform="translateY(-8px)"; e.currentTarget.style.boxShadow="0 24px 56px rgba(17,17,17,0.13)"; e.currentTarget.style.borderColor="#111111"; }}
                   onMouseLeave={e=>{ e.currentTarget.style.transform="translateY(0)"; e.currentTarget.style.boxShadow="0 4px 24px rgba(17,17,17,0.05)"; e.currentTarget.style.borderColor="rgba(17,17,17,0.08)"; }}>
                   {/* Image */}
-                  <div style={{ position:"relative", height:180, overflow:"hidden" }}>
-                    <img loading="lazy" src={s.img} alt={s.title} style={{ width:"100%", height:"100%", objectFit:"cover", transition:"transform 0.5s ease" }}
-                      onMouseEnter={e=>e.target.style.transform="scale(1.06)"}
-                      onMouseLeave={e=>e.target.style.transform="scale(1)"} />
-                    <div style={{ position:"absolute", inset:0, background:"linear-gradient(to bottom,transparent 40%,rgba(17,17,17,0.55) 100%)" }} />
-                    {/* Tag */}
-                    <div style={{ position:"absolute", top:14, left:14, background:"#F5E6A3", borderRadius:100, padding:"4px 12px", fontSize:11, fontWeight:700, color:"#111111" }}>{s.tag}</div>
-                    {/* Icon */}
-                    <div style={{ position:"absolute", bottom:14, right:14, width:42, height:42, borderRadius:12, background:"rgba(255,255,255,0.15)", backdropFilter:"blur(8px)", display:"flex", alignItems:"center", justifyContent:"center", fontSize:20, border:"1px solid rgba(255,255,255,0.25)" }}>{s.icon}</div>
+                  <div style={{ position:"relative", height:180, overflow:"hidden", background:"linear-gradient(135deg, rgba(245,230,163,0.24), rgba(245,245,245,0.95))" }}>
+                    <div style={{ position:"absolute", inset:0, background:"linear-gradient(to bottom, rgba(255,255,255,0.14), rgba(255,255,255,0.7))" }} />
+                    <div style={{ position:"absolute", bottom:20, left:20, color:"rgba(17,17,17,0.65)", fontSize:12, fontWeight:700, textTransform:"uppercase", letterSpacing:1.2 }}>
+                      {s.tag}
+                    </div>
+                    <div style={{ position:"absolute", bottom:14, right:14, width:42, height:42, borderRadius:12, background:"rgba(255,255,255,0.8)", display:"flex", alignItems:"center", justifyContent:"center", fontSize:20, color:"#111111", border:"1px solid rgba(17,17,17,0.08)" }}>{s.icon}</div>
                   </div>
                   {/* Content */}
                   <div style={{ padding:"22px 22px 24px" }}>
@@ -379,13 +376,11 @@ function Specialties() {
                 <div className="img-card" style={{ position:"relative", height:240, borderRadius:22, overflow:"hidden", border:"1px solid rgba(17,17,17,0.1)", boxShadow:"0 4px 20px rgba(17,17,17,0.07)", transition:"all 0.35s cubic-bezier(0.16,1,0.3,1)", cursor:"pointer" }}
                   onMouseEnter={e=>{ e.currentTarget.style.transform="translateY(-7px) scale(1.01)"; e.currentTarget.style.boxShadow="0 24px 52px rgba(17,17,17,0.15)"; }}
                   onMouseLeave={e=>{ e.currentTarget.style.transform="translateY(0) scale(1)"; e.currentTarget.style.boxShadow="0 4px 20px rgba(17,17,17,0.07)"; }}>
-                  <img loading="lazy" src={sp.img} alt={sp.title} style={{ width:"100%", height:"100%", objectFit:"cover", transition:"transform 0.5s ease" }}
-                    onMouseEnter={e=>e.target.style.transform="scale(1.07)"}
-                    onMouseLeave={e=>e.target.style.transform="scale(1)"} />
-                  <div style={{ position:"absolute", inset:0, background:"linear-gradient(to bottom, rgba(17,17,17,0.05) 0%, rgba(17,17,17,0.72) 100%)" }} />
-                  {/* Icon pill top-left */}
-                  <div style={{ position:"absolute", top:14, left:14, background:"#F5E6A3", borderRadius:100, padding:"5px 12px", display:"flex", alignItems:"center", gap:6, fontSize:12, fontWeight:700, color:"#111111" }}>
-                    <span>{sp.icon}</span> {sp.stat}
+                  <div style={{ width:"100%", height:"100%", background:"linear-gradient(135deg, rgba(245,246,250,1), rgba(233,236,241,1))", position:"relative" }}>
+                    <div style={{ position:"absolute", inset:0, background:"linear-gradient(to bottom, rgba(255,255,255,0.4), rgba(255,255,255,0.0))" }} />
+                    <div style={{ position:"absolute", top:14, left:14, background:"rgba(255,255,255,0.9)", borderRadius:100, padding:"6px 14px", display:"inline-flex", alignItems:"center", gap:8, fontSize:12, fontWeight:700, color:"#111111" }}>
+                      <span>{sp.icon}</span> {sp.stat}
+                    </div>
                   </div>
                   {/* Title bottom */}
                   <div style={{ position:"absolute", bottom:0, left:0, right:0, padding:"20px 20px" }}>
