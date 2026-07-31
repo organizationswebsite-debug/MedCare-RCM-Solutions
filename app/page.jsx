@@ -191,20 +191,20 @@ function Hero() {
             <div style={{ fontSize:11, color:"rgba(255,255,255,0.45)", marginTop:5 }}>↑ Up from 91% last quarter</div>
           </div>
           <div style={{ position:"absolute", top:50, right:0, width:200, background:"#fff", border:"1px solid rgba(17,17,17,0.1)", borderRadius:18, padding:"20px", boxShadow:"0 8px 32px rgba(17,17,17,0.08)", animation:"floatB 6s ease-in-out infinite", zIndex:3 , willChange:"transform" }}>
-            <div style={{ fontSize:11, fontWeight:700, color:"#999999", textTransform:"uppercase", letterSpacing:1, marginBottom:8 }}>Reduced Denials</div>
+            <div style={{ fontSize:11, fontWeight:700, color:"#374151", textTransform:"uppercase", letterSpacing:1, marginBottom:8 }}>Reduced Denials</div>
             <div style={{ fontSize:34, fontWeight:800, color:"#111111", letterSpacing:-1 }}>{c2}%</div>
             <svg width="76" height="76" style={{ display:"block", margin:"8px auto 0" }}>
               <circle cx="38" cy="38" r="28" fill="none" stroke="#F0EBE0" strokeWidth="7" />
               <circle cx="38" cy="38" r="28" fill="none" stroke="#111111" strokeWidth="7" strokeDasharray={`${(counting?51:0)*1.76} 176`} strokeLinecap="round" transform="rotate(-90 38 38)" style={{ transition:"stroke-dasharray 1.8s ease" }} />
               <text x="38" y="43" textAnchor="middle" fontSize="11" fontWeight="800" fill="#111111">51%</text>
             </svg>
-            <div style={{ fontSize:11, color:"#666666", fontWeight:600, textAlign:"center", marginTop:4 }}>↓ Denial reduction</div>
+            <div style={{ fontSize:11, color:"#4B5563", fontWeight:600, textAlign:"center", marginTop:4 }}>↓ Denial reduction</div>
           </div>
           <div style={{ position:"absolute", top:220, left:"50%", transform:"translateX(-50%)", width:250, background:"#fff", border:"1px solid rgba(17,17,17,0.1)", borderRadius:18, padding:"20px", boxShadow:"0 8px 32px rgba(17,17,17,0.08)", animation:"floatC 7s ease-in-out infinite", zIndex:4 , willChange:"transform" }}>
             <div style={{ display:"flex", justifyContent:"space-between", alignItems:"flex-start", marginBottom:8 }}>
               <div>
-                <div style={{ fontSize:11, fontWeight:700, color:"#999999", textTransform:"uppercase", letterSpacing:1 }}>Faster Reimbursements</div>
-                <div style={{ fontSize:11, color:"#666666", fontWeight:600, marginTop:2 }}>+1.33% this month</div>
+                <div style={{ fontSize:11, fontWeight:700, color:"#374151", textTransform:"uppercase", letterSpacing:1 }}>Faster Reimbursements</div>
+                <div style={{ fontSize:11, color:"#4B5563", fontWeight:600, marginTop:2 }}>+1.33% this month</div>
               </div>
               <div style={{ background:"#F5E6A3", borderRadius:8, padding:"4px 8px", fontSize:11, fontWeight:700, color:"#111111" }}>✓</div>
             </div>
@@ -213,12 +213,12 @@ function Hero() {
               <path d="M0,40 C30,36 60,30 90,22 C120,14 150,8 180,5 C200,3 210,2 220,1" fill="none" stroke="#111111" strokeWidth="2.5" strokeLinecap="round" style={{ strokeDasharray:300, strokeDashoffset:counting?0:300, transition:"stroke-dashoffset 1.8s ease" }} />
               <path d="M0,40 C30,36 60,30 90,22 C120,14 150,8 180,5 C200,3 210,2 220,1 L220,44 L0,44Z" fill="url(#lineG)" />
             </svg>
-            <div style={{ fontSize:19, fontWeight:800, color:"#111111", marginTop:6 }}>35% Faster <span style={{ fontSize:12, fontWeight:400, color:"#999999" }}>avg reimbursement</span></div>
+            <div style={{ fontSize:19, fontWeight:800, color:"#111111", marginTop:6 }}>35% Faster <span style={{ fontSize:12, fontWeight:400, color:"#4B5563" }}>avg reimbursement</span></div>
           </div>
           <div style={{ position:"absolute", bottom:20, right:40, width:186, background:"#fff", border:"1px solid rgba(17,17,17,0.1)", borderRadius:18, padding:"18px", boxShadow:"0 8px 32px rgba(17,17,17,0.08)", animation:"floatD 8s ease-in-out infinite", zIndex:3 , willChange:"transform" }}>
-            <div style={{ fontSize:11, fontWeight:700, color:"#999999", textTransform:"uppercase", letterSpacing:1, marginBottom:6 }}>Revenue Growth</div>
+            <div style={{ fontSize:11, fontWeight:700, color:"#374151", textTransform:"uppercase", letterSpacing:1, marginBottom:6 }}>Revenue Growth</div>
             <div style={{ fontSize:30, fontWeight:800, color:"#111111", letterSpacing:-1 }}>{c3}%</div>
-            <div style={{ fontSize:11, color:"#666666", fontWeight:600, marginBottom:10 }}>↑ Your Growth</div>
+            <div style={{ fontSize:11, color:"#4B5563", fontWeight:600, marginBottom:10 }}>↑ Your Growth</div>
             <div style={{ display:"flex", alignItems:"flex-end", gap:3, height:30 }}>
               {[12,20,16,26,22,34,30,38].map((h,i)=>(
                 <div key={i} style={{ flex:1, height:h, background:i===7?"#111111":"#F0EBE0", borderRadius:3 }} />
@@ -226,11 +226,11 @@ function Hero() {
             </div>
           </div>
           <div style={{ position:"absolute", bottom:28, left:46, width:170, background:"#fff", border:"1px solid rgba(17,17,17,0.1)", borderRadius:16, padding:"16px", boxShadow:"0 8px 28px rgba(17,17,17,0.08)", animation:"floatE 6.5s ease-in-out 0.5s infinite", zIndex:3 , willChange:"transform" }}>
-            <div style={{ fontSize:10, fontWeight:700, color:"#999999", textTransform:"uppercase", letterSpacing:1, marginBottom:12 }}>Claim #48291</div>
+            <div style={{ fontSize:10, fontWeight:700, color:"#374151", textTransform:"uppercase", letterSpacing:1, marginBottom:12 }}>Claim #48291</div>
             {claimSteps.map((step,i)=>(
               <div key={i} style={{ display:"flex", alignItems:"center", gap:8, marginBottom:7 }}>
                 <div style={{ width:8, height:8, borderRadius:"50%", flexShrink:0, background:i<activeStep?"#111111":i===activeStep?"#F5E6A3":"#E8E2D8", border:i===activeStep?"2px solid #111111":"none", transition:"all 0.3s" }} />
-                <span style={{ fontSize:11, fontWeight:i<=activeStep?600:400, color:i<=activeStep?"#111111":"#999999", transition:"color 0.3s" }}>{step}</span>
+                <span style={{ fontSize:11, fontWeight:i<=activeStep?600:400, color:i<=activeStep?"#111111":"#4B5563", transition:"color 0.3s" }}>{step}</span>
               </div>
             ))}
           </div>
@@ -322,12 +322,13 @@ function Services() {
                   onMouseEnter={e=>{ e.currentTarget.style.transform="translateY(-8px)"; e.currentTarget.style.boxShadow="0 24px 56px rgba(17,17,17,0.13)"; e.currentTarget.style.borderColor="#111111"; }}
                   onMouseLeave={e=>{ e.currentTarget.style.transform="translateY(0)"; e.currentTarget.style.boxShadow="0 4px 24px rgba(17,17,17,0.05)"; e.currentTarget.style.borderColor="rgba(17,17,17,0.08)"; }}>
                   {/* Image */}
-                  <div style={{ position:"relative", height:180, overflow:"hidden", background:"linear-gradient(135deg, rgba(245,230,163,0.24), rgba(245,245,245,0.95))" }}>
-                    <div style={{ position:"absolute", inset:0, background:"linear-gradient(to bottom, rgba(255,255,255,0.14), rgba(255,255,255,0.7))" }} />
-                    <div style={{ position:"absolute", bottom:20, left:20, color:"rgba(17,17,17,0.65)", fontSize:12, fontWeight:700, textTransform:"uppercase", letterSpacing:1.2 }}>
-                      {s.tag}
-                    </div>
-                    <div style={{ position:"absolute", bottom:14, right:14, width:42, height:42, borderRadius:12, background:"rgba(255,255,255,0.8)", display:"flex", alignItems:"center", justifyContent:"center", fontSize:20, color:"#111111", border:"1px solid rgba(17,17,17,0.08)" }}>{s.icon}</div>
+                  <div style={{ position:"relative", height:180, overflow:"hidden" }}>
+                    <img loading="lazy" src={s.img} alt={s.title} style={{ width:"100%", height:"100%", objectFit:"cover", transition:"transform 0.5s ease" }}
+                      onMouseEnter={e=>e.currentTarget.style.transform="scale(1.06)"}
+                      onMouseLeave={e=>e.currentTarget.style.transform="scale(1)"} />
+                    <div style={{ position:"absolute", inset:0, background:"linear-gradient(to bottom, rgba(17,17,17,0.06) 0%, rgba(17,17,17,0.36) 100%)" }} />
+                    <div style={{ position:"absolute", top:14, left:14, background:"#F5E6A3", borderRadius:100, padding:"4px 12px", fontSize:11, fontWeight:700, color:"#111111" }}>{s.tag}</div>
+                    <div style={{ position:"absolute", bottom:14, right:14, width:42, height:42, borderRadius:12, background:"rgba(255,255,255,0.85)", display:"flex", alignItems:"center", justifyContent:"center", fontSize:20, border:"1px solid rgba(17,17,17,0.12)", color:"#111111" }}>{s.icon}</div>
                   </div>
                   {/* Content */}
                   <div style={{ padding:"22px 22px 24px" }}>
@@ -376,16 +377,19 @@ function Specialties() {
                 <div className="img-card" style={{ position:"relative", height:240, borderRadius:22, overflow:"hidden", border:"1px solid rgba(17,17,17,0.1)", boxShadow:"0 4px 20px rgba(17,17,17,0.07)", transition:"all 0.35s cubic-bezier(0.16,1,0.3,1)", cursor:"pointer" }}
                   onMouseEnter={e=>{ e.currentTarget.style.transform="translateY(-7px) scale(1.01)"; e.currentTarget.style.boxShadow="0 24px 52px rgba(17,17,17,0.15)"; }}
                   onMouseLeave={e=>{ e.currentTarget.style.transform="translateY(0) scale(1)"; e.currentTarget.style.boxShadow="0 4px 20px rgba(17,17,17,0.07)"; }}>
-                  <div style={{ width:"100%", height:"100%", background:"linear-gradient(135deg, rgba(245,246,250,1), rgba(233,236,241,1))", position:"relative" }}>
-                    <div style={{ position:"absolute", inset:0, background:"linear-gradient(to bottom, rgba(255,255,255,0.4), rgba(255,255,255,0.0))" }} />
+                  <div style={{ position:"relative", width:"100%", height:"100%", overflow:"hidden", backgroundColor:"#f3f4f6" }}>
+                    <img loading="lazy" src={sp.img} alt={sp.title} style={{ width:"100%", height:"100%", objectFit:"cover", transition:"transform 0.5s ease" }}
+                      onMouseEnter={e=>e.currentTarget.style.transform="scale(1.05)"}
+                      onMouseLeave={e=>e.currentTarget.style.transform="scale(1)"} />
+                    <div style={{ position:"absolute", inset:0, background:"linear-gradient(to bottom, rgba(17,17,17,0.16) 0%, rgba(17,17,17,0.5) 100%)" }} />
                     <div style={{ position:"absolute", top:14, left:14, background:"rgba(255,255,255,0.9)", borderRadius:100, padding:"6px 14px", display:"inline-flex", alignItems:"center", gap:8, fontSize:12, fontWeight:700, color:"#111111" }}>
                       <span>{sp.icon}</span> {sp.stat}
                     </div>
                   </div>
                   {/* Title bottom */}
-                  <div style={{ position:"absolute", bottom:0, left:0, right:0, padding:"20px 20px" }}>
-                    <h3 style={{ fontSize:19, fontWeight:800, color:"#fff", marginBottom:6, textShadow:"0 2px 8px rgba(0,0,0,0.3)" }}>{sp.title}</h3>
-                    <div style={{ display:"inline-flex", alignItems:"center", gap:5, background:"rgba(255,255,255,0.15)", backdropFilter:"blur(8px)", border:"1px solid rgba(255,255,255,0.2)", borderRadius:100, padding:"4px 12px", fontSize:12, fontWeight:600, color:"#fff" }}>
+                  <div style={{ position:"absolute", bottom:0, left:0, right:0, padding:"20px 20px", background:"linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.72) 80%)" }}>
+                    <h3 style={{ fontSize:19, fontWeight:800, color:"#ffffff", marginBottom:6 }}>{sp.title}</h3>
+                    <div style={{ display:"inline-flex", alignItems:"center", gap:5, background:"rgba(255,255,255,0.18)", backdropFilter:"blur(8px)", border:"1px solid rgba(255,255,255,0.22)", borderRadius:100, padding:"5px 14px", fontSize:12, fontWeight:700, color:"#ffffff" }}>
                       View billing info →
                     </div>
                   </div>
@@ -775,7 +779,7 @@ function PricingPreview() {
           </div>
         </Reveal>
 
-        <div className="pricing-cards">
+        <div className="pricing-cards" style={{ display:"grid", gridTemplateColumns:"1fr", gap:22, maxWidth:720, margin:"0 auto" }}>
           {PRICING_TIERS.map((tier,i)=>(
             <Reveal key={i} delay={i*0.1} dir={i===1?"scale":"up"}>
               <div className="pricing-card" style={{
