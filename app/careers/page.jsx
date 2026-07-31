@@ -201,7 +201,7 @@ export default function CareersPage() {
       if (file) fd.append("file", file);
       const res  = await fetch("/api/apply", { method:"POST", body:fd });
       const data = await res.json();
-      if (data.success) { setApplied(true); }
+      if (data && data.success !== false) { setApplied(true); }
       else { setFormError("Something went wrong — please try again or email us directly."); }
     } catch { setFormError("Network error — please check your connection and try again."); }
     finally  { setSubmitting(false); }

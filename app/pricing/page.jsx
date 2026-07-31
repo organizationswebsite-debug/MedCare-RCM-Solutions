@@ -178,8 +178,8 @@ function ContactModal({ isOpen, onClose, monthlyCollections, rate }) {
 
                 const result = await response.json();
 
-                if (!response.ok || result.success === false) {
-                  throw new Error(result.error || "Unable to submit pricing inquiry. Please try again.");
+                if (!response.ok || result?.success === false) {
+                  throw new Error(result?.error || "Unable to submit pricing inquiry. Please try again.");
                 }
 
                 setSubmitted(true);

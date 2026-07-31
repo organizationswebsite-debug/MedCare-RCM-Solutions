@@ -137,8 +137,11 @@ export default function ContactPage() {
         body:    JSON.stringify(form),
       });
       const data = await res.json();
-      if (data.success) setSubmitted(true);
-      else setError("Something went wrong — please try again or email us directly at info@medcarercmsolutions.com");
+      if (data && data.success !== false) {
+        setSubmitted(true);
+      } else {
+        setError("Something went wrong — please try again or email us directly at info@medcarercmsolutions.com");
+      }
     } catch {
       setError("Network error — please check your connection and try again.");
     } finally {
