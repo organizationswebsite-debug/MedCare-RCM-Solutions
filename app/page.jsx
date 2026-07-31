@@ -629,7 +629,7 @@ function PricingModal({ plan, onClose }) {
       style={{
         position:"fixed",top:0,left:0,right:0,bottom:0,zIndex:1000,
         width:"100vw",height:"100vh",
-        display:"grid",placeItems:"center",
+        display:"flex",alignItems:"center",justifyContent:"center",
         padding:"16px",
         background:"rgba(17,17,17,0.55)",backdropFilter:"blur(8px)",WebkitBackdropFilter:"blur(8px)",
         opacity:visible?1:0, transition:"opacity 0.18s ease",
@@ -770,7 +770,7 @@ function PricingPreview() {
   const [selectedPlan, setSelectedPlan] = useState(null);
 
   return (
-    <section style={{ background:"#FDFAF5", padding:"100px 20px", position:"relative" }}>
+    <section style={{ background:"#FDFAF5", padding:"80px 20px", position:"relative" }}>
       <div style={{ maxWidth:1100, margin:"0 auto" }}>
         <Reveal>
           <div style={{ textAlign:"center", marginBottom:60 }}>
@@ -784,9 +784,9 @@ function PricingPreview() {
           {PRICING_TIERS.map((tier,i)=>(
             <Reveal key={i} delay={i*0.1} dir={i===1?"scale":"up"}>
               <div className="pricing-card" style={{
-                background:tier.color, borderRadius:22, padding:"28px 24px",
+                background:tier.color, borderRadius:20, padding:"24px 20px",
                 border:tier.popular?"2px solid #111111":"1px solid rgba(17,17,17,0.12)",
-                boxShadow:tier.popular?"0 18px 40px rgba(17,17,17,0.14)":"0 2px 16px rgba(17,17,17,0.06)",
+                boxShadow:tier.popular?"0 16px 34px rgba(17,17,17,0.14)":"0 2px 14px rgba(17,17,17,0.06)",
                 display:"flex", flexDirection:"column", position:"relative",
                 transition:"box-shadow 0.2s ease, transform 0.2s ease",
                 cursor:"pointer",
