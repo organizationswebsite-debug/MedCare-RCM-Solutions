@@ -779,7 +779,7 @@ function PricingPreview() {
           </div>
         </Reveal>
 
-        <div className="pricing-cards" style={{ display:"grid", gridTemplaterow:"1fr", gap:22, maxWidth:720, margin:"0 auto" }}>
+        <div className="pricing-cards" style={{ display:"grid", gridTemplateColumns:"repeat(3, minmax(0, 1fr))", gap:22, maxWidth:1100, margin:"0 auto" }}>
           {PRICING_TIERS.map((tier,i)=>(
             <Reveal key={i} delay={i*0.1} dir={i===1?"scale":"up"}>
               <div className="pricing-card" style={{
