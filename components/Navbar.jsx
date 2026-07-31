@@ -41,7 +41,7 @@ function MegaDropdown({ items, columns = 2, isCompany }) {
     }}>
       <div style={{ background:"#111111", padding:"12px 20px", display:"flex", alignItems:"center", justifyContent:"space-between" }}>
         <span style={{ fontSize:11, fontWeight:700, color:"#F5E6A3", letterSpacing:"1.5px", textTransform:"uppercase" }}>
-          {isCompany ? "Company" : "RCM Services"}
+          {isCompany ? "Company" : "Services"}
         </span>
         <Link href={isCompany ? "/about" : "/services"} style={{ fontSize:12, fontWeight:700, color:"rgba(255,255,255,0.4)" }}>View all →</Link>
       </div>

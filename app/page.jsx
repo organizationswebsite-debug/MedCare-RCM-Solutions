@@ -181,7 +181,7 @@ function Hero() {
           </div>
         </div>
         <div style={{ position:"relative", height:520, ...rise(0.25) }} className="hero-animation-side">
-          <div style={{ position:"absolute", top:30, left:0, width:220, background:"#111111", borderRadius:22, padding:"24px", boxShadow:"0 24px 64px rgba(17,17,17,0.25)", animation:"floatA 5s ease-in-out infinite", zIndex:3 , willChange:"transform" }}>
+          <div style={{ position:"absolute", top:50, left:10, width:220, background:"#111111", borderRadius:22, padding:"24px", boxShadow:"0 24px 64px rgba(17,17,17,0.25)", animation:"floatA 5s ease-in-out infinite", zIndex:3 , willChange:"transform" }}>
             <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", marginBottom:10 }}>
               <div style={{ width:36, height:36, borderRadius:10, background:"#F5E6A3", display:"flex", alignItems:"center", justifyContent:"center", fontSize:18 }}>🏥</div>
               <div style={{ fontSize:11, color:"rgba(255,255,255,0.6)", background:"rgba(255,255,255,0.1)", padding:"3px 10px", borderRadius:100 }}>Live</div>
@@ -190,7 +190,7 @@ function Hero() {
             <div style={{ fontSize:13, fontWeight:700, color:"rgba(255,255,255,0.85)" }}>First-Pass Claim Rate</div>
             <div style={{ fontSize:11, color:"rgba(255,255,255,0.45)", marginTop:5 }}>↑ Up from 91% last quarter</div>
           </div>
-          <div style={{ position:"absolute", top:16, right:0, width:200, background:"#fff", border:"1px solid rgba(17,17,17,0.1)", borderRadius:18, padding:"20px", boxShadow:"0 8px 32px rgba(17,17,17,0.08)", animation:"floatB 6s ease-in-out infinite", zIndex:3 , willChange:"transform" }}>
+          <div style={{ position:"absolute", top:50, right:0, width:200, background:"#fff", border:"1px solid rgba(17,17,17,0.1)", borderRadius:18, padding:"20px", boxShadow:"0 8px 32px rgba(17,17,17,0.08)", animation:"floatB 6s ease-in-out infinite", zIndex:3 , willChange:"transform" }}>
             <div style={{ fontSize:11, fontWeight:700, color:"#999999", textTransform:"uppercase", letterSpacing:1, marginBottom:8 }}>Reduced Denials</div>
             <div style={{ fontSize:34, fontWeight:800, color:"#111111", letterSpacing:-1 }}>{c2}%</div>
             <svg width="76" height="76" style={{ display:"block", margin:"8px auto 0" }}>
@@ -200,7 +200,7 @@ function Hero() {
             </svg>
             <div style={{ fontSize:11, color:"#666666", fontWeight:600, textAlign:"center", marginTop:4 }}>↓ Denial reduction</div>
           </div>
-          <div style={{ position:"absolute", top:240, left:"50%", transform:"translateX(-50%)", width:250, background:"#fff", border:"1px solid rgba(17,17,17,0.1)", borderRadius:18, padding:"20px", boxShadow:"0 8px 32px rgba(17,17,17,0.08)", animation:"floatC 7s ease-in-out infinite", zIndex:4 , willChange:"transform" }}>
+          <div style={{ position:"absolute", top:220, left:"50%", transform:"translateX(-50%)", width:250, background:"#fff", border:"1px solid rgba(17,17,17,0.1)", borderRadius:18, padding:"20px", boxShadow:"0 8px 32px rgba(17,17,17,0.08)", animation:"floatC 7s ease-in-out infinite", zIndex:4 , willChange:"transform" }}>
             <div style={{ display:"flex", justifyContent:"space-between", alignItems:"flex-start", marginBottom:8 }}>
               <div>
                 <div style={{ fontSize:11, fontWeight:700, color:"#999999", textTransform:"uppercase", letterSpacing:1 }}>Faster Reimbursements</div>
@@ -215,17 +215,17 @@ function Hero() {
             </svg>
             <div style={{ fontSize:19, fontWeight:800, color:"#111111", marginTop:6 }}>35% Faster <span style={{ fontSize:12, fontWeight:400, color:"#999999" }}>avg reimbursement</span></div>
           </div>
-          <div style={{ position:"absolute", bottom:20, right:0, width:186, background:"#fff", border:"1px solid rgba(17,17,17,0.1)", borderRadius:18, padding:"18px", boxShadow:"0 8px 32px rgba(17,17,17,0.08)", animation:"floatD 8s ease-in-out infinite", zIndex:3 , willChange:"transform" }}>
+          <div style={{ position:"absolute", bottom:20, right:40, width:186, background:"#fff", border:"1px solid rgba(17,17,17,0.1)", borderRadius:18, padding:"18px", boxShadow:"0 8px 32px rgba(17,17,17,0.08)", animation:"floatD 8s ease-in-out infinite", zIndex:3 , willChange:"transform" }}>
             <div style={{ fontSize:11, fontWeight:700, color:"#999999", textTransform:"uppercase", letterSpacing:1, marginBottom:6 }}>Revenue Growth</div>
             <div style={{ fontSize:30, fontWeight:800, color:"#111111", letterSpacing:-1 }}>{c3}%</div>
-            <div style={{ fontSize:11, color:"#666666", fontWeight:600, marginBottom:10 }}>↑ YoY Growth</div>
+            <div style={{ fontSize:11, color:"#666666", fontWeight:600, marginBottom:10 }}>↑ Your Growth</div>
             <div style={{ display:"flex", alignItems:"flex-end", gap:3, height:30 }}>
               {[12,20,16,26,22,34,30,38].map((h,i)=>(
                 <div key={i} style={{ flex:1, height:h, background:i===7?"#111111":"#F0EBE0", borderRadius:3 }} />
               ))}
             </div>
           </div>
-          <div style={{ position:"absolute", bottom:28, left:6, width:170, background:"#fff", border:"1px solid rgba(17,17,17,0.1)", borderRadius:16, padding:"16px", boxShadow:"0 8px 28px rgba(17,17,17,0.08)", animation:"floatE 6.5s ease-in-out 0.5s infinite", zIndex:3 , willChange:"transform" }}>
+          <div style={{ position:"absolute", bottom:28, left:46, width:170, background:"#fff", border:"1px solid rgba(17,17,17,0.1)", borderRadius:16, padding:"16px", boxShadow:"0 8px 28px rgba(17,17,17,0.08)", animation:"floatE 6.5s ease-in-out 0.5s infinite", zIndex:3 , willChange:"transform" }}>
             <div style={{ fontSize:10, fontWeight:700, color:"#999999", textTransform:"uppercase", letterSpacing:1, marginBottom:12 }}>Claim #48291</div>
             {claimSteps.map((step,i)=>(
               <div key={i} style={{ display:"flex", alignItems:"center", gap:8, marginBottom:7 }}>
@@ -234,7 +234,7 @@ function Hero() {
               </div>
             ))}
           </div>
-          <div style={{ position:"absolute", top:164, left:"18%", background:"#F5E6A3", border:"1px solid rgba(17,17,17,0.15)", borderRadius:14, padding:"10px 16px", display:"flex", alignItems:"center", gap:10, boxShadow:"0 4px 20px rgba(17,17,17,0.1)", animation:"floatF 4.5s ease-in-out infinite", zIndex:5 , willChange:"transform" }}>
+          <div style={{ position:"absolute", top:56, left:"16%", background:"#F5E6A3", border:"1px solid rgba(17,17,17,0.15)", borderRadius:14, padding:"10px 16px", display:"flex", alignItems:"center", gap:10, boxShadow:"0 4px 20px rgba(17,17,17,0.1)", animation:"floatF 4.5s ease-in-out infinite", zIndex:5 , willChange:"transform" }}>
             <span style={{ fontSize:18 }}>🔒</span>
             <div>
               <div style={{ fontSize:12, fontWeight:700, color:"#111111" }}>HIPAA Certified</div>
@@ -294,12 +294,12 @@ function StatsStrip() {
 
 /* ══ SERVICES — image cards ══ */
 const SERVICES_DATA = [
-  { icon:"🧾", title:"Medical Billing",        href:"/services/hospital-billing",    img:"/service-card-1.svg", tag:"Most Popular",  desc:"End-to-end billing from charge capture to payment posting with 98%+ first-pass rates." },
-  { icon:"🚫", title:"Denial Management",       href:"/services/denial-management",   img:"/service-card-2.svg", tag:"High Impact",   desc:"Every denied claim fought and appealed within 48 hours — 70%+ first-level success rate." },
-  { icon:"💰", title:"AR Recovery",             href:"/services/ar-recovery",          img:"/service-card-1.svg", tag:"Fast ROI",       desc:"We recover aging claims beyond 60 days that most practices write off permanently." },
-  { icon:"🪪", title:"Provider Credentialing",  href:"/services/credentialing",        img:"/service-card-2.svg", tag:"7-Day Setup",   desc:"Fast-track CAQH, Medicare, Medicaid and commercial payer enrollment — zero delays." },
-  { icon:"👤", title:"Patient Billing",         href:"/services/patient-billing",      img:"/service-card-1.svg", tag:"Trust-Building", desc:"Clear statements and payment portals that get balances paid without damaging relationships." },
-  { icon:"📊", title:"Reporting & Analytics",   href:"/services/reporting-analytics",  img:"/service-card-2.svg", tag:"Real-Time",      desc:"Live KPI dashboards and monthly executive reports — every metric in plain language." },
+  { icon:"🧾", title:"Medical Billing",        href:"/services/hospital-billing",    img:"https://plus.unsplash.com/premium_photo-1661374851109-1216f527ee49?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&fit=crop", tag:"Most Popular",  desc:"End-to-end billing from charge capture to payment posting with 98%+ first-pass rates." },
+  { icon:"🚫", title:"Denial Management",       href:"/services/denial-management",   img:"https://blog.curemd.com/wp-content/uploads/2020/09/Pay-close-attention-to-claims-and-denials.jpg", tag:"High Impact",   desc:"Every denied claim fought and appealed within 48 hours — 70%+ first-level success rate." },
+  { icon:"💰", title:"AR Recovery",             href:"/services/ar-recovery",          img:"https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=700&q=75&fit=crop", tag:"Fast ROI",       desc:"We recover aging claims beyond 60 days that most practices write off permanently." },
+  { icon:"🪪", title:"Provider Credentialing",  href:"/services/credentialing",        img:"https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=700&q=75&fit=crop", tag:"7-Day Setup",   desc:"Fast-track CAQH, Medicare, Medicaid and commercial payer enrollment — zero delays." },
+  { icon:"👤", title:"Patient Billing",         href:"/services/patient-billing",      img:"https://plus.unsplash.com/premium_photo-1661434879388-63271644d6ef?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDZ8fHxlbnwwfHx8fHw%3D&fit=crop", tag:"Trust-Building", desc:"Clear statements and payment portals that get balances paid without damaging relationships." },
+  { icon:"📊", title:"Reporting & Analytics",   href:"/services/reporting-analytics",  img:"https://images.unsplash.com/photo-1543286386-713bdd548da4?w=700&q=75&fit=crop", tag:"Real-Time",      desc:"Live KPI dashboards and monthly executive reports — every metric in plain language." },
 ];
 
 function Services() {
@@ -353,12 +353,12 @@ function Services() {
 
 /* ══ SPECIALTIES — image cards ══ */
 const SPECIALTIES_DATA = [
-  { title:"Family Medicine",  slug:"family-medicine",  img:"/specialty-card-1.svg", icon:"👨‍⚕️", stat:"98% first-pass" },
-  { title:"Cardiology",       slug:"cardiology",        img:"/specialty-card-2.svg", icon:"❤️",   stat:"30+ payers" },
-  { title:"Mental Health",    slug:"mental-health",     img:"/specialty-card-1.svg", icon:"🧠",   stat:"Parity compliant" },
-  { title:"Orthopedics",      slug:"orthopedics",       img:"/specialty-card-2.svg", icon:"🦴",   stat:"Complex coding" },
-  { title:"Pediatrics",       slug:"pediatrics",        img:"/specialty-card-1.svg", icon:"👶",   stat:"Well-child visits" },
-  { title:"Dermatology",      slug:"dermatology",       img:"/specialty-card-2.svg", icon:"✨",   stat:"Mohs + cosmetic" },
+  { title:"Family Medicine",  slug:"family-medicine",  img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcScOWpDfgtYC-jn7aUID-QRk1Qs9i6u1_T6fcJNXAuuoPfh8q985gv97ER8&s=10&fit=crop", icon:"👨‍⚕️", stat:"98% first-pass" },
+  { title:"Cardiology",       slug:"cardiology",        img:"https://saifeehospital.com.pk/wp-content/uploads/2024/10/cardiology-images.jpg?auto=format&fit=crop", icon:"❤️",   stat:"30+ payers" },
+  { title:"Mental Health",    slug:"mental-health",     img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRH-XxOrozrVxSftxAqEHBAtWs_hp9d6nA9K_5IU90ls9-1wGzwcgWklJA&s=10&fit=crop", icon:"🧠",   stat:"Parity compliant" },
+  { title:"Orthopedics",      slug:"orthopedics",       img:"https://www.premier-ortho.com/wp-content/uploads/2020/11/orthopedic-doctor-1200x675.jpg?auto=format&fit=crop", icon:"🦴",   stat:"Complex coding" },
+  { title:"Pediatrics",       slug:"pediatrics",        img:"https://balunihospital.com/img/blog/a0bbad22c810b4d4e905f05d2f9a18e8.jpg?auto=format&fit=crop", icon:"👶",   stat:"Well-child visits" },
+  { title:"Dermatology",      slug:"dermatology",       img:"https://smb.ibsrv.net/imageresizer/image/article_manager/1200x1200/107496/1101930/heroimage0.828788001705088048.jpg?auto=format&fit=crop", icon:"✨",   stat:"Mohs + cosmetic" },
 ];
 
 function Specialties() {
