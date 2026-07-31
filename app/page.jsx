@@ -175,7 +175,7 @@ function Hero() {
             {[{val:`${c1}%`,label:"First-Pass"},{val:`${c2}%`,label:"Denial Rate"},{val:`${c3}%`,label:"Rev. Growth"},{val:`${c4}+`,label:"Providers"}].map((s,i)=>(
               <div key={i} style={{ padding:"14px 8px", textAlign:"center", borderRight:i<3?"1px solid rgba(17,17,17,0.08)":"none" }}>
                 <div style={{ fontSize:18, fontWeight:800, color:"#111111", letterSpacing:-0.5 }}>{s.val}</div>
-                <div style={{ fontSize:9, color:"#999999", marginTop:3, fontWeight:600, textTransform:"uppercase", letterSpacing:0.5 }}>{s.label}</div>
+                <div style={{ fontSize:11, color:"#4B5563", marginTop:3, fontWeight:700, textTransform:"uppercase", letterSpacing:0.5 }}>{s.label}</div>
               </div>
             ))}
           </div>
@@ -439,7 +439,7 @@ function WhyUs() {
             <div key={i} className="why-point-row" style={{ display:"flex", gap:18, alignItems:"flex-start", background:"#F5F0E8", border:"1px solid rgba(17,17,17,0.06)", borderRadius:16, padding:"22px", boxShadow:"0 4px 20px rgba(17,17,17,0.02)", opacity:visible?1:0, transform:visible?"translateX(0)":"translateX(50px)", transition:`all 0.8s cubic-bezier(0.16,1,0.3,1) ${0.1+i*0.1}s` }}>
               <span style={{ fontSize:22, flexShrink:0, background:"#fff", width:46, height:46, borderRadius:12, display:"flex", alignItems:"center", justifyContent:"center", boxShadow:"0 2px 10px rgba(17,17,17,0.06)" }}>{p.icon}</span>
               <div>
-                <h4 style={{ fontSize:15, fontWeight:800, color:"#111111", marginBottom:6 }}>{p.title}</h4>
+                <h3 style={{ fontSize:15, fontWeight:800, color:"#111111", marginBottom:6 }}>{p.title}</h3>
                 <p style={{ fontSize:13.5, color:"#666666", lineHeight:1.65 }}>{p.desc}</p>
               </div>
             </div>
@@ -701,10 +701,10 @@ function PricingModal({ plan, onClose }) {
 
               {/* Volume dropdown */}
               <div style={{ marginBottom:12 }}>
-                <label style={{ fontSize:10,fontWeight:700,color:"rgba(17,17,17,0.4)",textTransform:"uppercase",letterSpacing:"0.8px",display:"block",marginBottom:6 }}>
+                <label htmlFor="billing-volume" style={{ fontSize:10,fontWeight:700,color:"rgba(17,17,17,0.4)",textTransform:"uppercase",letterSpacing:"0.8px",display:"block",marginBottom:6 }}>
                   Monthly Billing Volume Range *
                 </label>
-                <select required value={form.volume} onChange={e=>setForm({...form,volume:e.target.value})}
+                <select id="billing-volume" required value={form.volume} onChange={e=>setForm({...form,volume:e.target.value})}
                   style={{ width:"100%",padding:"13px 14px",border:`1.5px solid ${form.volume?"rgba(17,17,17,0.12)":"rgba(17,17,17,0.12)"}`,borderRadius:11,fontSize:14,color:form.volume?"#111111":"#999",outline:"none",fontFamily:"inherit",background:"#FAFAFA",appearance:"none",cursor:"pointer",boxSizing:"border-box",transition:"border-color 0.2s,box-shadow 0.2s" }}
                   onFocus={e=>{ e.target.style.borderColor="#3B82F6"; e.target.style.boxShadow="0 0 0 3px rgba(59,130,246,0.12)"; }}
                   onBlur={e=>{  e.target.style.borderColor="rgba(17,17,17,0.12)"; e.target.style.boxShadow="none"; }}>
@@ -1023,8 +1023,8 @@ function Contact() {
               </div>
 
               <div>
-                <label style={{ fontSize:12, fontWeight:800, color:"#111111", display:"block", marginBottom:7, textTransform:"uppercase", letterSpacing:"0.5px" }}>Service Interested In</label>
-                <select required value={form.service} onChange={e=>setForm({...form, service:e.target.value})}
+                <label htmlFor="service-interest" style={{ fontSize:12, fontWeight:800, color:"#111111", display:"block", marginBottom:7, textTransform:"uppercase", letterSpacing:"0.5px" }}>Service Interested In</label>
+                <select id="service-interest" required value={form.service} onChange={e=>setForm({...form, service:e.target.value})}
                   style={{ width:"100%", padding:"13px 16px", border:"1.5px solid rgba(17,17,17,0.1)", borderRadius:12, fontSize:14, color:"#111111", outline:"none", fontFamily:"inherit", background:"#FDFAF5", transition:"all 0.25s" }}>
                   <option value="" disabled>Select a service</option>
                   <option value="Medical Billing">Medical Billing</option>
