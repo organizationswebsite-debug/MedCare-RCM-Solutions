@@ -786,16 +786,16 @@ function PricingPreview() {
                 border:tier.popular?"2px solid #111111":"1px solid rgba(17,17,17,0.1)",
                 boxShadow:tier.popular?"0 24px 56px rgba(17,17,17,0.14)":"0 4px 20px rgba(17,17,17,0.05)",
                 display:"flex", flexDirection:"column", position:"relative",
-                transform:tier.popular?"scale(1.03)":"scale(1)",
-                transition:"all 0.3s ease",
+                transform:tier.popular?"scale(1.01)":"scale(1)",
+                transition:"transform 0.12s ease, box-shadow 0.12s ease",
                 cursor:"pointer",
               }}
                 onClick={()=>setSelectedPlan(tier)}
                 onKeyDown={(e)=>{ if(e.key==="Enter" || e.key === " ") { e.preventDefault(); setSelectedPlan(tier); } }}
                 role="button"
                 tabIndex={0}
-                onMouseEnter={e=>{ if(!tier.popular){e.currentTarget.style.transform="translateY(-6px)";e.currentTarget.style.boxShadow="0 20px 48px rgba(17,17,17,0.1)";} }}
-                onMouseLeave={e=>{ if(!tier.popular){e.currentTarget.style.transform="scale(1)";e.currentTarget.style.boxShadow="0 4px 20px rgba(17,17,17,0.05)";} }}>
+                onMouseEnter={e=>{ if(!tier.popular){e.currentTarget.style.transform="translateY(-1px)";e.currentTarget.style.boxShadow="0 8px 18px rgba(17,17,17,0.08)"; } }}
+                onMouseLeave={e=>{ if(!tier.popular){e.currentTarget.style.transform="scale(1)";e.currentTarget.style.boxShadow="0 4px 20px rgba(17,17,17,0.05)"; } }}>
 
                 {tier.popular && (
                   <div style={{ position:"absolute",top:-14,left:"50%",transform:"translateX(-50%)",background:"#111111",color:"#F5E6A3",fontSize:11,fontWeight:800,letterSpacing:1.5,textTransform:"uppercase",padding:"6px 18px",borderRadius:100,whiteSpace:"nowrap" }}>
@@ -837,12 +837,12 @@ function PricingPreview() {
                     padding:"14px 20px", borderRadius:100, fontSize:14, fontWeight:700,
                     boxShadow:tier.popular?"0 4px 20px rgba(245,230,163,0.3)":"none",
                     fontFamily:"inherit",
-                    transition:"transform 0.2s, box-shadow 0.2s",
+                    transition:"transform 0.16s ease, box-shadow 0.16s ease",
                   }}
-                  onMouseEnter={e=>{ e.currentTarget.style.transform="translateY(-2px)"; e.currentTarget.style.boxShadow=tier.popular?"0 8px 28px rgba(245,230,163,0.5)":"0 8px 24px rgba(17,17,17,0.2)"; }}
+                  onMouseEnter={e=>{ e.currentTarget.style.transform="translateY(-1px)"; e.currentTarget.style.boxShadow=tier.popular?"0 6px 18px rgba(245,230,163,0.4)":"0 6px 16px rgba(17,17,17,0.16)"; }}
                   onMouseLeave={e=>{ e.currentTarget.style.transform="translateY(0)"; e.currentTarget.style.boxShadow=tier.popular?"0 4px 20px rgba(245,230,163,0.3)":"none"; }}
-                  onMouseDown={e=>e.currentTarget.style.transform="scale(0.98)"}
-                  onMouseUp={e=>e.currentTarget.style.transform="translateY(-2px)"}>
+                  onMouseDown={e=>e.currentTarget.style.transform="scale(0.99)"}
+                  onMouseUp={e=>e.currentTarget.style.transform="translateY(-1px)"}>
                   {tier.cta} →
                 </button>
               </div>
