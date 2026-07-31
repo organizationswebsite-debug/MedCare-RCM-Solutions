@@ -238,7 +238,7 @@ export default function Navbar() {
           background:"rgba(17,17,17,0.45)",
           backdropFilter:"blur(4px)",
           opacity: menuOpen ? 1 : 0,
-          transition:"opacity 0.35s ease",
+          transition:"opacity 0.18s ease",
         }} />
 
         {/* Slide-down drawer */}
@@ -248,7 +248,7 @@ export default function Navbar() {
           borderRadius:"0 0 28px 28px",
           boxShadow:"0 24px 60px rgba(17,17,17,0.2)",
           transform: menuOpen ? "translateY(0)" : "translateY(-100%)",
-          transition:"transform 0.45s cubic-bezier(0.16,1,0.3,1)",
+          transition:"transform 0.22s cubic-bezier(0.2, 0.8, 0.2, 1)",
           overflow:"hidden",
           maxHeight:"92vh", overflowY:"auto",
         }}>
@@ -378,7 +378,7 @@ function MobileAccordion({ label, icon, open, onToggle, menuOpen, delay, childre
       marginBottom:4,
       opacity: menuOpen ? 1 : 0,
       transform: menuOpen ? "translateX(0)" : "translateX(-24px)",
-      transition:`opacity 0.4s ease ${delay}s, transform 0.4s ease ${delay}s`,
+      transition:`opacity 0.18s ease ${delay}s, transform 0.18s ease ${delay}s`,
     }}>
       <button onClick={onToggle} style={{
         width:"100%", background: open ? "#F5F0E8" : "transparent",
@@ -399,7 +399,7 @@ function MobileAccordion({ label, icon, open, onToggle, menuOpen, delay, childre
         overflow:"hidden",
         maxHeight: open ? "600px" : "0px",
         opacity: open ? 1 : 0,
-        transition:"max-height 0.4s cubic-bezier(0.16,1,0.3,1), opacity 0.3s ease",
+        transition:"max-height 0.2s ease, opacity 0.16s ease",
         padding: open ? "0 8px" : "0",
       }}>
         {children}

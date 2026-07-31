@@ -65,11 +65,10 @@ img {
   display: block;
 }
 
-/* ── GPU acceleration for ALL animated elements ── */
+/* ── Lightweight motion handling ── */
 [style*="animation"],
 [style*="transition"] {
-  transform: translateZ(0);      /* force GPU layer */
-  backface-visibility: hidden;   /* prevent flicker */
+  will-change: auto;
 }
 
 /* ── Smooth scrolling for anchor links ── */
@@ -206,6 +205,20 @@ img[loading="lazy"].loaded {
 
 @media (max-width: 520px) {
   .modal-row { grid-template-columns: 1fr !important; }
+}
+
+/* ── Reduce mobile motion and repaint cost ── */
+@media (max-width: 900px) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0s !important;
+  }
+
+  html {
+    scroll-behavior: auto !important;
+  }
 }
 
 /* ── Reduce motion for users who prefer it ── */

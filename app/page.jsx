@@ -561,7 +561,7 @@ function FloatInput({ label, type="text", value, onChange, placeholder, required
         letterSpacing: lifted ? "0.8px" : "0",
         top:       lifted ? 8 : "50%",
         transform: lifted ? "none" : "translateY(-50%)",
-        transition:"all 0.2s cubic-bezier(0.16,1,0.3,1)",
+        transition:"color 0.15s ease, top 0.15s ease, transform 0.15s ease, font-size 0.15s ease, font-weight 0.15s ease, letter-spacing 0.15s ease",
       }}>
         {label}{required && " *"}
       </label>
@@ -575,7 +575,7 @@ function FloatInput({ label, type="text", value, onChange, placeholder, required
           borderRadius:11, fontSize:14, color:"#111111",
           outline:"none", fontFamily:"inherit", background:"#FAFAFA",
           boxShadow: focused?"0 0 0 3px rgba(59,130,246,0.12)":"none",
-          transition:"all 0.2s",
+          transition:"border-color 0.15s ease, box-shadow 0.15s ease",
         }} />
     </div>
   );
@@ -628,18 +628,18 @@ function PricingModal({ plan, onClose }) {
     <div ref={overlayRef} onClick={e=>{ if(e.target===overlayRef.current) handleClose(); }}
       style={{
         position:"fixed",inset:0,zIndex:1000,
-        display:"flex",alignItems:"center",justifyContent:"center",padding:"20px 16px",
+        display:"flex",alignItems:"flex-start",justifyContent:"center",padding:"20px 16px 24px",
         background:"rgba(17,17,17,0.55)",backdropFilter:"blur(8px)",WebkitBackdropFilter:"blur(8px)",
-        opacity:visible?1:0, transition:"opacity 0.22s ease",
-        overflowY:"auto",
+        opacity:visible?1:0, transition:"opacity 0.18s ease",
+        overflowY:"auto", WebkitOverflowScrolling:"touch", overscrollBehavior:"contain",
       }}>
       <div style={{
         width:"100%",maxWidth:540,background:"#fff",borderRadius:24,
         boxShadow:"0 32px 80px rgba(17,17,17,0.22),0 0 0 1px rgba(17,17,17,0.08)",
-        overflow:"hidden",maxHeight:"calc(100vh - 40px)",overflowY:"auto",margin:"auto",
+        overflow:"hidden",maxHeight:"min(92vh, 920px)",overflowY:"auto",margin:"0 auto",
         transform:visible?"scale(1) translateY(0)":"scale(0.95) translateY(14px)",
-        transition:"transform 0.32s cubic-bezier(0.34,1.56,0.64,1), opacity 0.22s ease",
-        opacity:visible?1:0,
+        transition:"transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.18s ease",
+        opacity:visible?1:0, WebkitOverflowScrolling:"touch",
       }}>
 
         {/* Header */}
