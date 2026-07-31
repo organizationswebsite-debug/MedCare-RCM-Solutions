@@ -294,7 +294,7 @@ function StatsStrip() {
 
 /* ══ SERVICES — image cards ══ */
 const SERVICES_DATA = [
-  { icon:"🧾", title:"Medical Billing",        href:"/services/hospital-billing",    img:"https://plus.unsplash.com/premium_photo-1661374851109-1216f527ee49?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&fit=crop", tag:"Most Popular",  desc:"End-to-end billing from charge capture to payment posting with 98%+ first-pass rates." },
+  { icon:"🧾", title:"Medical Billing",        href:"/services/medical-billing",    img:"https://plus.unsplash.com/premium_photo-1661374851109-1216f527ee49?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&fit=crop", tag:"Most Popular",  desc:"End-to-end billing from charge capture to payment posting with 98%+ first-pass rates." },
   { icon:"🚫", title:"Denial Management",       href:"/services/denial-management",   img:"https://blog.curemd.com/wp-content/uploads/2020/09/Pay-close-attention-to-claims-and-denials.jpg", tag:"High Impact",   desc:"Every denied claim fought and appealed within 48 hours — 70%+ first-level success rate." },
   { icon:"💰", title:"AR Recovery",             href:"/services/ar-recovery",          img:"https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=700&q=75&fit=crop", tag:"Fast ROI",       desc:"We recover aging claims beyond 60 days that most practices write off permanently." },
   { icon:"🪪", title:"Provider Credentialing",  href:"/services/credentialing",        img:"https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=700&q=75&fit=crop", tag:"7-Day Setup",   desc:"Fast-track CAQH, Medicare, Medicaid and commercial payer enrollment — zero delays." },
