@@ -352,9 +352,9 @@ export default function Navbar() {
                 Get Free Billing Audit
                 <span style={{ width:24, height:24, borderRadius:"50%", background:"#F5E6A3", color:"#111111", display:"inline-flex", alignItems:"center", justifyContent:"center", fontSize:12, fontWeight:800 }}>→</span>
               </Link>
-              <Link href="tel:+18000000000" onClick={()=>setMenuOpen(false)}
+              <Link href="tel:+14094193788" onClick={()=>setMenuOpen(false)}
                 style={{ background:"#F5F0E8", color:"#111111", padding:"14px 20px", borderRadius:100, fontSize:14, fontWeight:600, textAlign:"center", border:"1.5px solid rgba(17,17,17,0.1)", display:"flex", alignItems:"center", justifyContent:"center", gap:8 }}>
-                <span style={{ fontSize:16 }}>📞</span> Call +1 (800) 000-0000
+                <span style={{ fontSize:16 }}>📞</span> Call +1 (409) 419-3788
               </Link>
 
               {/* HIPAA badge */}
