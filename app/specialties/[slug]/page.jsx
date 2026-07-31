@@ -308,7 +308,7 @@ const SPECIALTIES = {
   "urology": {
     title: "Urology Billing",
     tagline: "Precise surgical and diagnostic billing for urological procedures and office-based care",
-    image: "https://wp04-media.cdn.ihealthspot.com/wp-content/uploads/sites/374/2023/08/istockphoto-1164464390-612x612-1.jpg&fit=crop",
+    image: "https://wp04-media.cdn.ihealthspot.com/wp-content/uploads/sites/374/2023/08/istockphoto-1164464390-612x612-1.jpg",
     overview: "Urology billing covers a wide spectrum — from routine office visits to complex robotic surgical procedures. Global period management, device documentation, and supply cost recovery are all critical to keeping your urology revenue cycle healthy. MedCare RCM handles every layer of urological billing with surgical precision.",
     keyPoints: [
       "Global surgical period management for urological procedures",

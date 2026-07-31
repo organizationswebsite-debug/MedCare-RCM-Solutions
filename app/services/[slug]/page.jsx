@@ -213,7 +213,7 @@ const MB_SLIDES = [
     tag:"What is Medical Billing?",
     title:"Translating care\ninto revenue",
     body:"Medical billing converts healthcare services into standardized billing claims submitted to insurance payers for reimbursement. It's the financial engine that keeps every practice running — and when it fails, providers lose money they've already earned.",
-    img:"https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=500&q=75&fit=crop",
+    img:"https://cdn.prod.website-files.com/671a93aef6ce63a1ea212b69/671a93aef6ce63a1ea21307a_63e343edb67cb366d5e191a4_5c0b1c8f8da8f0e4eef8121e_6790a9c844142d2ee5ab704257deef27.png?w=500&q=75&fit=crop",
     stat:"$1.1 Trillion", statLabel:"Lost annually to US billing inefficiency",
     points:["Charge capture from clinical documentation","ICD-10 and CPT code assignment","Electronic claim submission to payers","Payment reconciliation and posting"],
   },
@@ -221,7 +221,7 @@ const MB_SLIDES = [
     tag:"Why Coding Accuracy Matters",
     title:"One wrong digit.\nThousands of dollars.",
     body:"ICD-10 has over 70,000 codes. CPT has 10,000+ procedure codes. The difference between a paid claim and a denied one often comes down to a single digit — wrong specificity, wrong sequence, or a missing modifier. Our CPC-certified coders assign the highest accurate code every time.",
-    img:"https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=500&q=75&fit=crop",
+    img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXXAxOYBaXoOq3Z_5Kv81y1RUmiHTbmdBhB4503-8LFw&s=10&fit=crop",
     stat:"99.2%", statLabel:"MedCare coding accuracy rate",
     points:["ICD-10 coded to highest specificity","CPT codes scrubbed for modifier compliance","E&M levels reviewed against documentation","HCC coding for Medicare Advantage risk adjustment"],
   },
@@ -229,7 +229,7 @@ const MB_SLIDES = [
     tag:"The Denial Problem",
     title:"65% of denials are\nnever reworked.",
     body:"The average practice has a 15–20% denial rate without expert RCM management. Most billing teams resubmit simple errors but write off complex denials — payers count on this. MedCare treats every denial as recoverable revenue until proven otherwise.",
-    img:"https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=500&q=75&fit=crop",
+    img:"https://billingbenefit.com/wp-content/uploads/2025/09/Denial-Management-in-Medical-Billing.png?w=500&fit=crop",
     stat:"$262B+", statLabel:"Lost to denied claims in the US annually",
     points:["Every denial worked within 24 hours","Root cause analysis by denial reason code","Targeted appeal letters with full documentation","Monthly denial trend reporting to fix upstream issues"],
   },
@@ -237,7 +237,7 @@ const MB_SLIDES = [
     tag:"Technology & AI",
     title:"AI billing that\nnever misses a claim.",
     body:"Next-generation medical billing uses AI-powered claim scrubbing, denial prediction, and automated eligibility verification to push first-pass rates above 98%. MedCare combines AI tools with certified human review — the best of both worlds.",
-    img:"https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=500&q=75&fit=crop",
+    img:"https://img.magnific.com/premium-photo/artificial-intelligence-ai-empower-healthcare-technology-by-merging-digital-data-with-futuristic-medical-solutions-patient-wellbeing_10541-18997.jpg?semt=ais_hybrid&w=740&q=80&fit=crop",
     stat:"98%+", statLabel:"First-pass rate with AI-assisted billing",
     points:["AI-powered claim scrubbing before submission","Denial prediction flags high-risk claims upfront","Automated real-time eligibility verification","Live KPI dashboard updated continuously"],
   },
@@ -428,7 +428,7 @@ const SERVICES = {
     title:"Medical Billing Services",
     subtitle:"Comprehensive billing solutions for every healthcare practice",
     emoji:"🧾",
-    image:"https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=700&q=75&fit=crop",
+    image:"https://plus.unsplash.com/premium_photo-1661374851109-1216f527ee49?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&fit=crop",
     overview:"Medical billing is the backbone of every healthcare practice's financial health. A single coding error, a missed modifier, or a late claim submission can mean thousands of dollars in lost or delayed revenue. MedCare RCM Solutions provides a fully managed medical billing service that handles every step — from charge entry and coding review to claim scrubbing, electronic submission, payment posting, and patient statement generation — with certified billing specialists who understand the unique requirements of your specialty and your payers.",
     keyPoints:[
       "Complete charge entry review and coding audit before every submission",
@@ -463,7 +463,7 @@ const SERVICES = {
     title:"Revenue Cycle Management",
     subtitle:"Full-spectrum RCM that maximizes revenue at every stage",
     emoji:"💰",
-    image:"https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=700&q=75&fit=crop",
+    image:"https://plus.unsplash.com/premium_photo-1661297441050-cd5f9980051d?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDZ8fHxlbnwwfHx8fHw%3D&fit=crop",
     overview:"Revenue cycle management is the complete financial process of a healthcare practice — from the moment a patient schedules an appointment to the moment the final payment is collected. Every step in this cycle is an opportunity for revenue to be gained or lost. MedCare RCM Solutions manages the entire revenue cycle as an integrated system — not as disconnected billing tasks — ensuring that every workflow feeds into the next with precision, speed, and complete transparency.",
     keyPoints:[
       "End-to-end revenue cycle oversight from scheduling to final payment",
@@ -498,7 +498,7 @@ const SERVICES = {
     title:"Hospital Billing Services",
     subtitle:"Full-cycle institutional billing for hospitals of all sizes",
     emoji:"🏥",
-    image:"https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=700&q=75&fit=crop",
+    image:"https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?q=80&w=1332&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&fit=crop",
     overview:"Hospital billing is one of the most complex and high-stakes areas of healthcare revenue cycle management. Multi-departmental claim processing, inpatient DRG bundling, outpatient facility coding, and strict payer-specific compliance requirements all create significant opportunities for revenue leakage. MedCare RCM Solutions manages the complete hospital billing lifecycle — from charge capture to final payment posting — ensuring your institution collects every dollar it has earned.",
     keyPoints:["Inpatient DRG bundling and optimization across all payer types","Outpatient facility coding aligned with payer-specific LCD requirements","Multi-departmental charge capture reconciliation and audit","Medicare, Medicaid, and commercial payer billing compliance","Real-time claim status tracking and follow-up workflows"],
     cptCodes:[
@@ -516,7 +516,7 @@ const SERVICES = {
     title:"Physician Billing Services",
     subtitle:"Built for private practices and multi-specialty physician groups",
     emoji:"👨‍⚕️",
-    image:"https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=700&q=75&fit=crop",
+    image:"https://plus.unsplash.com/premium_photo-1661376860609-0f50ba5b121a?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDR8fHxlbnwwfHx8fHw%3D&fit=crop",
     overview:"Physician billing requires mastery of E&M coding, modifier compliance, and the specific rules of each payer in your network. Independent practices and multi-specialty groups face constant pressure to maximize reimbursements while staying compliant with ever-changing billing regulations. MedCare RCM Solutions provides end-to-end physician billing management that keeps your clean claim rate above 98% and your AR days consistently under 30.",
     keyPoints:["E&M level determination and documentation support for accurate coding","Modifier compliance — Modifier 25, 57, 59, and specialty-specific modifiers","High-volume outpatient claim submission with same-day processing","Preventive medicine and annual wellness visit billing optimization","Real-time insurance eligibility verification before every appointment"],
     cptCodes:[
@@ -554,7 +554,7 @@ const SERVICES = {
     title:"Imaging Center Billing Services",
     subtitle:"Technical and professional component billing for diagnostic imaging",
     emoji:"📸",
-    image:"https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=700&q=75&fit=crop",
+    image:"https://plus.unsplash.com/premium_photo-1744836282262-be390e54ec14?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDMwfHx8ZW58MHx8fHx8&fit=crop",
     overview:"Diagnostic imaging billing requires precise separation of professional and technical billing components, active defense against automated payer downcoding, and deep knowledge of Local Coverage Determinations for each imaging modality. MedCare RCM Solutions manages high-volume imaging pipelines — from X-ray to PET/CT — ensuring every study is coded at the correct level and every interpretation is reimbursed in full.",
     keyPoints:["Modifier 26 (professional component) and TC (technical component) billing splits","High-volume MRI, CT, X-ray, ultrasound, and nuclear medicine billing","Automated payer downcoding detection and appeal filing","LCD compliance review for all imaging orders before submission","Radiologist dictation-to-claim alignment audits"],
     cptCodes:[
@@ -630,7 +630,7 @@ const SERVICES = {
     title:"Denial Management Services",
     subtitle:"Turn denied claims into recovered revenue — systematically",
     emoji:"🚫",
-    image:"https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=700&q=75&fit=crop",
+    image:"https://blog.curemd.com/wp-content/uploads/2020/09/Pay-close-attention-to-claims-and-denials.jpg",
     overview:"Denied claims are the single largest source of preventable revenue loss in medical practices. Most billing companies resubmit obvious errors but write off complex denials — payers count on this. MedCare RCM Solutions treats every denial as recoverable revenue until proven otherwise. We analyze the root cause, correct the underlying issue, file a targeted appeal with full documentation, and track the outcome — all within 48 hours of the denial posting.",
     keyPoints:["Every denial reviewed and worked within 24 hours of receipt","Root cause analysis by denial reason code to identify systemic issues","Targeted appeal letters with clinical documentation and coding rationale","Payer-specific appeal strategies built from historical outcome data","Monthly denial trend reporting to drive upstream process improvements"],
     cptCodes:[
@@ -649,7 +649,7 @@ const SERVICES = {
     title:"Patient Billing Services",
     subtitle:"Clear statements that improve collections without damaging trust",
     emoji:"👤",
-    image:"https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?w=700&q=75&fit=crop",
+    image:"https://plus.unsplash.com/premium_photo-1661434879388-63271644d6ef?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDZ8fHxlbnwwfHx8fHw%3D&fit=crop",
     overview:"Patient financial responsibility now accounts for 30–35% of practice revenue. Collecting it effectively without damaging the patient relationship is one of the hardest challenges in practice management. MedCare RCM Solutions manages the entire patient billing process with clear, compassionate communication and multiple convenient payment options that get balances paid without creating patient dissatisfaction.",
     keyPoints:["Patient statements generated and mailed within 5 days of claim adjudication","Online patient payment portal with 24/7 access and multiple payment methods","Proactive payment plan offers for balances over $200 before collections","Compassionate follow-up call and email sequences","HSA, FSA, credit card, debit card, and ACH payment acceptance"],
     cptCodes:[
@@ -730,7 +730,7 @@ export default function ServiceDetailPage() {
         {/* ── HERO ── */}
         <section style={{ paddingTop:68, position:"relative", height:440, overflow:"hidden" }}>
           <img loading="lazy" src={data.image} alt={data.title} onLoad={()=>setImgLoaded(true)}
-            style={{ width:"100%", height:"100%", objectFit:"cover", display:"block", transform:imgLoaded?"scale(1)":"scale(1.06)", transition:"transform 1.2s ease", filter:imgLoaded?"none":"blur(4px)" }} />
+            style={{ width:"100%", height:"100%", objectFit:"cover", display:"block", transform:imgLoaded?"scale(1)":"scale(1.06)", transition:"transform 1.2s ease", filter:imgLoaded?"none":"blur(4px)", backgroundAttachment: "fixed", }} />
           <div style={{ position:"absolute", inset:0, background:"linear-gradient(to bottom,rgba(17,17,17,0.12) 0%,rgba(17,17,17,0.78) 100%)" }} />
           <div style={{ position:"absolute", bottom:0, left:0, right:0, padding:"0 32px 44px", maxWidth:1000, margin:"0 auto" }}>
             <div style={{ opacity:mounted?1:0, transform:mounted?"translateY(0)":"translateY(20px)", transition:"all 0.6s ease 0.2s" }}>
