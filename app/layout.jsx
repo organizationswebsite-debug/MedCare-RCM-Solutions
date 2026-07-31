@@ -3,6 +3,7 @@
 // ════════════════════════════════════════════════
 import { Inter } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import StructuredData from "@/components/StructuredData";
 import "./globals.css";
 
@@ -46,6 +47,7 @@ export default function RootLayout({ children }) {
       <body style={{ fontFamily:"var(--font-inter),-apple-system,sans-serif", margin:0, padding:0, background:"#F5F0E8", overflowX:"hidden", WebkitFontSmoothing:"antialiased", MozOsxFontSmoothing:"grayscale" }}>
         <StructuredData />
         <Analytics />
+        <SpeedInsights />
         {children}
       </body>
     </html>
