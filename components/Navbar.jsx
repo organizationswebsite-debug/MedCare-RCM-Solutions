@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 
 const SERVICES_MENU = [
-  { icon:"💰", title:"Revenue Cycle Management", desc:"End-to-end billing from charge capture to payment.", href:"/revenue-cycle-management" },
+  { icon:"💰", title:"Revenue Cycle Management", desc:"End-to-end billing from charge capture to payment.", href:"/services/revenue-cycle-management" },
   { icon:"👨‍⚕️", title:"Physician Billing",        desc:"Your patients deserve billing as dedicated as your care.", href:"/services/physician-billing" },
   { icon:"🧾", title:"Medical Billing",            desc:"Comprehensive, all-inclusive billing approach.", href:"/services/medical-billing" },
   { icon:"💵", title:"AR Recovery",                desc:"Meet the unique financial needs of your organization.", href:"/services/ar-recovery" },
