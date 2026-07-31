@@ -784,12 +784,11 @@ function PricingPreview() {
           {PRICING_TIERS.map((tier,i)=>(
             <Reveal key={i} delay={i*0.1} dir={i===1?"scale":"up"}>
               <div className="pricing-card" style={{
-                background:tier.color, borderRadius:24, padding:"36px 30px",
-                border:tier.popular?"2px solid #111111":"1px solid rgba(17,17,17,0.1)",
-                boxShadow:tier.popular?"0 24px 56px rgba(17,17,17,0.14)":"0 4px 20px rgba(17,17,17,0.05)",
+                background:tier.color, borderRadius:22, padding:"28px 24px",
+                border:tier.popular?"2px solid #111111":"1px solid rgba(17,17,17,0.12)",
+                boxShadow:tier.popular?"0 18px 40px rgba(17,17,17,0.14)":"0 2px 16px rgba(17,17,17,0.06)",
                 display:"flex", flexDirection:"column", position:"relative",
-                transform:tier.popular?"scale(1.01)":"scale(1)",
-                transition:"transform 0.12s ease, box-shadow 0.12s ease",
+                transition:"box-shadow 0.2s ease, transform 0.2s ease",
                 cursor:"pointer",
               }}
                 onClick={()=>setSelectedPlan(tier)}
@@ -805,26 +804,26 @@ function PricingPreview() {
                   </div>
                 )}
 
-                <div style={{ marginBottom:22 }}>
+                <div style={{ marginBottom:18 }}>
                   {/* Badge */}
-                  <div style={{ display:"inline-flex",alignItems:"center",gap:6,background:tier.popular?"rgba(245,230,163,0.15)":"rgba(17,17,17,0.06)",borderRadius:100,padding:"4px 12px",marginBottom:12 }}>
-                    <span style={{ fontSize:11,fontWeight:700,color:tier.accent,opacity:0.7,letterSpacing:"0.5px" }}>{tier.badge}</span>
+                  <div style={{ display:"inline-flex",alignItems:"center",gap:5,background:tier.popular?"rgba(245,230,163,0.14)":"rgba(17,17,17,0.06)",borderRadius:100,padding:"4px 12px",marginBottom:10 }}>
+                    <span style={{ fontSize:10,fontWeight:700,color:tier.accent,opacity:0.78,letterSpacing:"0.4px" }}>{tier.badge}</span>
                   </div>
-                  <h3 style={{ fontSize:19,fontWeight:800,color:tier.accent,marginBottom:8 }}>{tier.name}</h3>
-                  <div style={{ fontSize:40,fontWeight:900,color:tier.accent,letterSpacing:-1.5,lineHeight:1,marginBottom:6 }}>
+                  <h3 style={{ fontSize:18,fontWeight:800,color:tier.accent,marginBottom:8 }}>{tier.name}</h3>
+                  <div style={{ fontSize:36,fontWeight:900,color:tier.accent,letterSpacing:-1.2,lineHeight:1.1,marginBottom:6 }}>
                     {tier.rate}
-                    <span style={{ fontSize:13,fontWeight:500,opacity:0.55 }}> of collections</span>
+                    <span style={{ fontSize:12,fontWeight:500,opacity:0.65 }}> of collections</span>
                   </div>
-                  <p style={{ fontSize:13,color:tier.accent,opacity:0.55,lineHeight:1.6 }}>{tier.desc}</p>
+                  <p style={{ fontSize:14,color:tier.accent,opacity:0.72,lineHeight:1.6,margin:0 }}>{tier.desc}</p>
                 </div>
 
-                <div style={{ flex:1,display:"flex",flexDirection:"column",gap:10,marginBottom:26 }}>
+                <div style={{ flex:1,display:"flex",flexDirection:"column",gap:10,marginBottom:22 }}>
                   {tier.features.map((f,j)=>(
-                    <div key={j} style={{ display:"flex",alignItems:"center",gap:10 }}>
-                      <div style={{ width:20,height:20,borderRadius:"50%",background:tier.popular?"#F5E6A3":"#F5F0E8",border:`1.5px solid ${tier.popular?"rgba(245,230,163,0.5)":"rgba(17,17,17,0.12)"}`,display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0 }}>
-                        <span style={{ fontSize:10,fontWeight:800,color:"#111111" }}>✓</span>
+                    <div key={j} style={{ display:"flex",alignItems:"flex-start",gap:10 }}>
+                      <div style={{ width:18,height:18,borderRadius:"50%",background:tier.popular?"#F5E6A3":"#F5F0E8",border:`1.5px solid ${tier.popular?"rgba(245,230,163,0.5)":"rgba(17,17,17,0.12)"}`,display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0,marginTop:3 }}>
+                        <span style={{ fontSize:9,fontWeight:800,color:"#111111" }}>✓</span>
                       </div>
-                      <span style={{ fontSize:13.5,color:tier.accent,opacity:0.85 }}>{f}</span>
+                      <span style={{ fontSize:13,color:tier.accent,opacity:0.85 }}>{f}</span>
                     </div>
                   ))}
                 </div>
@@ -833,11 +832,11 @@ function PricingPreview() {
                 <button type="button" onClick={(e)=>{ e.stopPropagation(); setSelectedPlan(tier); }}
                   style={{
                     display:"block", width:"100%", textAlign:"center", border:"none", cursor:"pointer",
-                    background:tier.popular?"#F5E6A3":tier.color==="#111111"?"rgba(255,255,255,0.12)":"#111111",
+                    background:tier.popular?"#F5E6A3":tier.color==="#111111"?"rgba(255,255,255,0.14)":"#111111",
                     color:tier.popular?"#111111":tier.color==="#111111"?"#fff":"#fff",
                     outline:tier.popular?"none":tier.color==="#111111"?"1.5px solid rgba(255,255,255,0.2)":"none",
-                    padding:"14px 20px", borderRadius:100, fontSize:14, fontWeight:700,
-                    boxShadow:tier.popular?"0 4px 20px rgba(245,230,163,0.3)":"none",
+                    padding:"12px 18px", borderRadius:100, fontSize:14, fontWeight:700,
+                    boxShadow:tier.popular?"0 4px 20px rgba(245,230,163,0.22)":"none",
                     fontFamily:"inherit",
                     transition:"transform 0.16s ease, box-shadow 0.16s ease",
                   }}
