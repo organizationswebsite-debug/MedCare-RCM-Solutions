@@ -166,10 +166,16 @@ export default function ServicesPage() {
 
         {/* ── HERO ── */}
         <section style={{
-          background: "linear-gradient(160deg,#F5F0E8 0%,#FDFAF5 50%,#F0EBE0 100%)",
           padding: "140px 24px 80px",
           position: "relative", overflow: "hidden",
         }}>
+          {/* Background image */}
+          <div style={{ position:"absolute", inset:0, zIndex:-2, backgroundImage:"url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1400&q=80&fit=crop')", backgroundSize:"cover", backgroundPosition:"center", backgroundAttachment: "fixed" }} />
+          
+          {/* Light overlay for text readability */}
+          <div style={{ position:"absolute", inset:0, zIndex:-1, background:"linear-gradient(160deg,rgba(245,240,232,0.88) 0%,rgba(245,240,232,0.82) 50%,rgba(240,235,224,0.78) 100%)" }} />
+          
+          {/* Glow effects */}
           <div style={{ position:"absolute", top:-100, right:-100, width:500, height:500, borderRadius:"50%", background:"radial-gradient(circle,rgba(245,230,163,0.3),transparent 70%)", pointerEvents:"none" }} />
           <div style={{ position:"absolute", bottom:-60, left:-60, width:350, height:350, borderRadius:"50%", background:"radial-gradient(circle,rgba(17,17,17,0.04),transparent 70%)", pointerEvents:"none" }} />
 
