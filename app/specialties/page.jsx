@@ -353,7 +353,7 @@ export default function SpecialtiesPage() {
 
         {/* ── HERO ── */}
         <section style={{
-            backgroundImage: `linear-gradient(160deg,#F5F0E8 0%,#FDFAF5 50%,#F0EBE0 100%), url('https://images.unsplash.com/photo-1494173853739-c21f58b16055?auto=format&fit=crop&w=1600&q=80')`,
+            backgroundImage: `linear-gradient(160deg, rgba(245,240,232,0.86) 0%, rgba(253,250,245,0.82) 40%, rgba(240,235,224,0.9) 100%), url('https://images.unsplash.com/photo-1494173853739-c21f58b16055?auto=format&fit=crop&w=1600&q=80')`,
             backgroundSize: "cover",
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",

@@ -136,8 +136,7 @@ export default function Navbar() {
         }}>
           {/* Logo inside pill — desktop */}
           <Link href="/" className="nav-logo-pill" style={{ flexShrink:0, marginRight:14, display:"flex", alignItems:"center" }}>
-            <Image src="/logo.png" alt="MedCare RCM" width={260} height={78}
-              style={{ objectFit:"contain", height:56, width:"auto", display:"block", minWidth:120 }} priority />
+            <img src="/logo.png" alt="MedCare RCM" style={{ objectFit:"contain", height:56, width:"auto", display:"block", minWidth:120 }} />
           </Link>
 
           {/* Desktop links */}
