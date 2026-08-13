@@ -166,49 +166,30 @@ export default function ServicesPage() {
 
         {/* ── HERO ── */}
         <section style={{
-          background: "linear-gradient(160deg,#F5F0E8 0%,#FDFAF5 50%,#F0EBE0 100%)",
-          padding: "140px 24px 80px",
-          position: "relative", overflow: "hidden",
+          position:"relative", minHeight:"86vh", display:"flex", alignItems:"center",
+          backgroundImage:"linear-gradient(170deg,rgba(17,17,17,0.85) 15%,rgba(17,17,17,0.6) 55%,rgba(17,17,17,0.4) 100%), url('https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=1920&q=85')",
+          backgroundSize:"cover", backgroundPosition:"center", backgroundAttachment:"fixed",
+          padding:"140px 32px 70px",
         }}>
-          <div style={{ position:"absolute", top:-100, right:-100, width:500, height:500, borderRadius:"50%", background:"radial-gradient(circle,rgba(245,230,163,0.3),transparent 70%)", pointerEvents:"none" }} />
-          <div style={{ position:"absolute", bottom:-60, left:-60, width:350, height:350, borderRadius:"50%", background:"radial-gradient(circle,rgba(17,17,17,0.04),transparent 70%)", pointerEvents:"none" }} />
+          <div style={{position:"absolute",top:"18%",right:"10%",width:200,height:200,borderRadius:"50%",background:"radial-gradient(circle,rgba(245,230,163,0.2),transparent 70%)",animation:"floatBlob 8s ease-in-out infinite",willChange:"transform",pointerEvents:"none"}}/>
 
-          <div style={{ maxWidth:760, margin:"0 auto", textAlign:"center", position:"relative", zIndex:2 }}>
-            <div style={{ display:"inline-flex", alignItems:"center", gap:8, background:"#F5E6A3", border:"1px solid rgba(17,17,17,0.15)", borderRadius:100, padding:"7px 18px", marginBottom:22 }}>
-              <span style={{ width:7, height:7, borderRadius:"50%", background:"#111111", display:"inline-block" }} />
-              <span style={{ fontSize:12, fontWeight:700, color:"#111111", letterSpacing:1.5, textTransform:"uppercase" }}>Revenue Cycle Management</span>
+          <div style={{maxWidth:1200,margin:"0 auto",width:"100%",position:"relative",zIndex:2}}>
+            <div style={{...rise(0),display:"inline-flex",alignItems:"center",gap:8,background:"rgba(245,230,163,0.15)",backdropFilter:"blur(8px)",border:"1px solid rgba(245,230,163,0.3)",borderRadius:100,padding:"7px 18px",marginBottom:28}}>
+              <span style={{width:7,height:7,borderRadius:"50%",background:"var(--yellow)",animation:"breathe 2s infinite"}}/>
+              <span style={{fontSize:12,fontWeight:700,color:"var(--yellow)",letterSpacing:1.5}}>12 Full-Service Solutions</span>
             </div>
-            <h1 style={{ fontSize:"clamp(34px,5vw,58px)", fontWeight:800, color:"#111111", letterSpacing:-2, marginBottom:20, lineHeight:1.1 }}>
-              Every service your<br/>
-              <span style={{ color:"#111111", opacity:0.3 }}>revenue cycle</span> needs
-            </h1>
-            <p style={{ fontSize:18, color:"#666666", lineHeight:1.8, maxWidth:540, margin:"0 auto 36px" }}>
-              From claim submission to payment posting, MedCare RCM handles every step — so you collect more of what you've already earned.
-            </p>
-            <div style={{ display:"flex", gap:14, justifyContent:"center", flexWrap:"wrap" }}>
-              <Link href="/contact" style={{ background:"#111111", color:"#fff", padding:"14px 28px", borderRadius:100, fontSize:15, fontWeight:700, display:"inline-flex", alignItems:"center", gap:8, boxShadow:"0 4px 20px rgba(17,17,17,0.2)" }}>
-                Get a free audit
-                <span style={{ background:"#F5E6A3", color:"#111111", borderRadius:"50%", width:24, height:24, display:"inline-flex", alignItems:"center", justifyContent:"center", fontSize:13, fontWeight:800 }}>→</span>
-              </Link>
-              <Link href="/pricing" style={{ background:"transparent", color:"#111111", padding:"14px 28px", borderRadius:100, fontSize:15, fontWeight:600, border:"1.5px solid rgba(17,17,17,0.2)", display:"inline-block" }}>
-                View pricing
-              </Link>
-            </div>
+            <h1 style={{...rise(0.1),fontSize:"clamp(40px,7.5vw,92px)",fontWeight:800,color:"#fff",lineHeight:0.96,letterSpacing:"-0.02em",maxWidth:800,marginBottom:26}}>Every service your revenue cycle needs.</h1>
+            <p style={{...rise(0.2),fontSize:17,color:"rgba(255,255,255,0.72)",lineHeight:1.85,maxWidth:520}}>From charge capture to final payment — one integrated team handling every step, for 40+ specialties nationwide.</p>
           </div>
         </section>
 
-        {/* ── STATS BAR ── */}
-        <section style={{ background:"#111111", padding:"48px 24px" }}>
-          <div className="stats-grid" style={{ maxWidth:1100, margin:"0 auto", display:"grid", gridTemplateColumns:"repeat(4,1fr)", gap:24, textAlign:"center" }}>
-            {[
-              { value:"40+",   label:"Specialties Supported" },
-              { value:"500+",  label:"Providers Served" },
-              { value:"98%",   label:"Clean Claim Rate" },
-              { value:"$50M+", label:"Revenue Recovered" },
-            ].map((item,i) => (
-              <div key={i}>
-                <div style={{ color:"#F5E6A3", fontSize:34, fontWeight:800, letterSpacing:-1 }}>{item.value}</div>
-                <div style={{ color:"rgba(255,255,255,0.45)", fontSize:12, fontWeight:600, textTransform:"uppercase", marginTop:5, letterSpacing:1 }}>{item.label}</div>
+        {/* ══ ANIMATED STATS BAR ══ */}
+        <section ref={statsReveal.ref} style={{background:"var(--dark)",padding:"0",overflow:"hidden",borderBottom:"1px solid rgba(255,255,255,0.06)"}}>
+          <div className="stats-thin" style={{maxWidth:1000,margin:"0 auto",display:"grid",gridTemplateColumns:"repeat(4,1fr)"}}>
+            {[{val:12,label:"Services"},{val:98,suffix:"%+",label:"First-pass rate"},{val:500,suffix:"+",label:"Providers"},{val:40,suffix:"+",label:"Specialties"}].map((s,i)=>(
+              <div key={i} style={{padding:"18px 20px",borderRight:i<3?"1px solid rgba(255,255,255,0.06)":"none",textAlign:"center",opacity:statsReveal.visible?1:0,transform:statsReveal.visible?"translateY(0)":"translateY(14px)",transition:`all 0.6s cubic-bezier(0.16,1,0.3,1) ${i*0.1}s`}}>
+                <div style={{fontSize:20,fontWeight:800,color:"var(--yellow)"}}><CountUp target={s.val} suffix={s.suffix||""} start={statsReveal.visible} duration={1400+i*150}/></div>
+                <div style={{fontSize:10,color:"rgba(255,255,255,0.35)",fontWeight:600,textTransform:"uppercase",letterSpacing:0.6,marginTop:2}}>{s.label}</div>
               </div>
             ))}
           </div>
