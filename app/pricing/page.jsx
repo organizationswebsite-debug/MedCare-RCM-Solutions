@@ -263,10 +263,10 @@ export default function PricingPage() {
             backgroundPosition: "center",
             backgroundAttachment: "fixed",
             color: "#fff",
-            textAlign: "center",
+            textAlign: "left",
           }}
         >
-          <div style={{ maxWidth: 860, margin: "0 auto", position: "relative", zIndex: 2 }}>
+          <div style={{ maxWidth: 860, position: "relative", zIndex: 2 }}>
             <div style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "rgba(245, 230, 163, 0.16)", border: "1px solid rgba(245, 230, 163, 0.3)", borderRadius: 100, padding: "6px 18px", marginBottom: 20 }}>
               <span style={{ width: 8, height: 8, borderRadius: "50%", background: COLORS.yellow }} />
               <span style={{ fontSize: 12, fontWeight: 700, color: COLORS.yellow, letterSpacing: 1.2, textTransform: "uppercase" }}>
@@ -279,11 +279,11 @@ export default function PricingPage() {
               <span style={{ color: COLORS.yellow }}>Aligned With Your Revenue</span>
             </h1>
 
-            <p style={{ fontSize: 18, color: "rgba(255,255,255,0.75)", lineHeight: 1.8, maxWidth: 680, margin: "0 auto 36px" }}>
+            <p style={{ fontSize: 18, color: "rgba(255,255,255,0.75)", lineHeight: 1.8, maxWidth: 680, margin: "0 0 36px" }}>
               Eliminate expensive in-house billing overhead. We charge a simple performance-based fee on collections — starting from <strong>4.99% as low as 1.99%</strong> for high-volume practices.
             </p>
 
-            <div style={{ display: "flex", gap: 14, justifyContent: "center", flexWrap: "wrap" }}>
+            <div style={{ display: "flex", gap: 14, justifyContent: "flex-start", flexWrap: "wrap" }}>
               <a href="#calculator" style={{ background: COLORS.yellow, color: COLORS.black, padding: "16px 36px", borderRadius: 100, fontWeight: 800, fontSize: 15, textDecoration: "none", boxShadow: "0 10px 25px rgba(245, 230, 163, 0.25)" }}>
                 Calculate Your Savings ↓
               </a>

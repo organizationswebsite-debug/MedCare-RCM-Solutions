@@ -357,6 +357,7 @@ export default function SpecialtiesPage() {
             backgroundSize: "cover",
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
+            backgroundAttachment: "fixed",
             padding: "150px 24px 90px",
             position: "relative",
             overflow: "hidden",
@@ -364,7 +365,7 @@ export default function SpecialtiesPage() {
           <div style={{ position: "absolute", top: -120, right: -120, width: 600, height: 600, borderRadius: "50%", background: "radial-gradient(circle,rgba(245,230,163,0.3),transparent 70%)", pointerEvents: "none" }} />
           <div style={{ position: "absolute", bottom: -60, left: -60, width: 380, height: 380, borderRadius: "50%", background: "radial-gradient(circle,rgba(17,17,17,0.04),transparent 70%)", pointerEvents: "none" }} />
 
-          <div ref={heroReveal.ref} style={{ maxWidth: 800, margin: "0 auto", textAlign: "center", position: "relative", zIndex: 2 }}>
+          <div ref={heroReveal.ref} style={{ maxWidth: 800, textAlign: "left", position: "relative", zIndex: 2 }}>
             {/* Badge */}
             <div style={{ opacity: heroReveal.visible ? 1 : 0, transform: heroReveal.visible ? "translateY(0)" : "translateY(20px)", transition: "all 0.6s ease 0.05s" }}>
               <span style={{ fontSize: 12, fontWeight: 700, color: "#111111", background: "#F5E6A3", letterSpacing: "1.5px", textTransform: "uppercase", padding: "7px 18px", borderRadius: 100, display: "inline-block", marginBottom: 24, border: "1px solid rgba(17,17,17,0.12)" }}>
@@ -379,12 +380,12 @@ export default function SpecialtiesPage() {
             </h1>
 
             {/* Subtitle */}
-            <p style={{ opacity: heroReveal.visible ? 1 : 0, transform: heroReveal.visible ? "translateY(0)" : "translateY(24px)", transition: "all 0.65s ease 0.25s", fontSize: 17, color: "#666666", lineHeight: 1.8, maxWidth: 600, margin: "0 auto 40px" }}>
+            <p style={{ opacity: heroReveal.visible ? 1 : 0, transform: heroReveal.visible ? "translateY(0)" : "translateY(24px)", transition: "all 0.65s ease 0.25s", fontSize: 17, color: "#666666", lineHeight: 1.8, maxWidth: 600, margin: "0 0 40px" }}>
               Our certified billing professionals understand the unique payer rules, coding guidelines, and reimbursement models of each healthcare specialty — not just billing in general.
             </p>
 
             {/* Search bar */}
-            <div style={{ opacity: heroReveal.visible ? 1 : 0, transform: heroReveal.visible ? "translateY(0)" : "translateY(20px)", transition: "all 0.65s ease 0.35s", maxWidth: 480, margin: "0 auto" }}>
+            <div style={{ opacity: heroReveal.visible ? 1 : 0, transform: heroReveal.visible ? "translateY(0)" : "translateY(20px)", transition: "all 0.65s ease 0.35s", maxWidth: 480 }}>
               <div style={{ position: "relative" }}>
                 <span style={{ position: "absolute", left: 18, top: "50%", transform: "translateY(-50%)", fontSize: 18, pointerEvents: "none" }}>🔍</span>
                 <input
