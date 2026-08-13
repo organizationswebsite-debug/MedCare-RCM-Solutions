@@ -1,49 +1,170 @@
 "use client";
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Link from "next/link";
 
-function useReveal(threshold=0.1){ const ref=useRef(null); const [visible,setVisible]=useState(false); useEffect(()=>{ const el=ref.current; if(!el)return; const obs=new IntersectionObserver(([e])=>{if(e.isIntersecting){setVisible(true);obs.disconnect();}},{threshold}); obs.observe(el); return()=>obs.disconnect(); },[]); return {ref,visible}; }
-function Reveal({children,delay=0,dir="up"}){ const {ref,visible}=useReveal(); const t={up:"translateY(32px)",left:"translateX(-32px)",right:"translateX(32px)",scale:"scale(0.94)"}; return <div ref={ref} style={{opacity:visible?1:0,transform:visible?"none":t[dir],transition:`opacity 0.7s cubic-bezier(0.16,1,0.3,1) ${delay}s, transform 0.7s cubic-bezier(0.16,1,0.3,1) ${delay}s`}}>{children}</div>; }
-const Label=({text,light})=>(<div style={{display:"inline-flex",alignItems:"center",gap:8,marginBottom:18}}><div style={{width:28,height:2,background:light?"var(--yellow)":"var(--dark)",borderRadius:2}}/><span style={{fontSize:11,fontWeight:700,color:light?"rgba(255,255,255,0.55)":"var(--text2)",letterSpacing:"2.5px",textTransform:"uppercase"}}>{text}</span></div>);
-function CountUp({ target, suffix="", prefix="", duration=1500, start }) {
-  const [val, setVal] = useState(0);
-  useEffect(() => { if (!start) return; let startTime=null;
-    const step=(ts)=>{ if(!startTime)startTime=ts; const p=Math.min((ts-startTime)/duration,1); const e=1-Math.pow(1-p,3); setVal(Math.floor(e*target)); if(p<1)requestAnimationFrame(step); else setVal(target); };
-    requestAnimationFrame(step);
-  }, [start, target, duration]);
-  return <>{prefix}{val}{suffix}</>;
-}
+const SERVICES_DATA = {
+  "hospital-billing": {
+    title: "Hospital Billing",
+    subtitle: "Full-cycle institutional billing for hospitals of all sizes",
+    emoji: "🏥",
+    description: "MedCare RCM Solutions manages the complete billing lifecycle for hospital systems — from complex inpatient DRG bundling to outpatient facility coding. We handle multi-departmental claim processing, charge capture reconciliation, and payer-specific compliance protocols so your revenue flows without interruption.",
+    features: [
+      "Inpatient DRG bundling & optimization",
+      "Outpatient facility coding compliance",
+      "Multi-departmental claim processing",
+      "Charge capture reconciliation",
+      "Medicare & Medicaid billing expertise",
+    ],
+    link: "/contact",
+  },
+  "physician-billing": {
+    title: "Physician Billing",
+    subtitle: "Built for private practices and multi-specialty physician groups",
+    emoji: "👨‍⚕️",
+    description: "We manage end-to-end revenue cycle operations for independent practices and physician networks. Our team ensures your clean claim ratios stay high by handling high-volume outpatient encounters, E&M coding compliance, modifier accuracy, and preventive medicine billing — freeing your staff to focus on patient care.",
+    features: [
+      "E&M coding and modifier compliance",
+      "High-volume outpatient claim submission",
+      "Preventive medicine billing",
+      "Multi-specialty group billing",
+      "Real-time eligibility verification",
+    ],
+    link: "/contact",
+  },
+  "laboratory-billing": {
+    title: "Laboratory Billing",
+    subtitle: "Precise billing for molecular, pathology, and toxicology labs",
+    emoji: "🧪",
+    description: "Laboratory billing is among the most technically complex in healthcare. MedCare RCM handles multi-analyte test panels, prior authorization requirements, reference lab split-billing, and PAMA compliance — ensuring every specimen and panel is billed correctly and reimbursed in full.",
+    features: [
+      "Multi-analyte & molecular panel billing",
+      "Prior authorization management",
+      "Reference lab split-billing models",
+      "PAMA compliance & monitoring",
+      "Toxicology and pathology coding",
+    ],
+    link: "/contact",
+  },
+  "imaging-billing": {
+    title: "Imaging Center Billing",
+    subtitle: "Technical and professional component billing for diagnostic imaging",
+    emoji: "📸",
+    description: "Imaging billing demands precision. We handle professional component (Modifier 26) and technical component (TC) billing splits for MRI, CT, X-ray, and ultrasound services. Our team actively combats automated payer downcoding and ensures every diagnostic interpretation is reimbursed at the correct rate.",
+    features: [
+      "Professional vs. technical component splits",
+      "MRI, CT, X-ray & ultrasound billing",
+      "Modifier 26 and TC compliance",
+      "Automated downcoding defense",
+      "Radiology RVU optimization",
+    ],
+    link: "/contact",
+  },
+  "ar-recovery": {
+    title: "A/R Recovery",
+    subtitle: "We recover the revenue your practice has already earned",
+    emoji: "💰",
+    description: "Aging accounts receivable drain cash flow and consume staff time. Our dedicated A/R recovery team systematically pursues claims beyond 60 days — analyzing denial patterns, filing targeted appeals, and negotiating with payers to settle outstanding balances and unlock frozen revenue for your practice.",
+    features: [
+      "Claims aging beyond 60-day threshold",
+      "Denial root cause analysis & appeal filing",
+      "Payer negotiation and escalation",
+      "Legacy claim resolution",
+      "Monthly A/R recovery reporting",
+    ],
+    link: "/contact",
+  },
+  "credentialing": {
+    title: "Provider Credentialing",
+    subtitle: "Get your providers enrolled and billing — fast",
+    emoji: "🪪",
+    description: "Every day a provider isn't credentialed is revenue your practice never sees. MedCare manages the full credentialing and payer enrollment process — CAQH profile setup and maintenance, commercial payer applications, Medicare and Medicaid enrollment, and re-credentialing — so your providers start billing without delays.",
+    features: [
+      "CAQH profile setup and maintenance",
+      "Medicare & Medicaid enrollment",
+      "Commercial payer panel applications",
+      "Re-credentialing and expiration tracking",
+      "Credentialing status monitoring",
+    ],
+    link: "/contact",
+  },
+  "asc-billing": {
+    title: "ASC Billing",
+    subtitle: "Specialized billing for ambulatory surgery centers",
+    emoji: "🏨",
+    description: "Ambulatory surgery center billing requires deep expertise in facility fee structures, device-intensive procedure groups, and multi-procedural discounting rules. MedCare's ASC billing team manages all of this — keeping your facility compliant, profitable, and collecting on every procedure performed.",
+    features: [
+      "Facility fee billing & optimization",
+      "Device-intensive procedure groupings",
+      "Multi-procedural discounting compliance",
+      "ASC-specific modifier usage",
+      "Implant and supply cost reporting",
+    ],
+    link: "/contact",
+  },
+  "denial-management": {
+    title: "Denial Management",
+    subtitle: "Turn denied claims into recovered revenue — systematically",
+    emoji: "🚫",
+    description: "Most practices write off denials that should be appealed — payers count on this. MedCare's denial management team reviews every denial within 24 hours, identifies the root cause, corrects it, and files a targeted appeal within 48 hours. We track denial patterns practice-wide to fix upstream issues and prevent recurrence.",
+    features: [
+      "48-hour appeal turnaround on all denials",
+      "Root cause analysis by denial reason code",
+      "Payer-specific appeal letter templates",
+      "Monthly denial trend reporting",
+      "70%+ first-level appeal success rate",
+    ],
+    link: "/contact",
+  },
+  "patient-billing": {
+    title: "Patient Billing",
+    subtitle: "Clear statements that improve collections without damaging trust",
+    emoji: "👤",
+    description: "With deductibles rising every year, patient responsibility now accounts for 30–35% of practice revenue. MedCare handles patient billing with professional, easy-to-understand statements, online payment portals, and compassionate follow-up — improving collections while maintaining the patient relationships your practice depends on.",
+    features: [
+      "Statements sent within 5 days of adjudication",
+      "Online patient payment portal setup",
+      "Payment plan management for large balances",
+      "Compassionate follow-up protocols",
+      "HSA/FSA and multi-payment method support",
+    ],
+    link: "/contact",
+  },
+  "reporting-analytics": {
+    title: "Reporting & Analytics",
+    subtitle: "Real-time visibility into every corner of your revenue cycle",
+    emoji: "📊",
+    description: "You can't improve what you can't measure. MedCare delivers a live KPI dashboard showing your clean claim rate, AR days, denial trends, payer performance, and collections — updated in real time. Monthly executive reports explain every number in plain language with clear recommendations for improvement.",
+    features: [
+      "Live KPI dashboard — updated in real time",
+      "Monthly executive summary reports",
+      "Payer performance benchmarking",
+      "AR aging analysis by payer and age bucket",
+      "Custom reports by provider, location, or specialty",
+    ],
+    link: "/contact",
+  },
+};
 
-const SERVICES=[
-  {icon:"🧾",title:"Medical Billing",desc:"98%+ first-pass rate. Certified specialists handle every claim from charge entry to payment.",slug:"medical-billing",num:"01",stat:"98%+",statLabel:"First-pass rate",tags:["Charge Capture","Coding","Submission"]},
-  {icon:"💰",title:"Revenue Cycle Management",desc:"End-to-end RCM covering all 10 steps from scheduling to final payment.",slug:"revenue-cycle-management",num:"02",stat:"$50M+",statLabel:"Recovered",tags:["Scheduling","Eligibility","Reporting"]},
-  {icon:"🏥",title:"Hospital Billing",desc:"DRG bundling, facility coding, multi-departmental charge capture for hospitals.",slug:"hospital-billing",num:"03",stat:"65%",statLabel:"Denial reduction",tags:["DRG","Facility Coding","UB-04"]},
-  {icon:"👨‍⚕️",title:"Physician Billing",desc:"E&M coding, modifier compliance for private practices and multi-specialty groups.",slug:"physician-billing",num:"04",stat:"40%",statLabel:"Admin time saved",tags:["E&M Coding","Modifiers","Eligibility"]},
-  {icon:"🧪",title:"Laboratory Billing",desc:"PAMA-compliant billing for molecular, pathology, and toxicology labs.",slug:"laboratory-billing",num:"05",stat:"100%",statLabel:"PAMA compliance",tags:["Panel Billing","Prior Auth","Toxicology"]},
-  {icon:"📸",title:"Imaging Billing",desc:"Professional and technical component billing for diagnostic imaging centers.",slug:"imaging-billing",num:"06",stat:"0%",statLabel:"Downcoding loss",tags:["MRI/CT","Modifier 26/TC","LCD Review"]},
-  {icon:"💵",title:"AR Recovery",desc:"Systematic recovery of aging claims beyond 60 days. $50M+ recovered.",slug:"ar-recovery",num:"07",stat:"70%+",statLabel:"Appeal success",tags:["Aging Claims","Escalation","Appeals"]},
-  {icon:"🪪",title:"Provider Credentialing",desc:"CAQH setup, payer enrollment. Zero credentialing lapses guaranteed.",slug:"credentialing",num:"08",stat:"0",statLabel:"Lapses",tags:["CAQH","Medicare","Commercial Payers"]},
-  {icon:"🏨",title:"ASC Billing",desc:"Specialized billing for ambulatory surgery centers and facility fees.",slug:"asc-billing",num:"09",stat:"100%",statLabel:"Implant cost capture",tags:["Facility Fees","Implants","Modifier SG"]},
-  {icon:"🚫",title:"Denial Management",desc:"70%+ appeal success rate. Every denial worked within 48 hours.",slug:"denial-management",num:"10",stat:"48hr",statLabel:"Turnaround",tags:["Root Cause","Appeals","Trend Analysis"]},
-  {icon:"👤",title:"Patient Billing",desc:"Clear statements, online payment portal, compassionate collections.",slug:"patient-billing",num:"11",stat:"30%",statLabel:"Collections increase",tags:["Statements","Payment Portal","Payment Plans"]},
-  {icon:"📊",title:"Reporting & Analytics",desc:"Live KPI dashboards updated in real-time across 50+ metrics.",slug:"reporting-analytics",num:"12",stat:"50+",statLabel:"KPIs tracked",tags:["Live Dashboard","Benchmarking","Custom Reports"]},
-];
+const SERVICE_KEYS = Object.keys(SERVICES_DATA);
 
-export default function ServicesPage(){
-  const [mounted,setMounted]=useState(false);
-  const [activeIdx,setActiveIdx]=useState(0);
-  const [hoverIdx,setHoverIdx]=useState(null);
-  const statsReveal=useReveal(0.4);
-  useEffect(()=>{ setTimeout(()=>setMounted(true),80); },[]);
-  const rise=(d=0)=>({opacity:mounted?1:0,transform:mounted?"translateY(0)":"translateY(28px)",transition:`opacity 0.7s ease ${d}s, transform 0.7s ease ${d}s`});
+export default function ServicesPage() {
+  const [activeTab, setActiveTab] = useState("hospital-billing");
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const current = SERVICES_DATA[activeTab];
 
-  return(
+  const handleSelect = (key) => {
+    setActiveTab(key);
+    setMobileOpen(false);
+  };
+
+  return (
     <>
-      <Navbar/>
+      <Navbar />
       <main>
-        {/* ══ HERO — fixed bg ══ */}
+
+        {/* ── HERO ── */}
         <section style={{
           position:"relative", minHeight:"86vh", display:"flex", alignItems:"center",
           backgroundImage:"linear-gradient(170deg,rgba(17,17,17,0.85) 15%,rgba(17,17,17,0.6) 55%,rgba(17,17,17,0.4) 100%), url('https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=1920&q=85')",
@@ -74,128 +195,187 @@ export default function ServicesPage(){
           </div>
         </section>
 
-        {/* ══ INTERACTIVE SHOWCASE — desktop ══ */}
-        <section style={{background:"var(--bg)",padding:"100px 32px"}}>
-          <div style={{maxWidth:1160,margin:"0 auto"}}>
-            <Reveal><div style={{textAlign:"center",marginBottom:56}}><Label text="Explore Our Services"/><h2 style={{fontSize:"clamp(26px,4vw,44px)",fontWeight:800,color:"var(--dark)",letterSpacing:"-0.02em"}}>Hover to preview, click to explore</h2></div></Reveal>
+        {/* ── INTERACTIVE SERVICES PANEL ── */}
+        <section style={{ background:"#FDFAF5", padding:"80px 24px 100px" }}>
+          <div style={{ maxWidth:1180, margin:"0 auto" }}>
 
-            <Reveal delay={0.08}>
-              <div className="showcase-grid" style={{display:"grid",gridTemplateColumns:"0.9fr 1.1fr",gap:0,background:"#fff",borderRadius:32,overflow:"hidden",border:"1px solid var(--border)",boxShadow:"var(--shadow-lg)",minHeight:560,position:"relative"}}>
+            {/* Section header */}
+            <div style={{ textAlign:"center", marginBottom:56 }}>
+              <div style={{ display:"inline-flex", alignItems:"center", gap:8, marginBottom:14 }}>
+                <div style={{ width:26, height:2, background:"#111111", borderRadius:2 }} />
+                <p style={{ fontSize:12, fontWeight:700, color:"#111111", letterSpacing:"2px", textTransform:"uppercase" }}>Our Services</p>
+              </div>
+              <h2 style={{ fontSize:"clamp(28px,4vw,44px)", fontWeight:800, color:"#111111", letterSpacing:-1, marginBottom:14 }}>
+                What we handle for you
+              </h2>
+              <p style={{ fontSize:16, color:"#666666", maxWidth:500, margin:"0 auto", lineHeight:1.75 }}>
+                Select a service below to see exactly how MedCare RCM takes it off your plate.
+              </p>
+            </div>
 
-                <div style={{borderRight:"1px solid var(--border)",maxHeight:600,overflowY:"auto"}} className="showcase-list">
-                  {SERVICES.map((s,i)=>(
-                    <button key={i} onClick={()=>setActiveIdx(i)} onMouseEnter={()=>{setActiveIdx(i);setHoverIdx(i);}} onMouseLeave={()=>setHoverIdx(null)}
-                      style={{
-                        width:"100%",textAlign:"left",background:activeIdx===i?"var(--dark)":"transparent",
-                        border:"none",borderBottom:"1px solid var(--border)",padding:"20px 26px",cursor:"pointer",
-                        display:"flex",alignItems:"center",gap:14,transition:"background 0.35s cubic-bezier(0.16,1,0.3,1)",
-                        position:"relative", overflow:"hidden",
-                      }}>
-                      {/* sliding active indicator */}
-                      <div style={{position:"absolute",left:0,top:0,bottom:0,width:4,background:"var(--yellow)",transform:activeIdx===i?"scaleY(1)":"scaleY(0)",transformOrigin:"center",transition:"transform 0.35s cubic-bezier(0.34,1.56,0.64,1)"}}/>
-                      <span style={{fontSize:10.5,fontWeight:800,color:activeIdx===i?"var(--yellow)":"var(--text3)",width:18,flexShrink:0,transition:"color 0.3s"}}>{s.num}</span>
-                      <span style={{fontSize:22,flexShrink:0,transform:hoverIdx===i?"scale(1.2) rotate(-8deg)":"scale(1) rotate(0deg)",transition:"transform 0.35s cubic-bezier(0.34,1.56,0.64,1)",display:"inline-block"}}>{s.icon}</span>
-                      <span style={{fontSize:14.5,fontWeight:700,color:activeIdx===i?"#fff":"var(--dark)",flex:1,transition:"color 0.3s"}}>{s.title}</span>
-                      <span style={{fontSize:16,color:"var(--yellow)",transform:activeIdx===i?"translateX(0)":"translateX(-8px)",opacity:activeIdx===i?1:0,transition:"all 0.3s"}}>→</span>
+            {/* ── MOBILE: dropdown selector ── */}
+            <div className="mobile-selector" style={{ display:"none", marginBottom:24 }}>
+              <button
+                onClick={() => setMobileOpen(!mobileOpen)}
+                style={{ width:"100%", background:"#111111", color:"#fff", border:"none", padding:"16px 20px", borderRadius:14, fontSize:15, fontWeight:700, cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"space-between" }}
+              >
+                <span>{current.emoji} {current.title}</span>
+                <span style={{ fontSize:18, transform: mobileOpen ? "rotate(180deg)" : "rotate(0)", transition:"transform 0.25s" }}>⌄</span>
+              </button>
+              {mobileOpen && (
+                <div style={{ background:"#fff", border:"1px solid rgba(17,17,17,0.1)", borderRadius:14, marginTop:8, overflow:"hidden", boxShadow:"0 8px 32px rgba(17,17,17,0.1)" }}>
+                  {SERVICE_KEYS.map(key => (
+                    <button key={key} onClick={() => handleSelect(key)}
+                      style={{ width:"100%", background: activeTab===key ? "#F5F0E8" : "#fff", border:"none", borderBottom:"1px solid rgba(17,17,17,0.06)", padding:"15px 20px", fontSize:14, fontWeight: activeTab===key ? 700 : 500, color: activeTab===key ? "#111111" : "#555555", cursor:"pointer", textAlign:"left", display:"flex", alignItems:"center", gap:10 }}>
+                      <span>{SERVICES_DATA[key].emoji}</span>
+                      <span>{SERVICES_DATA[key].title}</span>
+                      {activeTab===key && <span style={{ marginLeft:"auto", color:"#111111", fontSize:13 }}>✓</span>}
                     </button>
                   ))}
                 </div>
+              )}
+            </div>
 
-                {/* Right — animated preview panel */}
-                <div style={{position:"relative",overflow:"hidden"}}>
-                  <div style={{position:"absolute",top:-80,right:-60,width:260,height:260,borderRadius:"50%",background:"radial-gradient(circle,rgba(245,230,163,0.35),transparent 70%)",pointerEvents:"none"}}/>
-                  <div key={activeIdx} style={{padding:"48px 44px",display:"flex",flexDirection:"column",justifyContent:"center",height:"100%",animation:"panelFadeIn 0.45s cubic-bezier(0.16,1,0.3,1)",position:"relative",zIndex:2}}>
-                    <div style={{width:68,height:68,borderRadius:22,background:"var(--yellow)",display:"flex",alignItems:"center",justifyContent:"center",fontSize:32,marginBottom:26,animation:"iconBounce 2.4s ease-in-out infinite",boxShadow:"0 12px 28px rgba(245,230,163,0.4)"}}>{SERVICES[activeIdx].icon}</div>
-                    <div style={{fontSize:11,fontWeight:700,color:"var(--text3)",letterSpacing:2,textTransform:"uppercase",marginBottom:10}}>Service {SERVICES[activeIdx].num} of 12</div>
-                    <h3 style={{fontSize:"clamp(24px,3vw,34px)",fontWeight:800,color:"var(--dark)",letterSpacing:"-0.02em",marginBottom:16,lineHeight:1.15}}>{SERVICES[activeIdx].title}</h3>
-                    <p style={{fontSize:15,color:"var(--text2)",lineHeight:1.85,marginBottom:22,maxWidth:440}}>{SERVICES[activeIdx].desc}</p>
+            {/* ── DESKTOP: sidebar + panel ── */}
+            <div className="services-layout" style={{ display:"grid", gridTemplateColumns:"280px 1fr", gap:20, alignItems:"start" }}>
 
-                    {/* Feature tags */}
-                    <div style={{display:"flex",flexWrap:"wrap",gap:8,marginBottom:26}}>
-                      {SERVICES[activeIdx].tags.map((t,ti)=>(
-                        <span key={ti} style={{fontSize:11.5,fontWeight:600,color:"var(--dark)",background:"var(--bg)",border:"1px solid var(--border)",borderRadius:100,padding:"6px 13px",animation:`tagPop 0.4s cubic-bezier(0.34,1.56,0.64,1) ${0.1+ti*0.08}s both`}}>{t}</span>
-                      ))}
-                    </div>
-
-                    {/* Mini stat badge */}
-                    <div style={{display:"inline-flex",alignItems:"center",gap:12,background:"var(--dark)",borderRadius:16,padding:"14px 20px",marginBottom:28,width:"fit-content"}}>
-                      <div style={{fontSize:22,fontWeight:800,color:"var(--yellow)"}}>{SERVICES[activeIdx].stat}</div>
-                      <div style={{fontSize:11,color:"rgba(255,255,255,0.5)",fontWeight:600,textTransform:"uppercase",letterSpacing:0.6,maxWidth:80,lineHeight:1.3}}>{SERVICES[activeIdx].statLabel}</div>
-                    </div>
-
-                    <Link href={`/services/${SERVICES[activeIdx].slug}`} style={{display:"inline-flex",alignItems:"center",gap:8,background:"var(--dark)",color:"#fff",padding:"15px 28px",borderRadius:100,fontSize:14,fontWeight:700,width:"fit-content",transition:"transform 0.25s,box-shadow 0.25s",boxShadow:"0 6px 20px rgba(17,17,17,0.15)"}} onMouseEnter={e=>{e.currentTarget.style.transform="translateY(-3px)";e.currentTarget.style.boxShadow="0 12px 30px rgba(17,17,17,0.25)";}} onMouseLeave={e=>{e.currentTarget.style.transform="translateY(0)";e.currentTarget.style.boxShadow="0 6px 20px rgba(17,17,17,0.15)";}}>
-                      View Full Details →
-                    </Link>
-                  </div>
-                </div>
+              {/* LEFT sidebar */}
+              <div className="services-sidebar" style={{ display:"flex", flexDirection:"column", gap:5, position:"sticky", top:88 }}>
+                {SERVICE_KEYS.map(key => {
+                  const isActive = activeTab === key;
+                  return (
+                    <button key={key} onClick={() => setActiveTab(key)}
+                      style={{
+                        textAlign:"left", padding:"14px 18px", fontSize:14, fontWeight:600,
+                        borderRadius:12, cursor:"pointer", transition:"all 0.2s ease",
+                        border: isActive ? "1.5px solid #111111" : "1.5px solid transparent",
+                        background: isActive ? "#111111" : "transparent",
+                        color: isActive ? "#fff" : "#555555",
+                        boxShadow: isActive ? "0 4px 20px rgba(17,17,17,0.15)" : "none",
+                        display:"flex", alignItems:"center", gap:10,
+                      }}
+                      onMouseEnter={e => { if(!isActive){ e.currentTarget.style.background="#fff"; e.currentTarget.style.border="1.5px solid rgba(17,17,17,0.15)"; e.currentTarget.style.color="#111111"; } }}
+                      onMouseLeave={e => { if(!isActive){ e.currentTarget.style.background="transparent"; e.currentTarget.style.border="1.5px solid transparent"; e.currentTarget.style.color="#555555"; } }}
+                    >
+                      <span style={{ fontSize:16 }}>{SERVICES_DATA[key].emoji}</span>
+                      <span style={{ flex:1 }}>{SERVICES_DATA[key].title}</span>
+                      {isActive && <span style={{ fontSize:13, color:"#F5E6A3" }}>→</span>}
+                    </button>
+                  );
+                })}
               </div>
-            </Reveal>
 
-            {/* ══ Mobile — fully designed animated cards ══ */}
-            <div className="services-grid-mobile" style={{display:"none",gridTemplateColumns:"1fr",gap:16,marginTop:8}}>
-              {SERVICES.map((s,i)=>(
-                <Reveal key={i} delay={(i%6)*0.05}>
-                  <Link href={`/services/${s.slug}`} className="mobile-service-card" style={{display:"block",position:"relative",background:"#fff",border:"1px solid var(--border)",borderRadius:24,padding:"24px 22px",textDecoration:"none",overflow:"hidden",boxShadow:"var(--shadow)",transition:"all 0.35s cubic-bezier(0.16,1,0.3,1)"}}>
-                    <div style={{position:"absolute",top:-20,right:-20,fontSize:90,opacity:0.05,pointerEvents:"none"}}>{s.icon}</div>
-                    <div style={{position:"relative",zIndex:2}}>
-                      <div style={{display:"flex",alignItems:"center",gap:14,marginBottom:14}}>
-                        <div style={{width:48,height:48,borderRadius:14,background:"var(--bg)",display:"flex",alignItems:"center",justifyContent:"center",fontSize:22,flexShrink:0}}>{s.icon}</div>
-                        <div style={{flex:1}}>
-                          <div style={{fontSize:10,fontWeight:800,color:"var(--text3)",letterSpacing:1,marginBottom:2}}>SERVICE {s.num}</div>
-                          <h4 style={{fontSize:16,fontWeight:800,color:"var(--dark)",lineHeight:1.25}}>{s.title}</h4>
-                        </div>
+              {/* RIGHT content panel */}
+              <div style={{
+                background:"#fff", border:"1px solid rgba(17,17,17,0.08)",
+                borderRadius:20, padding:"44px 44px",
+                boxShadow:"0 8px 40px rgba(17,17,17,0.06)",
+              }} className="services-panel">
+                {/* Emoji icon */}
+                <div style={{ width:68, height:68, borderRadius:18, background:"#F5F0E8", display:"flex", alignItems:"center", justifyContent:"center", fontSize:32, marginBottom:24 }}>
+                  {current.emoji}
+                </div>
+                <div style={{ marginBottom:6 }}>
+                  <span style={{ fontSize:11, fontWeight:700, color:"#999999", textTransform:"uppercase", letterSpacing:1.5 }}>{current.subtitle}</span>
+                </div>
+                <h3 style={{ fontSize:"clamp(24px,3vw,30px)", fontWeight:800, color:"#111111", letterSpacing:-0.5, marginBottom:16, lineHeight:1.2 }}>
+                  {current.title}
+                </h3>
+                <p style={{ fontSize:15.5, color:"#555555", lineHeight:1.85, marginBottom:30, maxWidth:560 }}>
+                  {current.description}
+                </p>
+
+                {/* Features */}
+                <div className="features-grid" style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:"10px 16px", marginBottom:36 }}>
+                  {current.features.map((f,i) => (
+                    <div key={i} style={{ display:"flex", alignItems:"flex-start", gap:10 }}>
+                      <div style={{ width:22, height:22, borderRadius:"50%", background:"#F5E6A3", border:"1.5px solid rgba(17,17,17,0.12)", display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0, marginTop:1 }}>
+                        <span style={{ fontSize:11, fontWeight:800, color:"#111111" }}>✓</span>
                       </div>
-                      <p style={{fontSize:13,color:"var(--text2)",lineHeight:1.7,marginBottom:16}}>{s.desc}</p>
-                      <div style={{display:"flex",alignItems:"center",justifyContent:"space-between"}}>
-                        <div style={{display:"flex",alignItems:"baseline",gap:6}}>
-                          <span style={{fontSize:17,fontWeight:800,color:"var(--dark)"}}>{s.stat}</span>
-                          <span style={{fontSize:10.5,color:"var(--text3)",fontWeight:600}}>{s.statLabel}</span>
-                        </div>
-                        <span style={{width:32,height:32,borderRadius:"50%",background:"var(--bg)",display:"flex",alignItems:"center",justifyContent:"center",fontSize:14,color:"var(--dark)"}}>→</span>
-                      </div>
+                      <span style={{ fontSize:13.5, color:"#333333", fontWeight:500, lineHeight:1.5 }}>{f}</span>
                     </div>
-                  </Link>
-                </Reveal>
+                  ))}
+                </div>
+
+                {/* CTA */}
+                <Link href={current.link} style={{
+                  background:"#111111", color:"#fff",
+                  padding:"13px 26px", borderRadius:100,
+                  fontSize:14, fontWeight:700,
+                  display:"inline-flex", alignItems:"center", gap:8,
+                  boxShadow:"0 4px 16px rgba(17,17,17,0.2)",
+                }}
+                  onMouseEnter={e => { e.currentTarget.style.transform="translateY(-2px)"; e.currentTarget.style.boxShadow="0 8px 24px rgba(17,17,17,0.28)"; }}
+                  onMouseLeave={e => { e.currentTarget.style.transform="translateY(0)"; e.currentTarget.style.boxShadow="0 4px 16px rgba(17,17,17,0.2)"; }}>
+                  Get a free consultation
+                  <span style={{ background:"#F5E6A3", color:"#111111", borderRadius:"50%", width:22, height:22, display:"inline-flex", alignItems:"center", justifyContent:"center", fontSize:12, fontWeight:800 }}>→</span>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ── WHY CHOOSE US ── */}
+        <section style={{ background:"#F5F0E8", padding:"80px 24px", borderTop:"1px solid rgba(17,17,17,0.07)" }}>
+          <div style={{ maxWidth:1100, margin:"0 auto" }}>
+            <div style={{ textAlign:"center", marginBottom:48 }}>
+              <h2 style={{ fontSize:"clamp(24px,3vw,36px)", fontWeight:800, color:"#111111", letterSpacing:-0.5, marginBottom:12 }}>Why practices choose MedCare RCM</h2>
+              <p style={{ fontSize:15, color:"#666666", maxWidth:480, margin:"0 auto" }}>Every service comes with the same commitment — maximum reimbursement, minimum hassle.</p>
+            </div>
+            <div className="why-grid" style={{ display:"grid", gridTemplateColumns:"repeat(4,1fr)", gap:20 }}>
+              {[
+                { icon:"⚡", title:"Fast onboarding", desc:"Most practices go live in under 7 days with zero billing disruption to existing workflows." },
+                { icon:"📊", title:"Full transparency", desc:"Real-time dashboards show exactly where every claim stands — no surprises." },
+                { icon:"🔒", title:"HIPAA-compliant", desc:"Every system and workflow meets the highest data security and compliance standards." },
+                { icon:"📞", title:"Dedicated support", desc:"One account manager who knows your practice inside out — always reachable." },
+              ].map((p,i) => (
+                <div key={i} style={{ background:"#fff", border:"1px solid rgba(17,17,17,0.08)", borderRadius:16, padding:"24px 20px", boxShadow:"0 2px 12px rgba(17,17,17,0.04)" }}>
+                  <span style={{ fontSize:26, display:"block", marginBottom:12 }}>{p.icon}</span>
+                  <h4 style={{ fontSize:15, fontWeight:700, color:"#111111", marginBottom:7 }}>{p.title}</h4>
+                  <p style={{ fontSize:13, color:"#666666", lineHeight:1.65 }}>{p.desc}</p>
+                </div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* ══ LUXURIOUS ANIMATED CTA ══ */}
-        <section style={{background:"var(--bg)",padding:"120px 32px",position:"relative",overflow:"hidden"}}>
-          <Reveal dir="scale">
-            <div style={{maxWidth:720,margin:"0 auto",position:"relative"}}>
-              <div className="gradient-border" style={{borderRadius:32,padding:2,background:"linear-gradient(120deg,var(--yellow),rgba(245,230,163,0.15),var(--yellow),rgba(245,230,163,0.3),var(--yellow))",backgroundSize:"300% 300%",animation:"gradientMove 6s ease infinite"}}>
-                <div style={{background:"var(--dark)",borderRadius:30,padding:"64px 48px",textAlign:"center",position:"relative",overflow:"hidden"}}>
-                  <div style={{position:"absolute",top:-100,left:"50%",transform:"translateX(-50%)",width:400,height:400,borderRadius:"50%",background:"radial-gradient(circle,rgba(245,230,163,0.14),transparent 65%)",pointerEvents:"none"}}/>
-                  <div style={{position:"relative",zIndex:2}}>
-                    <div style={{fontSize:13,fontWeight:700,color:"var(--yellow)",letterSpacing:2,textTransform:"uppercase",marginBottom:18}}>Not sure where to start?</div>
-                    <h2 style={{fontSize:"clamp(28px,5vw,52px)",fontWeight:800,color:"#fff",letterSpacing:"-0.02em",lineHeight:1.05,marginBottom:24}}>We'll audit your billing<br/>completely free.</h2>
-                    <p style={{fontSize:15,color:"rgba(255,255,255,0.5)",lineHeight:1.8,marginBottom:36,maxWidth:420,margin:"0 auto 36px"}}>Our specialists will review your current setup and recommend exactly which services will help most.</p>
-                    <Link href="/contact" style={{display:"inline-flex",alignItems:"center",gap:10,background:"var(--yellow)",color:"var(--dark)",padding:"18px 36px",borderRadius:100,fontSize:15,fontWeight:800,boxShadow:"0 12px 40px rgba(245,230,163,0.35)",transition:"transform 0.3s,box-shadow 0.3s"}} onMouseEnter={e=>{e.currentTarget.style.transform="translateY(-4px) scale(1.02)";e.currentTarget.style.boxShadow="0 20px 52px rgba(245,230,163,0.5)";}} onMouseLeave={e=>{e.currentTarget.style.transform="translateY(0) scale(1)";e.currentTarget.style.boxShadow="0 12px 40px rgba(245,230,163,0.35)";}}>
-                      Get Free Audit →
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </Reveal>
+        {/* ── CTA ── */}
+        <section style={{ background:"#111111", padding:"80px 24px", position:"relative", overflow:"hidden" }}>
+          <div style={{ position:"absolute", top:-80, right:-80, width:400, height:400, borderRadius:"50%", background:"radial-gradient(circle,rgba(245,230,163,0.08),transparent 70%)", pointerEvents:"none" }} />
+          <div style={{ maxWidth:640, margin:"0 auto", textAlign:"center", position:"relative", zIndex:2 }}>
+            <div style={{ display:"inline-block", background:"#F5E6A3", borderRadius:100, padding:"6px 18px", fontSize:12, fontWeight:700, color:"#111111", letterSpacing:1.5, textTransform:"uppercase", marginBottom:24 }}>No obligation</div>
+            <h2 style={{ fontSize:"clamp(26px,4vw,42px)", fontWeight:800, color:"#fff", letterSpacing:-1, marginBottom:16, lineHeight:1.15 }}>
+              Not sure which service<br/>you need?
+            </h2>
+            <p style={{ fontSize:16, color:"rgba(255,255,255,0.5)", lineHeight:1.75, marginBottom:36 }}>
+              Talk to our team and we'll assess your current billing setup — then recommend exactly what will help your practice most.
+            </p>
+            <Link href="/contact" style={{ background:"#F5E6A3", color:"#111111", padding:"15px 32px", borderRadius:100, fontSize:15, fontWeight:800, display:"inline-flex", alignItems:"center", gap:8 }}>
+              Book a free consultation →
+            </Link>
+          </div>
         </section>
+
       </main>
-      <Footer/>
+      <Footer />
+
       <style>{`
-        @keyframes breathe{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.35;transform:scale(1.5)}}
-        @keyframes floatBlob{0%,100%{transform:translate(0,0)}50%{transform:translate(-16px,14px)}}
-        @keyframes panelFadeIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
-        @keyframes iconBounce{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-8px) rotate(-4deg)}}
-        @keyframes tagPop{from{opacity:0;transform:scale(0.7) translateY(6px)}to{opacity:1;transform:scale(1) translateY(0)}}
-        @keyframes gradientMove{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
-        .mobile-service-card:hover{ transform:translateY(-6px); box-shadow:0 20px 48px rgba(17,17,17,0.1) !important; border-color:var(--dark) !important; }
-        @media(max-width:768px){
-          .stats-thin{grid-template-columns:1fr 1fr !important;}
-          .showcase-grid{display:none !important;}
-          .services-grid-mobile{display:grid !important;}
+        /* ── Mobile ── */
+        @media (max-width: 900px) {
+          .services-layout   { grid-template-columns: 1fr !important; }
+          .services-sidebar  { display: none !important; }
+          .mobile-selector   { display: block !important; }
+          .services-panel    { padding: 28px 22px !important; }
+          .features-grid     { grid-template-columns: 1fr !important; }
         }
+        @media (max-width: 768px) {
+          .stats-grid { grid-template-columns: 1fr 1fr !important; gap: 28px 16px !important; }
+          .why-grid   { grid-template-columns: 1fr 1fr !important; }
+        }
+        @media (max-width: 480px) {
+          .why-grid { grid-template-columns: 1fr !important; }
+        }
+        @keyframes fadeSlideUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
       `}</style>
     </>
   );
