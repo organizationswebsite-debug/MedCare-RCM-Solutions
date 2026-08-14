@@ -1,5 +1,6 @@
 ﻿"use client";
 import { useState, useEffect, useRef } from "react";
+import { createPortal } from "react-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Link from "next/link";
@@ -587,7 +588,15 @@ function PricingModal({ plan, onClose }) {
   const [submitted, setSubmitted]  = useState(false);
   const [error,     setError]      = useState("");
   const [visible,   setVisible]    = useState(false);
+  const [mountedOnClient, setMountedOnClient] = useState(false);
   const overlayRef = useRef(null);
+
+  /* Render via portal directly into <body> — this guarantees the modal
+     is always positioned relative to the real viewport, not to any
+     transformed/animated ancestor section (which otherwise traps
+     position:fixed elements near the top of that section instead of
+     centering them on the actual screen). */
+  useEffect(() => { setMountedOnClient(true); }, []);
 
   useEffect(()=>{
     if(plan){ setTimeout(()=>setVisible(true),10); document.body.style.overflow="hidden"; }
@@ -621,12 +630,13 @@ function PricingModal({ plan, onClose }) {
   };
 
   if(!plan) return null;
+  if(!mountedOnClient) return null;
   const isDark = plan.color==="#111111";
 
-  return (
+  const modalContent = (
     <div ref={overlayRef} onClick={e=>{ if(e.target===overlayRef.current) handleClose(); }}
       style={{
-        position:"fixed",top:0,left:0,right:0,bottom:0,zIndex:1000,
+        position:"fixed",top:0,left:0,right:0,bottom:0,zIndex:9999,
         width:"100vw",height:"100vh",
         display:"flex",alignItems:"center",justifyContent:"center",
         padding:"16px",
@@ -762,6 +772,8 @@ function PricingModal({ plan, onClose }) {
       </div>
     </div>
   );
+
+  return createPortal(modalContent, document.body);
 }
 
 /* ══ PRICING PREVIEW SECTION ══ */
