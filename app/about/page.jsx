@@ -184,8 +184,6 @@ export default function AboutPage() {
           <div style={{ position:"absolute", inset:0, zIndex:-2, backgroundImage:"url('/aboutushero.jpeg')", backgroundSize:"cover", backgroundPosition:"center", backgroundAttachment: "fixed" }} />
           {/* Animated dot grid */}
           <div style={{ position:"absolute", inset:0, zIndex:-1, backgroundImage:"radial-gradient(circle,rgba(245,240,232,0.1) 1.5px,transparent 1.5px)", backgroundSize:"38px 38px", animation:"dotsShift 28s linear infinite", pointerEvents:"none" , willChange:"transform" }} />
-          {/* Gradient overlay */}
-          <div style={{ position:"absolute", inset:0, zIndex:-1, background:"linear-gradient(110deg,rgba(245,240,232,0.97) 0%,rgba(245,240,232,0.93) 40%,rgba(17,17,17,0.65) 100%)" }} className="about-hero-overlay" />
           {/* Glow blobs */}
           <div style={{ position:"absolute", top:-80, right:-80, width:500, height:500, borderRadius:"50%", background:"radial-gradient(circle,rgba(245,230,163,0.25),transparent 65%)", zIndex:-1, pointerEvents:"none" }} />
 
