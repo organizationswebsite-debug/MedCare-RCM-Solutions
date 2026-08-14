@@ -181,7 +181,7 @@ export default function AboutPage() {
         {/* ══ HERO ══ */}
         <section style={{ position:"relative", minHeight:"88vh", display:"flex", alignItems:"center", overflow:"hidden", isolation:"isolate" }}>
           {/* Background image */}
-          <div style={{ position:"absolute", inset:0, zIndex:-2, backgroundImage:"url('https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=1400&q=80&fit=crop')", backgroundSize:"cover", backgroundPosition:"center", backgroundAttachment: "fixed" }} />
+          <div style={{ position:"absolute", inset:0, zIndex:-2, backgroundImage:"url('/aboutushero.jpeg')", backgroundSize:"cover", backgroundPosition:"center", backgroundAttachment: "fixed" }} />
           {/* Animated dot grid */}
           <div style={{ position:"absolute", inset:0, zIndex:-1, backgroundImage:"radial-gradient(circle,rgba(245,240,232,0.1) 1.5px,transparent 1.5px)", backgroundSize:"38px 38px", animation:"dotsShift 28s linear infinite", pointerEvents:"none" , willChange:"transform" }} />
           {/* Gradient overlay */}
