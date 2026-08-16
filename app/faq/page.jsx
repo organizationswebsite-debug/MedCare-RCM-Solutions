@@ -118,7 +118,7 @@ export default function FaqPage() {
             style={{
               position: "absolute",
               inset: 0,
-              background: "linear-gradient(120deg, rgba(17,17,17,0.96) 0%, rgba(17,17,17,0.8) 45%, rgba(17,17,17,0.72) 100%)",
+              background: "linear-gradient(135deg, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.55) 100%)",
             }}
           />
           <div
@@ -257,56 +257,6 @@ export default function FaqPage() {
                   </div>
                 ))}
               </div>
-            </div>
-
-            <div
-              style={{
-                background: "rgba(255,255,255,0.95)",
-                borderRadius: 28,
-                padding: 24,
-                boxShadow: "0 28px 70px rgba(17,17,17,0.24)",
-                border: "1px solid rgba(17,17,17,0.08)",
-                animation: "fadeUp 0.8s ease both",
-              }}
-            >
-              <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 18 }}>
-                <div style={{ width: 44, height: 44, borderRadius: 14, background: "#111111", display: "flex", alignItems: "center", justifyContent: "center", color: "#F5E6A3", fontSize: 20 }}>✦</div>
-                <div>
-                  <div style={{ fontSize: 11, fontWeight: 800, color: "#888888", textTransform: "uppercase", letterSpacing: "1.6px" }}>Need a tailored answer?</div>
-                  <div style={{ fontSize: 16, fontWeight: 700, color: "#111111" }}>We help practices scale confidently.</div>
-                </div>
-              </div>
-
-              <div style={{ display: "grid", gap: 12 }}>
-                {[
-                  "Credentialing support and onboarding",
-                  "Claim follow-up and denial resolution",
-                  "Custom reporting for your leadership team",
-                ].map((item) => (
-                  <div key={item} style={{ display: "flex", alignItems: "center", gap: 10, color: "#444444", fontSize: 14 }}>
-                    <span style={{ width: 10, height: 10, borderRadius: "50%", background: "#F5E6A3", flexShrink: 0 }} />
-                    {item}
-                  </div>
-                ))}
-              </div>
-
-              <Link
-                href="/contact"
-                style={{
-                  display: "inline-flex",
-                  marginTop: 20,
-                  alignItems: "center",
-                  gap: 10,
-                  background: "#111111",
-                  color: "#FFFFFF",
-                  padding: "12px 18px",
-                  borderRadius: 999,
-                  fontWeight: 700,
-                }}
-              >
-                Speak with an RCM specialist
-                <span style={{ fontSize: 13 }}>→</span>
-              </Link>
             </div>
           </div>
         </section>

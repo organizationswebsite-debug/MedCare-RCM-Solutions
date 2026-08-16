@@ -155,7 +155,7 @@ export default function ContactPage() {
       <main>
 
         {/* ══ HERO ══ */}
-        <section style={{ position:"relative", background:"linear-gradient(160deg,#F5F0E8 0%,#FDFAF5 50%,#F0EBE0 100%)", padding:"140px 24px 90px", overflow:"hidden", minHeight:"60vh", display:"flex", alignItems:"center" }}>
+        <section style={{ position:"relative", backgroundImage:"linear-gradient(160deg, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.55) 100%), linear-gradient(160deg,#F5F0E8 0%,#FDFAF5 50%,#F0EBE0 100%)", padding:"140px 24px 90px", overflow:"hidden", minHeight:"60vh", display:"flex", alignItems:"center" }}>
           {/* Animated dot grid */}
           <div style={{ position:"absolute", inset:0, zIndex:-2, backgroundImage:"url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVwon4p1db_Do8FDa-XUGx2seXZIQKcH-S1PUAuftlsc7Y5LCo942lCkFc&s=10')", backgroundSize:"cover", backgroundPosition:"center", backgroundAttachment: "fixed" }} />
           {/* Glow */}
@@ -170,11 +170,11 @@ export default function ContactPage() {
                 <span style={{ width:7, height:7, borderRadius:"50%", background:"#111111", animation:"breathe 2s infinite", willChange:"transform,opacity" }} />
                 <span style={{ fontSize:12, fontWeight:700, color:"#111111", letterSpacing:1.2 }}>Contact MedCare RCM Solutions</span>
               </div>
-              <h1 style={{ ...rise(0.15), fontSize:"clamp(32px,5vw,56px)", fontWeight:800, color:"#111111", lineHeight:1.1, letterSpacing:-2, marginBottom:20 }}>
+              <h1 style={{ ...rise(0.15), fontSize:"clamp(32px,5vw,56px)", fontWeight:800, color:"#ffffff", lineHeight:1.1, letterSpacing:-2, marginBottom:20 }}>
                 Let's talk about<br/>
-                your <span style={{ borderBottom:"4px solid #F5E6A3", paddingBottom:3 }}>revenue cycle.</span>
+                your <span style={{ color:"#F5E6A3" }}>revenue cycle.</span>
               </h1>
-              <p style={{ ...rise(0.28), fontSize:17, color:"#555555", lineHeight:1.8, marginBottom:36, maxWidth:460 }}>
+              <p style={{ ...rise(0.28), fontSize:17, color:"#ffffff", lineHeight:1.8, marginBottom:36, maxWidth:460 }}>
                 Get a free, no-obligation billing audit from our certified specialists — we'll identify exactly where revenue is being lost and show you how to recover it.
               </p>
               {/* Quick contact info */}

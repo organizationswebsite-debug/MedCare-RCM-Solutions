@@ -230,12 +230,8 @@ export default function CareersPage() {
             backgroundImage:"url('https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=1400&q=80&fit=crop')",
             backgroundSize:"cover", backgroundPosition:"center 30%", backgroundAttachment: "fixed",
           }} />
-          {/* Animated dot grid */}
-          <div style={{ position:"absolute", inset:0, zIndex:-1, backgroundImage:"radial-gradient(circle,rgba(245,240,232,0.12) 1.5px,transparent 1.5px)", backgroundSize:"38px 38px", animation:"dotsShift 28s linear infinite", pointerEvents:"none" , willChange:"transform" }} />
-          {/* Gradient overlay — Grovia cream on left, dark on right */}
-          <div style={{ position:"absolute", inset:0, zIndex:-1, background:"linear-gradient(110deg,rgba(245,240,232,0.97) 0%,rgba(245,240,232,0.92) 38%,rgba(17,17,17,0.65) 100%)" }} className="hero-overlay" />
-          {/* Yellow glow top-right */}
-          <div style={{ position:"absolute", top:-80, right:-80, width:500, height:500, borderRadius:"50%", background:"radial-gradient(circle,rgba(245,230,163,0.25),transparent 65%)", zIndex:-1, pointerEvents:"none" }} />
+          {/* Gradient overlay */}
+          <div style={{ position:"absolute", inset:0, zIndex:-1, background:"linear-gradient(135deg, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.55) 100%)" }} className="hero-overlay" />
 
           <div style={{ maxWidth:1160, margin:"0 auto", padding:"130px 24px 90px", width:"100%", display:"grid", gridTemplateColumns:"1fr 1fr", gap:56, alignItems:"center" }} className="hero-grid">
 
@@ -247,26 +243,26 @@ export default function CareersPage() {
                 <span style={{ fontSize:12, fontWeight:700, color:"#111111", letterSpacing:1.2 }}>We're Hiring · USA Remote</span>
               </div>
 
-              <h1 style={{ ...rise(0.18), fontSize:"clamp(36px,5vw,62px)", fontWeight:800, color:"#111111", lineHeight:1.08, letterSpacing:-2, marginBottom:22 }}>
+              <h1 style={{ ...rise(0.18), fontSize:"clamp(36px,5vw,62px)", fontWeight:800, color:"#ffffff", lineHeight:1.08, letterSpacing:-2, marginBottom:22 }}>
                 Build your career<br/>
-                in <span style={{ borderBottom:"3px solid #F5E6A3", paddingBottom:2 }}>healthcare</span><br/>
-                <span style={{ color:"#111111", opacity:0.28 }}>revenue cycle.</span>
+                in <span style={{ color:"#F5E6A3" }}>healthcare</span><br/>
+                <span style={{ borderBottom:"3px solid #ffffff", paddingBottom:2 }}>revenue cycle.</span>
               </h1>
 
-              <p style={{ ...rise(0.3), fontSize:17, color:"#444444", lineHeight:1.8, marginBottom:36, maxWidth:460 }}>
+              <p style={{ ...rise(0.3), fontSize:17, color:"#ffffff", lineHeight:1.8, marginBottom:36, maxWidth:460 }}>
                 MedCare RCM Solutions is a fast-growing, fully remote RCM company serving 500+ healthcare providers. We're looking for experienced billing professionals who want ownership, growth, and work they're proud of.
               </p>
 
               <div style={{ ...rise(0.42), display:"flex", gap:12, flexWrap:"wrap" }}>
-                <a href="#open-roles" style={{ background:"#111111", color:"#fff", padding:"15px 28px", borderRadius:100, fontSize:15, fontWeight:700, display:"inline-flex", alignItems:"center", gap:9, boxShadow:"0 6px 24px rgba(17,17,17,0.22)", transition:"transform 0.2s, box-shadow 0.2s" }}
-                  onMouseEnter={e=>{ e.currentTarget.style.transform="translateY(-2px)"; e.currentTarget.style.boxShadow="0 10px 32px rgba(17,17,17,0.3)"; }}
-                  onMouseLeave={e=>{ e.currentTarget.style.transform="translateY(0)"; e.currentTarget.style.boxShadow="0 6px 24px rgba(17,17,17,0.22)"; }}>
+                <a href="#open-roles" style={{ background:"#ffffff", color:"#111111", padding:"15px 28px", borderRadius:100, fontSize:15, fontWeight:700, display:"inline-flex", alignItems:"center", gap:9, boxShadow:"0 6px 24px rgba(255,255,255,0.3)", transition:"transform 0.2s, box-shadow 0.2s" }}
+                  onMouseEnter={e=>{ e.currentTarget.style.transform="translateY(-2px)"; e.currentTarget.style.boxShadow="0 10px 32px rgba(255,255,255,0.4)"; }}
+                  onMouseLeave={e=>{ e.currentTarget.style.transform="translateY(0)"; e.currentTarget.style.boxShadow="0 6px 24px rgba(255,255,255,0.3)"; }}>
                   View Open Roles
-                  <span style={{ background:"#F5E6A3", color:"#111111", borderRadius:"50%", width:26, height:26, display:"inline-flex", alignItems:"center", justifyContent:"center", fontSize:13, fontWeight:800 }}>↓</span>
+                  <span style={{ background:"#111111", color:"#F5E6A3", borderRadius:"50%", width:26, height:26, display:"inline-flex", alignItems:"center", justifyContent:"center", fontSize:13, fontWeight:800 }}>↓</span>
                 </a>
-                <a href="#apply" style={{ background:"transparent", color:"#111111", padding:"15px 26px", borderRadius:100, fontSize:15, fontWeight:600, border:"1.5px solid rgba(17,17,17,0.22)", display:"inline-block", transition:"border-color 0.2s, background 0.2s" }}
-                  onMouseEnter={e=>{ e.currentTarget.style.borderColor="#111111"; e.currentTarget.style.background="rgba(17,17,17,0.04)"; }}
-                  onMouseLeave={e=>{ e.currentTarget.style.borderColor="rgba(17,17,17,0.22)"; e.currentTarget.style.background="transparent"; }}>
+                <a href="#apply" style={{ background:"transparent", color:"#ffffff", padding:"15px 26px", borderRadius:100, fontSize:15, fontWeight:600, border:"1.5px solid rgba(255,255,255,0.4)", display:"inline-block", transition:"border-color 0.2s, background 0.2s" }}
+                  onMouseEnter={e=>{ e.currentTarget.style.borderColor="#ffffff"; e.currentTarget.style.background="rgba(255,255,255,0.1)"; }}
+                  onMouseLeave={e=>{ e.currentTarget.style.borderColor="rgba(255,255,255,0.4)"; e.currentTarget.style.background="transparent"; }}>
                   Apply Now
                 </a>
               </div>
@@ -281,36 +277,7 @@ export default function CareersPage() {
                 ))}
               </div>
             </div>
-
-            {/* RIGHT — team photo collage */}
-            <div style={{ position:"relative", height:480, ...rise(0.28) }} className="hero-photos">
-              {/* Main large photo */}
-              <div style={{ position:"absolute", top:0, left:"10%", width:"80%", height:300, borderRadius:24, overflow:"hidden", boxShadow:"0 24px 60px rgba(17,17,17,0.18)", animation:"floatY 6s ease-in-out infinite" , willChange:"transform" }}>
-                <img loading="lazy" src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=500&q=75&fit=crop" alt="Team working" style={{ width:"100%", height:"100%", objectFit:"cover" }} />
-                <div style={{ position:"absolute", inset:0, background:"linear-gradient(to top,rgba(17,17,17,0.35),transparent 60%)" }} />
-                <div style={{ position:"absolute", bottom:16, left:18, color:"#fff" }}>
-                  <div style={{ fontSize:13, fontWeight:700 }}>Our billing team in action</div>
-                  <div style={{ fontSize:11, opacity:0.7 }}>Remote-first · Nationwide</div>
-                </div>
-              </div>
-
-              {/* Bottom-left card */}
-              <div style={{ position:"absolute", bottom:0, left:0, width:200, background:"#fff", border:"1px solid rgba(17,17,17,0.1)", borderRadius:18, overflow:"hidden", boxShadow:"0 12px 36px rgba(17,17,17,0.12)", animation:"floatYL 7s ease-in-out infinite" , willChange:"transform" }}>
-                <img loading="lazy" src="https://static.vecteezy.com/system/resources/thumbnails/011/166/139/small_2x/expertise-banner-web-icon-illustration-concept-representing-high-level-knowledge-and-experience-with-an-icon-of-expert-consulting-knowledge-team-advice-trust-and-research-vector.jpg" alt="Team member" style={{ width:"100%", height:110, objectFit:"cover" }} />
-                <div style={{ padding:"12px 14px" }}>
-                  <div style={{ fontSize:12, fontWeight:700, color:"#111111" }}>Grow your expertise</div>
-                  <div style={{ fontSize:11, color:"#888888", marginTop:3 }}>CPC certification supported</div>
-                </div>
-              </div>
-
-              {/* Bottom-right badge */}
-              <div style={{ position:"absolute", bottom:10, right:10, background:"#F5E6A3", border:"1px solid rgba(17,17,17,0.12)", borderRadius:16, padding:"14px 18px", boxShadow:"0 8px 24px rgba(17,17,17,0.1)", animation:"floatYR 5s ease-in-out infinite" , willChange:"transform" }}>
-                <div style={{ fontSize:22, marginBottom:6 }}>🏆</div>
-                <div style={{ fontSize:13, fontWeight:800, color:"#111111" }}>#1 RCM Team</div>
-                <div style={{ fontSize:11, color:"rgba(17,17,17,0.55)" }}>2024 — Top Rated</div>
-              </div>
             </div>
-          </div>
         </section>
 
         {/* ══ STATS BAR ══ */}

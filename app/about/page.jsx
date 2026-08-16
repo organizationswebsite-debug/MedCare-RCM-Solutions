@@ -182,12 +182,8 @@ export default function AboutPage() {
         <section style={{ position:"relative", minHeight:"88vh", display:"flex", alignItems:"center", overflow:"hidden", isolation:"isolate" }}>
           {/* Background image */}
           <div style={{ position:"absolute", inset:0, zIndex:-2, backgroundImage:"url('/aboutushero.jpeg')", backgroundSize:"cover", backgroundPosition:"center", backgroundAttachment: "fixed" }} />
-          {/* Animated dot grid */}
-          <div style={{ position:"absolute", inset:0, zIndex:-1, backgroundImage:"radial-gradient(circle,rgba(245,240,232,0.1) 1.5px,transparent 1.5px)", backgroundSize:"38px 38px", animation:"dotsShift 28s linear infinite", pointerEvents:"none" , willChange:"transform" }} />
           {/* Gradient overlay */}
-          <div style={{ position:"absolute", inset:0, zIndex:-1, background:"linear-gradient(110deg,rgba(245, 240, 232, 0.46) 0%,rgba(245,240,232,0.93) 40%,rgba(17,17,17,0.65) 100%)" }} className="about-hero-overlay" />
-          {/* Glow blobs */}
-          <div style={{ position:"absolute", top:-80, right:-80, width:500, height:500, borderRadius:"50%", background:"radial-gradient(circle,rgba(245,230,163,0.25),transparent 65%)", zIndex:-1, pointerEvents:"none" }} />
+          <div style={{ position:"absolute", inset:0, zIndex:-1, background:"linear-gradient(135deg, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.55) 100%)" }} className="about-hero-overlay" />
 
           <div style={{ maxWidth:1160, margin:"0 auto", padding:"140px 24px 90px", width:"100%", display:"grid", gridTemplateColumns:"1fr 1fr", gap:60, alignItems:"center" }} className="hero-grid">
 
@@ -197,65 +193,37 @@ export default function AboutPage() {
                 <span style={{ width:7, height:7, borderRadius:"50%", background:"#111111", animation:"breathe 2s infinite" , willChange:"transform" }} />
                 <span style={{ fontSize:12, fontWeight:700, color:"#111111", letterSpacing:1.2 }}>About MedCare RCM Solutions</span>
               </div>
-              <h1 style={{ ...rise(0.15), fontSize:"clamp(34px,5vw,60px)", fontWeight:800, color:"#111111", lineHeight:1.08, letterSpacing:-2, marginBottom:22 }}>
+              <h1 style={{ ...rise(0.15), fontSize:"clamp(34px,5vw,60px)", fontWeight:800, color:"#ffffff", lineHeight:1.08, letterSpacing:-2, marginBottom:22 }}>
                 Built to fix what's<br/>
-                broken in healthcare<br/>
-                <span style={{ borderBottom:"3px solid #F5E6A3", paddingBottom:3 }}>billing.</span>
+                <span style={{ color:"#F5E6A3" }}>broken</span> in healthcare<br/>
+                <span style={{ borderBottom:"3px solid #ffffff", paddingBottom:3 }}>billing.</span>
               </h1>
-              <p style={{ ...rise(0.28), fontSize:17, color:"#444444", lineHeight:1.8, marginBottom:36, maxWidth:480 }}>
+              <p style={{ ...rise(0.28), fontSize:17, color:"#ffffff", lineHeight:1.8, marginBottom:36, maxWidth:480 }}>
                 MedCare RCM Solutions was founded with one mission: give healthcare providers a billing partner they can actually trust — one that fights for every dollar they've earned, every single day.
               </p>
               <div style={{ ...rise(0.4), display:"flex", gap:12, flexWrap:"wrap" }}>
-                <Link href="/contact" style={{ background:"#111111", color:"#fff", padding:"15px 28px", borderRadius:100, fontSize:15, fontWeight:700, display:"inline-flex", alignItems:"center", gap:8, boxShadow:"0 6px 24px rgba(17,17,17,0.22)", transition:"transform 0.2s, box-shadow 0.2s" }}
-                  onMouseEnter={e=>{ e.currentTarget.style.transform="translateY(-2px)"; e.currentTarget.style.boxShadow="0 12px 32px rgba(17,17,17,0.3)"; }}
-                  onMouseLeave={e=>{ e.currentTarget.style.transform="translateY(0)"; e.currentTarget.style.boxShadow="0 6px 24px rgba(17,17,17,0.22)"; }}>
+                <Link href="/contact" style={{ background:"#ffffff", color:"#111111", padding:"15px 28px", borderRadius:100, fontSize:15, fontWeight:700, display:"inline-flex", alignItems:"center", gap:8, boxShadow:"0 6px 24px rgba(255,255,255,0.3)", transition:"transform 0.2s, box-shadow 0.2s" }}
+                  onMouseEnter={e=>{ e.currentTarget.style.transform="translateY(-2px)"; e.currentTarget.style.boxShadow="0 12px 32px rgba(255,255,255,0.4)"; }}
+                  onMouseLeave={e=>{ e.currentTarget.style.transform="translateY(0)"; e.currentTarget.style.boxShadow="0 6px 24px rgba(255,255,255,0.3)"; }}>
                   Work with us
-                  <span style={{ background:"#F5E6A3", color:"#111111", borderRadius:"50%", width:26, height:26, display:"inline-flex", alignItems:"center", justifyContent:"center", fontSize:13, fontWeight:800 }}>→</span>
+                  <span style={{ background:"#111111", color:"#F5E6A3", borderRadius:"50%", width:26, height:26, display:"inline-flex", alignItems:"center", justifyContent:"center", fontSize:13, fontWeight:800 }}>→</span>
                 </Link>
-                <Link href="/careers" style={{ background:"transparent", color:"#111111", padding:"15px 26px", borderRadius:100, fontSize:15, fontWeight:600, border:"1.5px solid rgba(17,17,17,0.22)", display:"inline-block", transition:"all 0.2s" }}
-                  onMouseEnter={e=>{ e.currentTarget.style.background="rgba(17,17,17,0.04)"; e.currentTarget.style.borderColor="#111111"; }}
-                  onMouseLeave={e=>{ e.currentTarget.style.background="transparent"; e.currentTarget.style.borderColor="rgba(17,17,17,0.22)"; }}>
+                <Link href="/careers" style={{ background:"transparent", color:"#ffffff", padding:"15px 26px", borderRadius:100, fontSize:15, fontWeight:600, border:"1.5px solid rgba(255,255,255,0.4)", display:"inline-block", transition:"all 0.2s" }}
+                  onMouseEnter={e=>{ e.currentTarget.style.background="rgba(255,255,255,0.1)"; e.currentTarget.style.borderColor="#ffffff"; }}
+                  onMouseLeave={e=>{ e.currentTarget.style.background="transparent"; e.currentTarget.style.borderColor="rgba(255,255,255,0.4)"; }}>
                   Join our team
                 </Link>
               </div>
             </div>
-
-            {/* RIGHT — floating info cards */}
-            <div style={{ position:"relative", height:400, ...rise(0.3) }} className="hero-cards">
-              {/* Main card */}
-              <div style={{ position:"absolute", top:20, left:"5%", width:"80%", background:"#fff", borderRadius:22, padding:"28px 28px", boxShadow:"0 24px 60px rgba(17,17,17,0.14)", border:"1px solid rgba(17,17,17,0.1)", animation:"floatA 6s ease-in-out infinite", zIndex:3 , willChange:"transform" }}>
-                <div style={{ fontSize:12, fontWeight:700, color:"#999999", textTransform:"uppercase", letterSpacing:1.5, marginBottom:16 }}>Our Mission</div>
-                <p style={{ fontSize:15, color:"#111111", lineHeight:1.75, fontWeight:500 }}>
-                  "To maximize revenue for every healthcare provider we serve — through certified expertise, relentless accuracy, and total transparency."
-                </p>
-                <div style={{ marginTop:18, display:"flex", alignItems:"center", gap:10 }}>
-                  <div style={{ width:36, height:36, borderRadius:"50%", background:"#111111", display:"flex", alignItems:"center", justifyContent:"center", fontSize:12, fontWeight:800, color:"#F5E6A3" }}>MZ</div>
-                  <div>
-                    <div style={{ fontSize:13, fontWeight:700, color:"#111111" }}>Moazzam — Founder & CEO</div>
-                    <div style={{ fontSize:11, color:"#888888" }}>Moaz Group of Companies</div>
-                  </div>
-                </div>
-              </div>
-              {/* Bottom right badge */}
-              <div style={{ position:"absolute", bottom:20, right:0, background:"#F5E6A3", borderRadius:18, padding:"18px 22px", boxShadow:"0 12px 32px rgba(17,17,17,0.12)", animation:"floatB 7s ease-in-out infinite", zIndex:4 , willChange:"transform" }}>
-                <div style={{ fontSize:28, fontWeight:900, color:"#111111", letterSpacing:-1 }}>$50M+</div>
-                <div style={{ fontSize:12, color:"rgba(17,17,17,0.6)", fontWeight:600 }}>Revenue Recovered</div>
-              </div>
-              {/* Bottom left */}
-              <div style={{ position:"absolute", bottom:10, left:0, background:"#111111", borderRadius:16, padding:"14px 18px", animation:"floatC 5.5s ease-in-out infinite", zIndex:3 , willChange:"transform" }}>
-                <div style={{ fontSize:13, fontWeight:700, color:"#F5E6A3" }}>🔒 HIPAA Certified</div>
-                <div style={{ fontSize:11, color:"rgba(255,255,255,0.5)", marginTop:3 }}>100% Compliant</div>
-              </div>
             </div>
-          </div>
         </section>
 
         {/* ══ STATS BAR ══ */}
         <section ref={statsReveal.ref} style={{ background:"#111111", padding:"56px 24px" }}>
-          <div className="stats-grid" style={{ maxWidth:1000, margin:"0 auto", display:"grid", gridTemplateColumns:"repeat(4,1fr)", gap:24, textAlign:"center" }}>
+          <div className="stats-grid" style={{ maxWidth:1000, margin:"0 auto", display:"grid", gridTemplateColumns:"repeat(4,1fr)", gap:34, textAlign:"center" }}>
             {STATS.map((s,i)=>(
               <div key={i} style={{ opacity:statsReveal.visible?1:0, transform:statsReveal.visible?"translateY(0)":"translateY(24px)", transition:`all 0.6s ease ${i*0.1}s` }}>
-                <div style={{ fontSize:24, marginBottom:8 }}>{s.icon}</div>
+                <div style={{ fontSize:35, marginBottom:8 }}>{s.icon}</div>
                 <div style={{ fontSize:"clamp(28px,4vw,40px)", fontWeight:800, color:"#F5E6A3", letterSpacing:-1 }}>{statVals[i]}</div>
                 <div style={{ fontSize:12, color:"rgba(255,255,255,0.4)", marginTop:5, fontWeight:600, textTransform:"uppercase", letterSpacing:1 }}>{s.label}</div>
               </div>

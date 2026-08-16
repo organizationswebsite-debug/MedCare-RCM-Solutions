@@ -173,7 +173,7 @@ export default function ServicesPage() {
           <div style={{ position:"absolute", inset:0, zIndex:-2, backgroundImage:"url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1400&q=80&fit=crop')", backgroundSize:"cover", backgroundPosition:"center", backgroundAttachment: "fixed" }} />
           
           {/* Light overlay for text readability */}
-          <div style={{ position:"absolute", inset:0, zIndex:-1, background:"linear-gradient(160deg,rgba(245,240,232,0.88) 0%,rgba(245,240,232,0.82) 50%,rgba(240,235,224,0.78) 100%)" }} />
+          <div style={{ position:"absolute", inset:0, zIndex:-1, background:"linear-gradient(135deg, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.55) 100%)" }} />
           
           {/* Glow effects */}
           <div style={{ position:"absolute", top:-100, right:-100, width:500, height:500, borderRadius:"50%", background:"radial-gradient(circle,rgba(245,230,163,0.3),transparent 70%)", pointerEvents:"none" }} />
@@ -184,19 +184,19 @@ export default function ServicesPage() {
               <span style={{ width:7, height:7, borderRadius:"50%", background:"#111111", display:"inline-block" }} />
               <span style={{ fontSize:12, fontWeight:700, color:"#111111", letterSpacing:1.5, textTransform:"uppercase" }}>Revenue Cycle Management</span>
             </div>
-            <h1 style={{ fontSize:"clamp(34px,5vw,58px)", fontWeight:800, color:"#111111", letterSpacing:-2, marginBottom:20, lineHeight:1.1 }}>
+            <h1 style={{ fontSize:"clamp(34px,5vw,58px)", fontWeight:800, color:"#ffffff", letterSpacing:-2, marginBottom:20, lineHeight:1.1 }}>
               Every service your<br/>
-              <span style={{ color:"#111111", opacity:0.3 }}>revenue cycle</span> needs
+              <span style={{ color:"#F5E6A3" }}>revenue cycle</span> needs
             </h1>
-            <p style={{ fontSize:18, color:"#666666", lineHeight:1.8, maxWidth:540, margin:"0 0 36px" }}>
+            <p style={{ fontSize:18, color:"#ffffff", lineHeight:1.8, maxWidth:540, margin:"0 0 36px" }}>
               From claim submission to payment posting, MedCare RCM handles every step — so you collect more of what you've already earned.
             </p>
             <div style={{ display:"flex", gap:14, justifyContent:"flex-start", flexWrap:"wrap" }}>
-              <Link href="/contact" style={{ background:"#111111", color:"#fff", padding:"14px 28px", borderRadius:100, fontSize:15, fontWeight:700, display:"inline-flex", alignItems:"center", gap:8, boxShadow:"0 4px 20px rgba(17,17,17,0.2)" }}>
+              <Link href="/contact" style={{ background:"#ffffff", color:"#111111", padding:"14px 28px", borderRadius:100, fontSize:15, fontWeight:700, display:"inline-flex", alignItems:"center", gap:8, boxShadow:"0 4px 20px rgba(255,255,255,0.3)" }}>
                 Get a free audit
-                <span style={{ background:"#F5E6A3", color:"#111111", borderRadius:"50%", width:24, height:24, display:"inline-flex", alignItems:"center", justifyContent:"center", fontSize:13, fontWeight:800 }}>→</span>
+                <span style={{ background:"#111111", color:"#F5E6A3", borderRadius:"50%", width:24, height:24, display:"inline-flex", alignItems:"center", justifyContent:"center", fontSize:13, fontWeight:800 }}>→</span>
               </Link>
-              <Link href="/pricing" style={{ background:"transparent", color:"#111111", padding:"14px 28px", borderRadius:100, fontSize:15, fontWeight:600, border:"1.5px solid rgba(17,17,17,0.2)", display:"inline-block" }}>
+              <Link href="/pricing" style={{ background:"transparent", color:"#ffffff", padding:"14px 28px", borderRadius:100, fontSize:15, fontWeight:600, border:"1.5px solid rgba(255,255,255,0.4)", display:"inline-block" }}>
                 View pricing
               </Link>
             </div>

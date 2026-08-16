@@ -284,17 +284,17 @@ export default function BlogPage() {
           className="blog-hero"
         >
           <div style={{ position: "absolute", inset: 0, background: "rgba(0,0,0,0.14)", zIndex: -2 }} />
-          <div style={{ position: "absolute", inset: 0, background: "linear-gradient(160deg, rgba(245,240,232,0.92) 0%, rgba(240,235,224,0.88) 45%, rgba(17,17,17,0.62) 100%)", zIndex: -1 }} className="blog-hero-overlay" />
+          <div style={{ position: "absolute", inset: 0, background: "linear-gradient(135deg, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.55) 100%)", zIndex: -1 }} className="blog-hero-overlay" />
           <div style={{ maxWidth: 720, textAlign: "left", position: "relative" }}>
             <div style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "#F5E6A3", border: "1px solid rgba(17,17,17,0.15)", borderRadius: 100, padding: "6px 18px", marginBottom: 20 }}>
               <span style={{ fontSize: 14 }}>📝</span>
               <span style={{ fontSize: 12, fontWeight: 700, color: "#111111", letterSpacing: 1.5, textTransform: "uppercase" }}>RCM Resources & Blog</span>
             </div>
-            <h1 style={{ fontSize: "clamp(32px,5vw,52px)", fontWeight: 800, color: "#111111", letterSpacing: -1.5, marginBottom: 18, lineHeight: 1.12, textShadow: "0 2px 14px rgba(245,240,232,0.45)" }}>
+            <h1 style={{ fontSize: "clamp(32px,5vw,52px)", fontWeight: 800, color: "#ffffff", letterSpacing: -1.5, marginBottom: 18, lineHeight: 1.12, textShadow: "none" }}>
               Insights that help you<br />
-              <span style={{ color: "#111111" }}>get paid faster</span>
+              <span style={{ color: "#F5E6A3" }}>get paid faster</span>
             </h1>
-            <p style={{ fontSize: 18, color: "#222222", lineHeight: 1.75, maxWidth: 540, margin: "0", fontWeight: 500 }}>
+            <p style={{ fontSize: 18, color: "#ffffff", lineHeight: 1.75, maxWidth: 540, margin: "0", fontWeight: 500 }}>
               Practical guides, billing updates, and expert advice from the MedCare RCM team.
             </p>
           </div>

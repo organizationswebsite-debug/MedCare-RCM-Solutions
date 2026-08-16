@@ -308,15 +308,15 @@ const TEAM = {
   },
 };
 
-/* ══ PAGE ══ */
+const ALL_SLUGS = Object.keys(TEAM);
+
 export default function TeamMemberPage() {
   const { member } = useParams();
   const router = useRouter();
   const data = TEAM[member];
   const [mounted, setMounted] = useState(false);
-  const [imgLoaded, setImgLoaded] = useState(false);
-
-  useEffect(() => { setTimeout(() => setMounted(true), 60); }, []);
+  const [openTag, setOpenTag] = useState(null);
+  useEffect(() => { setTimeout(() => setMounted(true), 80); }, []);
 
   if (!data) {
     return (
@@ -325,8 +325,8 @@ export default function TeamMemberPage() {
         <main style={{ minHeight:"80vh", display:"flex", alignItems:"center", justifyContent:"center", background:"#F5F0E8", padding:"120px 24px" }}>
           <div style={{ textAlign:"center" }}>
             <div style={{ fontSize:64, marginBottom:16 }}>👤</div>
-            <h1 style={{ fontSize:28, fontWeight:700, color:"#111111", marginBottom:12 }}>Team member not found</h1>
-            <button onClick={() => router.push("/about/team")} style={{ background:"#111111", color:"#fff", border:"none", padding:"13px 28px", borderRadius:100, fontSize:15, fontWeight:700, cursor:"pointer", marginTop:16 }}>
+            <h1 style={{ fontSize:28, fontWeight:800, color:"#111111", marginBottom:12 }}>Team member not found</h1>
+            <button onClick={()=>router.push("/about/team")} style={{ background:"#111111", color:"#fff", border:"none", padding:"13px 28px", borderRadius:100, fontSize:15, fontWeight:700, cursor:"pointer" }}>
               ← Back to Team
             </button>
           </div>
@@ -336,241 +336,252 @@ export default function TeamMemberPage() {
     );
   }
 
-  const relatedMembers = (data.relatedSlugs || []).map(s => TEAM[s] ? { slug:s, ...TEAM[s] } : null).filter(Boolean);
-
-  const rise = (d = 0) => ({
-    opacity: mounted ? 1 : 0,
-    transform: mounted ? "translateY(0)" : "translateY(24px)",
-    transition: `opacity 0.7s ease ${d}s, transform 0.7s ease ${d}s`,
+  const rise = (d=0) => ({
+    opacity: mounted?1:0,
+    transform: mounted?"translateY(0)":"translateY(24px)",
+    transition:`opacity 0.7s ease ${d}s, transform 0.7s ease ${d}s`,
   });
+
+  const relatedData = (data.relatedSlugs||[]).map(s=>TEAM[s]?{slug:s,...TEAM[s]}:null).filter(Boolean);
+  const quoteText = data.whoIAm.split(".")[0] + ".";
 
   return (
     <>
       <Navbar />
       <main>
 
-        {/* ══ HERO ══ */}
-        <section style={{ paddingTop:68, position:"relative", height:420, overflow:"hidden" }}>
-          <img loading="lazy" src={data.heroImg} alt={data.name} onLoad={() => setImgLoaded(true)}
-            style={{ width:"100%", height:"100%", objectFit:"cover", display:"block", transform:imgLoaded?"scale(1)":"scale(1.06)", transition:"transform 1.2s ease", filter:imgLoaded?"none":"blur(4px)" }} />
-          <div style={{ position:"absolute", inset:0, background:"linear-gradient(to bottom,rgba(17,17,17,0.15) 0%,rgba(17,17,17,0.75) 100%)", backgroundSize:"cover", backgroundPosition:"center", backgroundAttachment: "fixed" }} />
-          {/* Back button */}
-          <button onClick={() => router.push("/about/team")}
-            style={{ position:"absolute", top:90, left:28, background:"rgba(255,255,255,0.15)", backdropFilter:"blur(10px)", border:"1px solid rgba(255,255,255,0.25)", borderRadius:100, padding:"9px 18px", fontSize:13, fontWeight:600, color:"#fff", cursor:"pointer", display:"flex", alignItems:"center", gap:7, transition:"background 0.2s" }}
-            onMouseEnter={e => e.currentTarget.style.background = "rgba(255,255,255,0.25)"}
-            onMouseLeave={e => e.currentTarget.style.background = "rgba(255,255,255,0.15)"}>
-            ← Back to Team
-          </button>
-          <div style={{ position:"absolute", bottom:0, left:0, right:0, padding:"0 32px 40px", maxWidth:1000, margin:"0 auto" }}>
-            <div style={{ opacity:mounted?1:0, transform:mounted?"translateY(0)":"translateY(20px)", transition:"all 0.6s ease 0.2s" }}>
-              <span style={{ display:"inline-flex", alignItems:"center", gap:6, background:"#F5E6A3", borderRadius:100, padding:"5px 14px", fontSize:11, fontWeight:700, color:"#111111", marginBottom:14 }}>
-                {data.dept}
-              </span>
+        {/* ══ HERO — split: photo left, bio right (JarveX style) ══ */}
+        <section style={{ background:"#F5F0E8", paddingTop:110, paddingBottom:80 }}>
+          <div style={{ maxWidth:1160, margin:"0 auto", padding:"0 24px" }}>
+
+            {/* Back link */}
+            <div style={{ ...rise(0), marginBottom:32 }}>
+              <button onClick={()=>router.push("/about/team")} style={{ display:"inline-flex", alignItems:"center", gap:8, background:"none", border:"none", cursor:"pointer", fontSize:13.5, fontWeight:700, color:"#666666", padding:0 }}
+                onMouseEnter={e=>e.currentTarget.style.color="#111111"}
+                onMouseLeave={e=>e.currentTarget.style.color="#666666"}>
+                ← All Team Members
+              </button>
             </div>
-            <h1 style={{ fontSize:"clamp(28px,4.5vw,52px)", fontWeight:800, color:"#fff", letterSpacing:-1, maxWidth:700, lineHeight:1.12, ...rise(0.3) }}>
-              {data.name}
-            </h1>
-            <p style={{ fontSize:16, color:"rgba(255,255,255,0.65)", marginTop:8, fontWeight:500, ...rise(0.4) }}>{data.role}</p>
-          </div>
-        </section>
 
-        {/* ══ META BAR ══ */}
-        <section style={{ background:"#fff", borderBottom:"1px solid rgba(17,17,17,0.08)", padding:"14px 32px" }}>
-          <div style={{ maxWidth:1000, margin:"0 auto", display:"flex", alignItems:"center", justifyContent:"space-between", flexWrap:"wrap", gap:12 }}>
-            <div style={{ display:"flex", alignItems:"center", gap:20, flexWrap:"wrap" }}>
-              {[
-                { icon:"⏱", text:data.years },
-                { icon:"📍", text:data.location },
-                { icon:"📧", text:data.email },
-              ].map((item,i) => (
-                <div key={i} style={{ display:"flex", alignItems:"center", gap:6, fontSize:13, color:"#555555" }}>
-                  <span>{item.icon}</span> {item.text}
-                </div>
-              ))}
-            </div>
-            <Link href="/contact" style={{ background:"#111111", color:"#fff", padding:"9px 20px", borderRadius:100, fontSize:13, fontWeight:700 }}>
-              Work with {data.name.split(" ")[0]} →
-            </Link>
-          </div>
-        </section>
+            <div className="member-hero-grid" style={{ display:"grid", gridTemplateColumns:"0.85fr 1.15fr", gap:56, alignItems:"start" }}>
 
-        {/* ══ STATS ══ */}
-        <section style={{ background:"#111111", padding:"36px 24px" }}>
-          <div className="member-stats" style={{ maxWidth:900, margin:"0 auto", display:"grid", gridTemplateColumns:"repeat(4,1fr)", gap:20, textAlign:"center" }}>
-            {data.stats.map((s,i) => (
-              <div key={i} style={{ opacity:mounted?1:0, transform:mounted?"translateY(0)":"translateY(20px)", transition:`all 0.5s ease ${0.1+i*0.08}s` }}>
-                <div style={{ fontSize:22, fontWeight:800, color:"#F5E6A3", letterSpacing:-0.5 }}>{s.val}</div>
-                <div style={{ fontSize:11, color:"rgba(255,255,255,0.4)", marginTop:4, fontWeight:600, textTransform:"uppercase", letterSpacing:0.8 }}>{s.label}</div>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* ══ MAIN BODY ══ */}
-        <section style={{ background:"#F5F0E8", padding:"64px 24px 80px" }}>
-          <div style={{ maxWidth:1000, margin:"0 auto", display:"flex", flexDirection:"column", gap:22 }}>
-
-            {/* Profile card */}
-            <Reveal>
-              <div style={{ background:"#fff", border:"1px solid rgba(17,17,17,0.08)", borderRadius:22, overflow:"hidden", boxShadow:"0 4px 24px rgba(17,17,17,0.05)", display:"grid", gridTemplateColumns:"220px 1fr" }} className="profile-card">
-                <div style={{ background:"#F5F0E8", display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", gap:12, padding:"32px 24px" }}>
-                  <div style={{ width:100, height:100, borderRadius:"50%", overflow:"hidden", border:"3px solid #F5E6A3", boxShadow:"0 8px 24px rgba(17,17,17,0.1)" }}>
-                    <img loading="lazy" src={data.img} alt={data.name} style={{ width:"100%", height:"100%", objectFit:"cover" }} />
-                  </div>
-                  <div style={{ textAlign:"center" }}>
-                    <div style={{ fontSize:16, fontWeight:800, color:"#111111" }}>{data.name}</div>
-                    <div style={{ fontSize:12, color:"#888888", marginTop:3 }}>{data.role}</div>
-                  </div>
-                  {/* Certifications */}
-                  <div style={{ width:"100%", marginTop:8 }}>
-                    {data.certifications.map((cert,i) => (
-                      <div key={i} style={{ display:"flex", alignItems:"flex-start", gap:7, marginBottom:7 }}>
-                        <div style={{ width:16, height:16, borderRadius:"50%", background:"#F5E6A3", display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0, marginTop:1 }}>
-                          <span style={{ fontSize:9, fontWeight:800, color:"#111111" }}>✓</span>
-                        </div>
-                        <span style={{ fontSize:11.5, color:"#555555", lineHeight:1.4 }}>{cert}</span>
-                      </div>
-                    ))}
+              {/* LEFT — photo card */}
+              <div style={{ ...rise(0.08), position:"sticky", top:110 }} className="member-photo-col">
+                <div style={{ position:"relative", borderRadius:28, overflow:"hidden", boxShadow:"0 20px 60px rgba(17,17,17,0.12)" }}>
+                  <img src={data.img} alt={data.name} loading="lazy"
+                    style={{ width:"100%", height:460, objectFit:"cover", display:"block" }} />
+                  <div style={{ position:"absolute", inset:0, background:"linear-gradient(to top,rgba(17,17,17,0.55) 0%,transparent 40%)" }} />
+                  <div style={{ position:"absolute", bottom:20, left:20, right:20 }}>
+                    <div style={{ display:"inline-flex", alignItems:"center", gap:7, background:"rgba(255,255,255,0.15)", backdropFilter:"blur(8px)", border:"1px solid rgba(255,255,255,0.25)", borderRadius:100, padding:"7px 14px" }}>
+                      <span style={{ width:6, height:6, borderRadius:"50%", background:"#F5E6A3" }} />
+                      <span style={{ fontSize:11.5, fontWeight:700, color:"#fff" }}>On the team · {data.years}</span>
+                    </div>
                   </div>
                 </div>
-                <div style={{ padding:"32px 34px" }}>
-                  <div style={{ fontSize:11, fontWeight:700, color:"#999999", textTransform:"uppercase", letterSpacing:1.5, marginBottom:8 }}>Who I Am</div>
-                  <p style={{ fontSize:15.5, color:"#333333", lineHeight:1.85, marginBottom:22 }}>{data.whoIAm}</p>
-                  <div style={{ display:"flex", flexWrap:"wrap", gap:8 }}>
-                    {data.expertise.map((ex,i) => (
-                      <span key={i} style={{ fontSize:12, fontWeight:600, color:"#555555", background:"#F5F0E8", border:"1px solid rgba(17,17,17,0.08)", borderRadius:100, padding:"5px 12px" }}>{ex}</span>
-                    ))}
-                  </div>
+
+                {/* Quick stats under photo */}
+                <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:10, marginTop:16 }}>
+                  {data.stats.slice(0,4).map((s,i)=>(
+                    <div key={i} style={{ background:"#fff", border:"1px solid rgba(17,17,17,0.08)", borderRadius:14, padding:"14px 16px" }}>
+                      <div style={{ fontSize:19, fontWeight:800, color:"#111111" }}>{s.val}</div>
+                      <div style={{ fontSize:10.5, color:"#999999", fontWeight:600, textTransform:"uppercase", letterSpacing:0.5, marginTop:2 }}>{s.label}</div>
+                    </div>
+                  ))}
                 </div>
               </div>
-            </Reveal>
 
-            {/* What We Do */}
-            <Reveal delay={0.07}>
-              <div style={{ background:"#fff", border:"1px solid rgba(17,17,17,0.08)", borderRadius:20, overflow:"hidden", boxShadow:"0 4px 24px rgba(17,17,17,0.05)" }}>
-                <div style={{ padding:"11px 26px", background:"#111111", display:"flex", alignItems:"center", gap:10 }}>
-                  <span style={{ fontSize:14 }}>💼</span>
-                  <span style={{ fontSize:11, fontWeight:700, color:"#F5E6A3", letterSpacing:1.5, textTransform:"uppercase" }}>What We Do</span>
+              {/* RIGHT — bio content */}
+              <div>
+                <div style={{ ...rise(0.14), display:"inline-block", background:"#F5E6A3", borderRadius:100, padding:"5px 14px", fontSize:11, fontWeight:700, color:"#111111", marginBottom:16 }}>
+                  {data.dept}
                 </div>
-                <div style={{ padding:"28px 32px" }}>
+                <h1 style={{ ...rise(0.2), fontSize:"clamp(34px,5.5vw,58px)", fontWeight:800, color:"#111111", letterSpacing:-1.5, lineHeight:1.05, marginBottom:8 }}>
+                  {data.name}
+                </h1>
+                <p style={{ ...rise(0.26), fontSize:17, color:"#666666", fontWeight:500, marginBottom:24 }}>{data.role}</p>
+
+                {/* Expertise tag pills */}
+                <div style={{ ...rise(0.32), display:"flex", flexWrap:"wrap", gap:8, marginBottom:32 }}>
+                  {data.expertise.slice(0,3).map((e,i)=>(
+                    <span key={i} style={{ fontSize:12.5, fontWeight:600, color:"#111111", background:"#fff", border:"1px solid rgba(17,17,17,0.1)", borderRadius:100, padding:"7px 15px" }}>{e}</span>
+                  ))}
+                </div>
+
+                {/* Pull quote */}
+                <div style={{ ...rise(0.38), borderLeft:"3px solid #F5E6A3", paddingLeft:24, marginBottom:32 }}>
+                  <p style={{ fontSize:19, fontStyle:"italic", color:"#111111", lineHeight:1.6, fontWeight:600 }}>&ldquo;{quoteText}&rdquo;</p>
+                </div>
+
+                {/* Narrative bio paragraphs */}
+                <div style={{ ...rise(0.44), display:"flex", flexDirection:"column", gap:18, marginBottom:36 }}>
+                  <p style={{ fontSize:15.5, color:"#444444", lineHeight:1.9 }}>{data.whoIAm}</p>
                   <p style={{ fontSize:15.5, color:"#444444", lineHeight:1.9 }}>{data.whatWeDo}</p>
                 </div>
-              </div>
-            </Reveal>
 
-            {/* How We Help */}
-            <Reveal delay={0.1}>
-              <div style={{ background:"#fff", border:"1px solid rgba(17,17,17,0.08)", borderRadius:20, overflow:"hidden", boxShadow:"0 4px 24px rgba(17,17,17,0.05)" }}>
-                <div style={{ padding:"11px 26px", background:"#111111", display:"flex", alignItems:"center", gap:10 }}>
-                  <span style={{ fontSize:14 }}>🚀</span>
-                  <span style={{ fontSize:11, fontWeight:700, color:"#F5E6A3", letterSpacing:1.5, textTransform:"uppercase" }}>How We Help</span>
-                </div>
-                <div style={{ padding:"28px 32px" }}>
-                  <div className="help-grid" style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:16 }}>
-                    {data.howWeHelp.map((h,i) => (
-                      <div key={i} style={{ display:"flex", gap:14, alignItems:"flex-start", background:"#F5F0E8", borderRadius:14, padding:"18px 18px", border:"1px solid rgba(17,17,17,0.07)", transition:"all 0.25s" }}
-                        onMouseEnter={e => { e.currentTarget.style.background = "#fff"; e.currentTarget.style.boxShadow = "0 8px 24px rgba(17,17,17,0.08)"; }}
-                        onMouseLeave={e => { e.currentTarget.style.background = "#F5F0E8"; e.currentTarget.style.boxShadow = "none"; }}>
-                        <div style={{ width:42, height:42, borderRadius:12, background:"#F5E6A3", display:"flex", alignItems:"center", justifyContent:"center", fontSize:18, flexShrink:0 }}>{h.icon}</div>
-                        <div>
-                          <h4 style={{ fontSize:14.5, fontWeight:700, color:"#111111", marginBottom:6 }}>{h.title}</h4>
-                          <p style={{ fontSize:13, color:"#666666", lineHeight:1.65 }}>{h.desc}</p>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
+                <div style={{ ...rise(0.5) }}>
+                  <Link href="/contact" style={{ display:"inline-flex", alignItems:"center", gap:8, background:"#111111", color:"#fff", padding:"15px 30px", borderRadius:100, fontSize:14.5, fontWeight:700, transition:"transform 0.2s" }}
+                    onMouseEnter={e=>e.currentTarget.style.transform="translateY(-2px)"}
+                    onMouseLeave={e=>e.currentTarget.style.transform="translateY(0)"}>
+                    Talk To The Team →
+                  </Link>
                 </div>
               </div>
-            </Reveal>
-
-            {/* Achievements */}
-            <Reveal delay={0.12}>
-              <div style={{ background:"#fff", border:"1px solid rgba(17,17,17,0.08)", borderRadius:20, overflow:"hidden", boxShadow:"0 4px 24px rgba(17,17,17,0.05)" }}>
-                <div style={{ padding:"11px 26px", background:"#111111", display:"flex", alignItems:"center", gap:10 }}>
-                  <span style={{ fontSize:14 }}>🏆</span>
-                  <span style={{ fontSize:11, fontWeight:700, color:"#F5E6A3", letterSpacing:1.5, textTransform:"uppercase" }}>Key Achievements</span>
-                </div>
-                <div style={{ padding:"28px 32px" }}>
-                  <div style={{ display:"flex", flexDirection:"column", gap:12 }}>
-                    {data.achievements.map((a,i) => (
-                      <div key={i} style={{ display:"flex", alignItems:"flex-start", gap:12, padding:"14px 16px", background:"#F5F0E8", borderRadius:12, border:"1px solid rgba(17,17,17,0.07)", opacity:0, animation:`fadeSlideIn 0.5s ease ${0.05+i*0.08}s both` }}>
-                        <div style={{ width:26, height:26, borderRadius:"50%", background:"#F5E6A3", border:"1.5px solid rgba(17,17,17,0.12)", display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0, marginTop:1 }}>
-                          <span style={{ fontSize:12, fontWeight:800, color:"#111111" }}>{i+1}</span>
-                        </div>
-                        <span style={{ fontSize:14, color:"#333333", fontWeight:500, lineHeight:1.55 }}>{a}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </Reveal>
-
-            {/* Related team members */}
-            {relatedMembers.length > 0 && (
-              <Reveal delay={0.1}>
-                <div style={{ background:"#fff", border:"1px solid rgba(17,17,17,0.08)", borderRadius:20, padding:"26px 32px", boxShadow:"0 4px 24px rgba(17,17,17,0.05)" }}>
-                  <h3 style={{ fontSize:15, fontWeight:700, color:"#111111", marginBottom:18 }}>Other team members</h3>
-                  <div className="related-grid" style={{ display:"grid", gridTemplateColumns:"repeat(3,1fr)", gap:14 }}>
-                    {relatedMembers.map(m => (
-                      <Link key={m.slug} href={`/about/team/${m.slug}`}
-                        style={{ display:"flex", alignItems:"center", gap:12, padding:"12px 14px", background:"#F5F0E8", borderRadius:14, border:"1px solid rgba(17,17,17,0.08)", textDecoration:"none", transition:"all 0.2s" }}
-                        onMouseEnter={e => { e.currentTarget.style.background = "#111111"; }}
-                        onMouseLeave={e => { e.currentTarget.style.background = "#F5F0E8"; }}>
-                        <div style={{ width:40, height:40, borderRadius:"50%", overflow:"hidden", flexShrink:0 }}>
-                          <img loading="lazy" src={m.img} alt={m.name} style={{ width:"100%", height:"100%", objectFit:"cover" }} />
-                        </div>
-                        <div>
-                          <div style={{ fontSize:13, fontWeight:700, color:"#111111" }}>{m.name}</div>
-                          <div style={{ fontSize:11, color:"#888888", marginTop:1 }}>{m.role}</div>
-                        </div>
-                      </Link>
-                    ))}
-                  </div>
-                  <div style={{ marginTop:16, textAlign:"center" }}>
-                    <Link href="/about/team" style={{ fontSize:13.5, fontWeight:700, color:"#111111", display:"inline-flex", alignItems:"center", gap:6 }}>
-                      View all team members <span style={{ background:"#F5E6A3", borderRadius:"50%", width:20, height:20, display:"inline-flex", alignItems:"center", justifyContent:"center", fontSize:11 }}>→</span>
-                    </Link>
-                  </div>
-                </div>
-              </Reveal>
-            )}
-          </div>
-        </section>
-
-        {/* ══ CTA ══ */}
-        <section style={{ background:"#111111", padding:"80px 24px", position:"relative", overflow:"hidden" }}>
-          <div style={{ position:"absolute", top:-80, right:-80, width:400, height:400, borderRadius:"50%", background:"radial-gradient(circle,rgba(245,230,163,0.08),transparent 70%)", pointerEvents:"none" }} />
-          <div style={{ maxWidth:620, margin:"0 auto", textAlign:"center", position:"relative", zIndex:2 }}>
-            <div style={{ display:"inline-block", background:"#F5E6A3", borderRadius:100, padding:"6px 18px", fontSize:11, fontWeight:800, color:"#111111", letterSpacing:1.5, textTransform:"uppercase", marginBottom:22 }}>Work with our team</div>
-            <h2 style={{ fontSize:"clamp(24px,4vw,40px)", fontWeight:800, color:"#fff", letterSpacing:-1, marginBottom:16, lineHeight:1.15 }}>
-              Ready to work with<br/>{data.name.split(" ")[0]} and the team?
-            </h2>
-            <p style={{ fontSize:15, color:"rgba(255,255,255,0.5)", lineHeight:1.75, marginBottom:32 }}>
-              Get a free billing audit and we'll match you with the right specialist for your practice's needs.
-            </p>
-            <div className="cta-btns" style={{ display:"flex", gap:14, justifyContent:"center", flexWrap:"wrap" }}>
-              <Link href="/contact" style={{ background:"#F5E6A3", color:"#111111", padding:"15px 30px", borderRadius:100, fontSize:15, fontWeight:800, display:"inline-flex", alignItems:"center", gap:8 }}>
-                Get a free audit →
-              </Link>
-              <Link href="/about/team" style={{ background:"transparent", color:"rgba(255,255,255,0.6)", padding:"15px 26px", borderRadius:100, fontSize:15, fontWeight:600, border:"1.5px solid rgba(255,255,255,0.18)", display:"inline-block" }}>
-                Meet the full team
-              </Link>
             </div>
           </div>
         </section>
 
+        {/* ══ HOW THEY HELP ══ */}
+        <section style={{ background:"#fff", padding:"80px 24px" }}>
+          <div style={{ maxWidth:900, margin:"0 auto" }}>
+            <Reveal>
+              <div style={{ textAlign:"center", marginBottom:48 }}>
+                <div style={{ display:"inline-flex", alignItems:"center", gap:8, marginBottom:14 }}>
+                  <div style={{ width:26, height:2, background:"#111111", borderRadius:2 }} />
+                  <span style={{ fontSize:11, fontWeight:700, color:"#666666", letterSpacing:2, textTransform:"uppercase" }}>How I Help</span>
+                </div>
+                <h2 style={{ fontSize:"clamp(24px,3.5vw,38px)", fontWeight:800, color:"#111111", letterSpacing:-1 }}>What I bring to the team</h2>
+              </div>
+            </Reveal>
+            <div className="help-grid" style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:16 }}>
+              {data.howWeHelp.map((h,i)=>(
+                <Reveal key={i} delay={i*0.07}>
+                  <div style={{ background:"#F5F0E8", border:"1px solid rgba(17,17,17,0.06)", borderRadius:20, padding:"26px", height:"100%", transition:"all 0.3s" }}
+                    onMouseEnter={e=>{ e.currentTarget.style.transform="translateY(-4px)"; e.currentTarget.style.boxShadow="0 16px 40px rgba(17,17,17,0.08)"; }}
+                    onMouseLeave={e=>{ e.currentTarget.style.transform="translateY(0)"; e.currentTarget.style.boxShadow="none"; }}>
+                    <div style={{ width:44, height:44, borderRadius:14, background:"#fff", display:"flex", alignItems:"center", justifyContent:"center", fontSize:20, marginBottom:16 }}>{h.icon}</div>
+                    <h3 style={{ fontSize:15.5, fontWeight:800, color:"#111111", marginBottom:8 }}>{h.title}</h3>
+                    <p style={{ fontSize:13.5, color:"#555555", lineHeight:1.75 }}>{h.desc}</p>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ══ CAREER HIGHLIGHTS — vertical timeline, JarveX style ══ */}
+        <section style={{ background:"#F5F0E8", padding:"90px 24px" }}>
+          <div style={{ maxWidth:720, margin:"0 auto" }}>
+            <Reveal>
+              <div style={{ textAlign:"center", marginBottom:52 }}>
+                <div style={{ display:"inline-flex", alignItems:"center", gap:8, marginBottom:14 }}>
+                  <div style={{ width:26, height:2, background:"#111111", borderRadius:2 }} />
+                  <span style={{ fontSize:11, fontWeight:700, color:"#666666", letterSpacing:2, textTransform:"uppercase" }}>Career Highlights</span>
+                </div>
+                <h2 style={{ fontSize:"clamp(24px,3.5vw,38px)", fontWeight:800, color:"#111111", letterSpacing:-1 }}>Milestones & achievements</h2>
+              </div>
+            </Reveal>
+            <div style={{ position:"relative" }}>
+              <div style={{ position:"absolute", left:19, top:6, bottom:6, width:2, background:"rgba(17,17,17,0.1)" }} />
+              {data.achievements.map((a,i)=>(
+                <Reveal key={i} delay={i*0.08}>
+                  <div style={{ display:"flex", gap:20, marginBottom: i<data.achievements.length-1 ? 28 : 0, position:"relative" }}>
+                    <div style={{ width:40, height:40, borderRadius:"50%", background:"#111111", color:"#F5E6A3", display:"flex", alignItems:"center", justifyContent:"center", fontSize:14, fontWeight:800, flexShrink:0, zIndex:2, boxShadow:"0 6px 18px rgba(17,17,17,0.2)" }}>
+                      {i+1}
+                    </div>
+                    <div style={{ background:"#fff", border:"1px solid rgba(17,17,17,0.07)", borderRadius:16, padding:"18px 22px", flex:1, boxShadow:"0 4px 16px rgba(17,17,17,0.04)" }}>
+                      <p style={{ fontSize:14, color:"#333333", lineHeight:1.7, fontWeight:500 }}>{a}</p>
+                    </div>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ══ CERTIFICATIONS + FULL EXPERTISE ══ */}
+        <section style={{ background:"#fff", padding:"80px 24px" }}>
+          <div style={{ maxWidth:900, margin:"0 auto", display:"grid", gridTemplateColumns:"1fr 1fr", gap:24 }} className="cert-grid">
+            <Reveal dir="left">
+              <div style={{ background:"#111111", borderRadius:22, padding:"30px" }}>
+                <div style={{ fontSize:11, fontWeight:700, color:"rgba(255,255,255,0.4)", letterSpacing:2, textTransform:"uppercase", marginBottom:16 }}>Certifications</div>
+                <div style={{ display:"flex", flexDirection:"column", gap:12 }}>
+                  {data.certifications.map((c,i)=>(
+                    <div key={i} style={{ display:"flex", alignItems:"center", gap:10 }}>
+                      <div style={{ width:20, height:20, borderRadius:"50%", background:"#F5E6A3", display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0 }}>
+                        <span style={{ fontSize:10, fontWeight:800, color:"#111111" }}>✓</span>
+                      </div>
+                      <span style={{ fontSize:13.5, color:"rgba(255,255,255,0.8)", fontWeight:500 }}>{c}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </Reveal>
+            <Reveal dir="right" delay={0.08}>
+              <div style={{ background:"#F5F0E8", borderRadius:22, padding:"30px" }}>
+                <div style={{ fontSize:11, fontWeight:700, color:"#666666", letterSpacing:2, textTransform:"uppercase", marginBottom:16 }}>Areas of Expertise</div>
+                <div style={{ display:"flex", flexWrap:"wrap", gap:8 }}>
+                  {data.expertise.map((e,i)=>(
+                    <span key={i} style={{ fontSize:12.5, fontWeight:600, color:"#111111", background:"#fff", border:"1px solid rgba(17,17,17,0.1)", borderRadius:100, padding:"8px 15px" }}>{e}</span>
+                  ))}
+                </div>
+              </div>
+            </Reveal>
+          </div>
+        </section>
+
+        {/* ══ MORE FROM THE TEAM ══ */}
+        {relatedData.length > 0 && (
+          <section style={{ background:"#F5F0E8", padding:"90px 24px" }}>
+            <div style={{ maxWidth:1000, margin:"0 auto" }}>
+              <Reveal>
+                <div style={{ textAlign:"center", marginBottom:44 }}>
+                  <div style={{ display:"inline-flex", alignItems:"center", gap:8, marginBottom:14 }}>
+                    <div style={{ width:26, height:2, background:"#111111", borderRadius:2 }} />
+                    <span style={{ fontSize:11, fontWeight:700, color:"#666666", letterSpacing:2, textTransform:"uppercase" }}>Meet The Team</span>
+                  </div>
+                  <h2 style={{ fontSize:"clamp(24px,3.5vw,38px)", fontWeight:800, color:"#111111", letterSpacing:-1 }}>More from the team</h2>
+                </div>
+              </Reveal>
+              <div className="related-grid" style={{ display:"grid", gridTemplateColumns:"repeat(3,1fr)", gap:18 }}>
+                {relatedData.map((m,i)=>(
+                  <Reveal key={m.slug} delay={i*0.08}>
+                    <Link href={`/about/team/${m.slug}`} style={{ display:"block", background:"#fff", borderRadius:22, overflow:"hidden", boxShadow:"0 4px 20px rgba(17,17,17,0.05)", textDecoration:"none", transition:"all 0.3s" }}
+                      onMouseEnter={e=>{ e.currentTarget.style.transform="translateY(-6px)"; e.currentTarget.style.boxShadow="0 20px 48px rgba(17,17,17,0.1)"; }}
+                      onMouseLeave={e=>{ e.currentTarget.style.transform="translateY(0)"; e.currentTarget.style.boxShadow="0 4px 20px rgba(17,17,17,0.05)"; }}>
+                      <img src={m.img} alt={m.name} loading="lazy" style={{ width:"100%", height:220, objectFit:"cover" }} />
+                      <div style={{ padding:"18px 20px" }}>
+                        <div style={{ fontSize:10.5, fontWeight:700, color:"#999999", textTransform:"uppercase", letterSpacing:1, marginBottom:6 }}>{m.dept}</div>
+                        <h4 style={{ fontSize:16, fontWeight:800, color:"#111111", marginBottom:3 }}>{m.name}</h4>
+                        <p style={{ fontSize:12.5, color:"#666666" }}>{m.role}</p>
+                      </div>
+                    </Link>
+                  </Reveal>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* ══ LUXURIOUS CTA ══ */}
+        <section style={{ background:"#111111", padding:"110px 24px", position:"relative", overflow:"hidden" }}>
+          <div style={{ position:"absolute", top:-100, right:-80, width:400, height:400, borderRadius:"50%", background:"radial-gradient(circle,rgba(245,230,163,0.1),transparent 65%)", pointerEvents:"none" }} />
+          <Reveal dir="scale">
+            <div style={{ maxWidth:600, margin:"0 auto", textAlign:"center", position:"relative", zIndex:2 }}>
+              <h2 style={{ fontSize:"clamp(28px,4.5vw,48px)", fontWeight:800, color:"#fff", letterSpacing:-1.5, lineHeight:1.1, marginBottom:20 }}>
+                Want to work with {data.name.split(" ")[0]}?
+              </h2>
+              <p style={{ fontSize:15, color:"rgba(255,255,255,0.5)", marginBottom:32 }}>
+                Let's talk about how MedCare RCM can recover more revenue for your practice.
+              </p>
+              <Link href="/contact" style={{ display:"inline-flex", alignItems:"center", gap:10, background:"#F5E6A3", color:"#111111", padding:"17px 32px", borderRadius:100, fontSize:14.5, fontWeight:800, boxShadow:"0 10px 30px rgba(245,230,163,0.25)" }}>
+                Get In Touch →
+              </Link>
+            </div>
+          </Reveal>
+        </section>
       </main>
       <Footer />
 
       <style>{`
-        @keyframes fadeSlideIn { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
-        @media (max-width: 768px) {
-          .profile-card    { grid-template-columns: 1fr !important; }
-          .help-grid       { grid-template-columns: 1fr !important; }
-          .member-stats    { grid-template-columns: 1fr 1fr !important; gap: 20px 12px !important; }
-          .related-grid    { grid-template-columns: 1fr !important; }
-          .cta-btns        { flex-direction: column !important; align-items: center !important; }
-          .cta-btns a      { width: 100% !important; text-align: center !important; justify-content: center !important; }
+        @media (max-width: 900px) {
+          .member-hero-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
+          .member-photo-col { position: static !important; }
+          .help-grid { grid-template-columns: 1fr !important; }
+          .cert-grid { grid-template-columns: 1fr !important; }
+          .related-grid { grid-template-columns: 1fr 1fr !important; }
+        }
+        @media (max-width: 560px) {
+          .related-grid { grid-template-columns: 1fr !important; }
         }
       `}</style>
     </>

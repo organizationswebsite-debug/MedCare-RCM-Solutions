@@ -4,545 +4,111 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Link from "next/link";
 
-/* ── Scroll reveal hook ── */
-function useReveal(threshold = 0.1) {
-  const ref = useRef(null);
-  const [visible, setVisible] = useState(false);
-  useEffect(() => {
-    const el = ref.current; if (!el) return;
-    const obs = new IntersectionObserver(
-      ([e]) => { if (e.isIntersecting) { setVisible(true); obs.disconnect(); } },
-      { threshold }
-    );
-    obs.observe(el);
-    return () => obs.disconnect();
-  }, []);
-  return { ref, visible };
+function useReveal(threshold=0.1){ const ref=useRef(null); const [visible,setVisible]=useState(false); useEffect(()=>{ const el=ref.current; if(!el)return; const obs=new IntersectionObserver(([e])=>{if(e.isIntersecting){setVisible(true);obs.disconnect();}},{threshold}); obs.observe(el); return()=>obs.disconnect(); },[]); return {ref,visible}; }
+function Reveal({children,delay=0,dir="up"}){ const {ref,visible}=useReveal(); const t={up:"translateY(28px)"}; return <div ref={ref} style={{opacity:visible?1:0,transform:visible?"none":t[dir]||t.up,transition:`opacity 0.6s ease ${delay}s, transform 0.6s ease ${delay}s`}}>{children}</div>; }
+const Label=({text,light})=>(<div style={{display:"inline-flex",alignItems:"center",gap:8,marginBottom:18}}><div style={{width:28,height:2,background:light?"var(--white)":"var(--dark)",borderRadius:2}}/><span style={{fontSize:11,fontWeight:700,color:light?"rgba(255,255,255,0.55)":"var(--text2)",letterSpacing:"2.5px",textTransform:"uppercase"}}>{text}</span></div>);
+function CountUp({ target, suffix="", start, duration=1400 }) {
+  const [val, setVal] = useState(0);
+  useEffect(() => { if (!start) return; let startTime=null;
+    const step=(ts)=>{ if(!startTime)startTime=ts; const p=Math.min((ts-startTime)/duration,1); const e=1-Math.pow(1-p,3); setVal(Math.floor(e*target)); if(p<1)requestAnimationFrame(step); else setVal(target); };
+    requestAnimationFrame(step);
+  }, [start, target, duration]);
+  return <>{val}{suffix}</>;
 }
 
-/* ── Count-up hook ── */
-function useCountUp(target, duration = 1800, active = false, suffix = "") {
-  const [val, setVal] = useState("0");
-  useEffect(() => {
-    if (!active) return;
-    const s = Date.now();
-    const isFloat = String(target).includes(".");
-    const tick = () => {
-      const p = Math.min((Date.now() - s) / duration, 1);
-      const e = 1 - Math.pow(1 - p, 3);
-      const v = isFloat ? (e * target).toFixed(1) : Math.round(e * target);
-      setVal(v + suffix);
-      if (p < 1) requestAnimationFrame(tick);
-    };
-    requestAnimationFrame(tick);
-  }, [active]);
-  return val;
-}
-
-const SPECIALTIES = [
-  {
-    icon: "👨‍⚕️", title: "Family Medicine", slug: "family-medicine",
-    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcScOWpDfgtYC-jn7aUID-QRk1Qs9i6u1_T6fcJNXAuuoPfh8q985gv97ER8&s=10&fit=crop",
-    desc: "Comprehensive primary care billing for family practices — from preventive visits to chronic disease management.",
-  },
-  {
-    icon: "🏥", title: "Internal Medicine", slug: "internal-medicine",
-    image: "https://suncityhospital.in/wp-content/uploads/2025/02/Internal-Medicine-1.webp?auto=format&fit=crop",
-    desc: "Complex E&M coding and multi-system billing optimized for internal medicine physicians.",
-  },
-  {
-    icon: "👶", title: "Pediatrics", slug: "pediatrics",
-    image: "https://balunihospital.com/img/blog/a0bbad22c810b4d4e905f05d2f9a18e8.jpg?auto=format&fit=crop",
-    desc: "Pediatric-specific billing including well-child visits, vaccine administration, and developmental screenings.",
-  },
-  {
-    icon: "❤️", title: "Cardiology", slug: "cardiology",
-    image: "https://saifeehospital.com.pk/wp-content/uploads/2024/10/cardiology-images.jpg?auto=format&fit=crop",
-    desc: "Cardiology RCM covering catheterizations, echocardiograms, stress tests, and interventional procedures.",
-  },
-  {
-    icon: "🫀", title: "Cardiovascular", slug: "cardiovascular",
-    image: "https://www.uclahealth.org/sites/default/files/styles/portrait_3x4_012000_360x480/public/images/cardiology-medical-service.jpg?h=9c86ceb9&itok=0EyASc8u",
-    desc: "Vascular and cardiovascular surgical billing with precise procedure coding and modifier compliance.",
-  },
-  {
-    icon: "🦴", title: "Orthopedics", slug: "orthopedics",
-    image: "https://www.premier-ortho.com/wp-content/uploads/2020/11/orthopedic-doctor-1200x675.jpg?auto=format&fit=crop",
-    desc: "Orthopedic billing for fracture care, joint replacements, arthroscopy, and physical medicine services.",
-  },
-  {
-    icon: "🧠", title: "Mental Health", slug: "mental-health",
-    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRH-XxOrozrVxSftxAqEHBAtWs_hp9d6nA9K_5IU90ls9-1wGzwcgWklJA&s=10&fit=crop",
-    desc: "Therapy and psychiatric billing with parity compliance, telehealth coding, and authorization tracking.",
-  },
-  {
-    icon: "✨", title: "Dermatology", slug: "dermatology",
-    image: "https://smb.ibsrv.net/imageresizer/image/article_manager/1200x1200/107496/1101930/heroimage0.828788001705088048.jpg?auto=format&fit=crop",
-    desc: "Dermatology billing for skin biopsies, Mohs surgery, cosmetic procedures, and pathology submissions.",
-  },
-  {
-    icon: "⚡", title: "Neurology", slug: "neurology",
-    image: "https://bolgehospitalinternational.com/wp-content/uploads/2023/11/Noroloji.jpg?auto=format&fit=crop",
-    desc: "Neurology RCM covering EEGs, EMGs, sleep studies, and complex neurological evaluation coding.",
-  },
-  {
-    icon: "🩺", title: "Primary Care", slug: "primary-care",
-    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQ0eiaVdAAtOTrV5X4QOsGjAyKxjP5oozV4eso-werDy9DjlyKiQuSDx4&s=10&fit=crop",
-    desc: "End-to-end primary care billing with wellness visit coding, chronic care management, and annual AWVs.",
-  },
-  {
-    icon: "🩹", title: "Wound Care", slug: "wound-care",
-    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHnxdAeBxOenzqwy-e0SuLmSWaxdS_O8Zw7H_OM2kQrw&s=10",
-    desc: "Wound care billing covering debridements, skin grafts, negative pressure therapy, and hyperbaric oxygen.",
-  },
-  {
-    icon: "🦶", title: "Podiatry", slug: "podiatry",
-    image: "https://www.cfaortho.com/docs/blog/podiatrist-foot-doctor.jpg",
-    desc: "Podiatry-specific coding for routine foot care, surgery, orthotics, and diabetic foot care protocols.",
-  },
-  {
-    icon: "📸", title: "Radiology", slug: "radiology",
-    image: "https://i.ytimg.com/vi/Mhd4lcOy0pY/hq720.jpg?sqp=-oaymwE7CK4FEIIDSFryq4qpAy0IARUAAAAAGAElAADIQj0AgKJD8AEB-AH-CYAC0AWKAgwIABABGGUgZShlMA8=&rs=AOn4CLDajW2MA6Ba6GdZcsj1xERnZ8pAWQ&fit=crop",
-    desc: "Radiology billing with professional and technical component splits for MRI, CT, PET, and X-ray.",
-  },
-  {
-    icon: "🏨", title: "Ambulatory Surgery", slug: "ambulatory-surgery",
-    image: "https://images.unsplash.com/photo-1551190822-a9333d879b1f?w=400&q=75&fit=crop",
-    desc: "ASC facility billing covering device-intensive procedures, multi-procedural discounting, and implants.",
-  },
-  {
-    icon: "🏡", title: "Nursing Home", slug: "nursing-home",
-    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0g6ZWe5vq58p5hgqPvFbCYHfVUENWBecbPIzBPTT4f-bygK_rA9vTk3M&s=10",
-    desc: "Long-term care and SNF billing including nursing facility visits, care plan oversight, and MDS coding.",
-  },
-  {
-    icon: "🫘", title: "Nephrology", slug: "nephrology",
-    image: "https://www.omegahospitals.com/_next/image?url=https%3A%2F%2Fomegafilesstore.s3.ap-south-1.amazonaws.com%2Fwebsite%2Fspecializations%2Fnephrology.png&w=3840&q=75",
-    desc: "Nephrology billing for dialysis services, ESRD management, kidney biopsies, and transplant follow-up.",
-  },
-  {
-    icon: "🔪", title: "General Surgery", slug: "general-surgery",
-    image: "https://images.unsplash.com/photo-1551190822-a9333d879b1f?w=400&q=75&fit=crop",
-    desc: "General surgery billing for laparoscopic, open, and robotic procedures with global period management.",
-  },
-  {
-    icon: "👩‍⚕️", title: "Gynecology", slug: "gynecology",
-    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRuuWgkSe52LzB5d3yKGIytRzi2cRb_-qfSW-zrfudeVV0wzxn7UTUiJuo&s=10&fit=crop",
-    desc: "GYN billing for office procedures, surgical cases, preventive screenings, and maternity global billing.",
-  },
-  {
-    icon: "🩸", title: "Hematology", slug: "hematology",
-    image: "https://www.hopkinsmedicine.org/-/media/images/health/2_-treatment/cardiovascular/blood-tests-teaser.jpg?h=320&iar=0&w=560&hash=5A9A196254BDD6AB60E0D41CF4349321",
-    desc: "Hematology RCM covering infusion therapy, bone marrow biopsies, chemotherapy, and blood disorder management.",
-  },
-  {
-    icon: "🛡️", title: "Immunology", slug: "immunology",
-    image: "https://microbenotes.com/wp-content/uploads/2018/05/Immunology.jpg?w=400&q=75&fit=crop",
-    desc: "Allergy and immunology billing for antigen testing, immunotherapy, SLIT, and allergy injection services.",
-  },
-  {
-    icon: "🫁", title: "Pulmonology", slug: "pulmonology",
-    image: "https://www.drjcsuri.com/wp-content/uploads/2024/03/6555.jpg?w=400&q=75&fit=crop",
-    desc: "Pulmonology RCM covering spirometry, bronchoscopy, sleep studies, and chronic respiratory disease management.",
-  },
-  {
-    icon: "💊", title: "Oncology", slug: "oncology",
-    image: "https://advancedinnovativepartners.com/wp-content/uploads/2024/07/Medical-Oncology-01.png?auto=format&fit=crop",
-    desc: "Oncology billing for chemotherapy infusions, radiation therapy, immunotherapy, and cancer screenings.",
-  },
-  {
-    icon: "🧪", title: "Endocrinology", slug: "endocrinology",
-    image: "https://eremedium.in/wp-content/uploads/2023/10/Endocrinology.jpg?w=400&q=75&fit=crop",
-    desc: "Endocrinology billing for diabetes management, thyroid procedures, hormone therapy, and metabolic disorders.",
-  },
-  {
-    icon: "🧬", title: "Gastroenterology", slug: "gastroenterology",
-    image: "https://mmi.edu.pk/wp-content/uploads/2020/04/gastro.jpg?auto=format&fit=crop",
-    desc: "GI billing for colonoscopies, endoscopies, capsule procedures, and complex GI motility studies.",
-  },
-  {
-    icon: "🧫", title: "Hepatology", slug: "hepatology",
-    image: "https://www.gastropune.com/wp-content/uploads/2024/07/Untitled-design-2024-07-16T115210.358-1024x614.png?w=400&q=75&fit=crop",
-    desc: "Hepatology billing for liver biopsies, ERCP, cirrhosis management, and transplant follow-up care.",
-  },
-  {
-    icon: "🚻", title: "Urology", slug: "urology",
-    image: "https://wp04-media.cdn.ihealthspot.com/wp-content/uploads/sites/374/2023/08/istockphoto-1164464390-612x612-1.jpg?w=400&q=75&fit=crop",
-    desc: "Urology billing for cystoscopy, prostate procedures, nephrolithiasis treatment, and robotic surgery.",
-  },
-  {
-    icon: "🤲", title: "Rheumatology", slug: "rheumatology",
-    image: "https://jho.org/wp-content/uploads/2022/04/Rheumatology.jpg?w=400&q=75&fit=crop",
-    desc: "Rheumatology RCM for biologic infusions, joint injections, autoimmune disease management, and infusion suites.",
-  },
-  {
-    icon: "🏃", title: "Physical Therapy", slug: "physical-therapy",
-    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSX8x148N6GYpp0IhWVI81hAkoqumnyGXDGo-tcUuVQPRflavmY-eQbfQeI&s=10&fit=crop",
-    desc: "PT billing covering therapeutic exercises, manual therapy, modalities, and functional capacity evaluations.",
-  },
-  {
-    icon: "💉", title: "Pain Management", slug: "pain-management",
-    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-Vt08DXFAL5neq4eElzjy-OZ5qazRtJMUlZNG-4jIWg0UV6pscswJXstw&s=10&fit=crop",
-    desc: "Pain management billing for nerve blocks, spinal injections, stimulator implants, and medication management.",
-  },
-  {
-    icon: "👐", title: "Chiropractic", slug: "chiropractic",
-    image: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=400&q=75&fit=crophttps://www.scuhs.edu/wp-content/uploads/examining-spine.webp",
-    desc: "Chiropractic billing for spinal manipulation, maintenance care, Medicare compliance, and personal injury.",
-  },
-  {
-    icon: "🩺", title: "Urgent Care", slug: "urgent-care",
-    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQ0eiaVdAAtOTrV5X4QOsGjAyKxjP5oozV4eso-werDy9DjlyKiQuSDx4&s=10&fit=crop",
-    desc: "Urgent care billing with high-volume claim throughput, walk-in coding compliance, and rapid payment cycles.",
-  },
-  {
-    icon: "⚕️", title: "OB/GYN", slug: "ob-gyn",
-    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRuuWgkSe52LzB5d3yKGIytRzi2cRb_-qfSW-zrfudeVV0wzxn7UTUiJuo&s=10&fit=crop",
-    desc: "OB/GYN billing for global maternity packages, antepartum care, delivery coding, and postpartum visits.",
-  },
-  {
-    icon: "👁️", title: "Ophthalmology", slug: "ophthalmology",
-    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSam_94fTXaz3AfG-LoUQ6r-mMzX225bbKz1-YXG66fka2w34PvEqwAb6HL&s=10",
-    desc: "Ophthalmology RCM for cataract surgery, retinal injections, glaucoma procedures, and routine eye exams.",
-  },
-  {
-    icon: "👂", title: "Otolaryngology", slug: "otolaryngology",
-    image: "https://chblob.icloudhospital.com/thumbnails/4-ENT-994502fb-e400-42f3-a306-ed97022947c0.webp",
-    desc: "ENT billing for sinus surgery, tonsillectomies, hearing tests, laryngoscopy, and allergy injections.",
-  },
-  {
-    icon: "🦷", title: "Dentistry", slug: "dentistry",
-    image: "https://www.aeccglobal.my/images/2022/12/13/study-dentistry-abroad.webp",
-    desc: "Dental billing for oral surgery, implants, medical-dental cross-coding, and anesthesia billing compliance.",
-  },
-  {
-    icon: "🧑‍🦽", title: "Rehabilitation", slug: "rehabilitation",
-    image: "https://blog.rehabselect.net/hubfs/Blog/stroke%20rehab%20methods.jpeg?w=400&q=75&fit=crop",
-    desc: "Rehab billing for inpatient and outpatient programs, occupational therapy, speech therapy, and functional assessments.",
-  },
-  {
-    icon: "🧑‍🦼", title: "Geriatrics", slug: "geriatrics",
-    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTiZaz-HBmoRuoQgdTyxVzZZuQgS5r879ER1Vml3iWhffPwfJdllodORJM&s=10&fit=crop",
-    desc: "Geriatric billing for annual wellness visits, care transition management, cognitive assessments, and SNF care.",
-  },
-  {
-    icon: "🧑‍🦲", title: "Trichology", slug: "trichology",
-    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSP5hy9zZdj0svYFw8lbEQjsQDQa4RMaNlOhDBDo8t0NWCke2ywTowP3tEM&s=10&fit=crop",
-    desc: "Trichology billing for scalp treatments, hair restoration procedures, and dermatological hair disorder coding.",
-  },
+const SPECIALTIES=[
+  {n:"Family Medicine",icon:"🩺"},{n:"Cardiology",icon:"❤️"},{n:"Orthopedics",icon:"🦴"},{n:"Mental Health",icon:"🧠"},
+  {n:"Pediatrics",icon:"🧸"},{n:"Dermatology",icon:"🧴"},{n:"Oncology",icon:"🎗️"},{n:"Neurology",icon:"⚡"},
+  {n:"Urology",icon:"🔬"},{n:"Gastroenterology",icon:"🩻"},{n:"Ophthalmology",icon:"👁️"},{n:"Radiology",icon:"📷"},
+  {n:"Anesthesiology",icon:"💉"},{n:"OB/GYN",icon:"🤱"},{n:"Internal Medicine",icon:"🏥"},{n:"Emergency Medicine",icon:"🚑"},
+  {n:"Physical Therapy",icon:"🏃"},{n:"Chiropractic",icon:"🦵"},{n:"Podiatry",icon:"🦶"},{n:"Rheumatology",icon:"🦴"},
+  {n:"Endocrinology",icon:"🧪"},{n:"Pulmonology",icon:"🫁"},{n:"Nephrology",icon:"🫘"},{n:"Allergy & Immunology",icon:"🤧"},
+  {n:"Infectious Disease",icon:"🦠"},{n:"Sports Medicine",icon:"🏋️"},{n:"Pain Management",icon:"💊"},{n:"Sleep Medicine",icon:"😴"},
+  {n:"Vascular Surgery",icon:"🩸"},{n:"General Surgery",icon:"🔪"},{n:"Plastic Surgery",icon:"✨"},{n:"ENT",icon:"👂"},
+  {n:"Geriatrics",icon:"👴"},{n:"Hematology",icon:"🩸"},{n:"Psychiatry",icon:"💭"},{n:"Nutrition",icon:"🥗"},
+  {n:"Wound Care",icon:"🩹"},{n:"Hospice & Palliative",icon:"🕊️"},{n:"Occupational Medicine",icon:"🏭"},{n:"Bariatric Medicine",icon:"⚖️"},
 ];
+const slugify=(s)=>s.toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/(^-|-$)/g,"");
 
-/* ── Specialty Card ── */
-function SpecialtyCard({ item, index }) {
-  const [hovered, setHovered] = useState(false);
-  const [imgErr, setImgErr] = useState(false);
-  const ref = useRef(null);
-  const [visible, setVisible] = useState(false);
+export default function SpecialtiesPage(){
+  const [search,setSearch]=useState("");
+  const [mounted,setMounted]=useState(false);
+  const statsReveal=useReveal(0.4);
+  useEffect(()=>{ setTimeout(()=>setMounted(true),80); },[]);
+  const rise=(d=0)=>({opacity:mounted?1:0,transform:mounted?"translateY(0)":"translateY(28px)",transition:`opacity 0.7s ease ${d}s, transform 0.7s ease ${d}s`});
+  const filtered=SPECIALTIES.filter(s=>s.n.toLowerCase().includes(search.toLowerCase()));
 
-  useEffect(() => {
-    const el = ref.current; if (!el) return;
-    const obs = new IntersectionObserver(
-      ([e]) => { if (e.isIntersecting) { setVisible(true); obs.disconnect(); } },
-      { threshold: 0.08 }
-    );
-    obs.observe(el);
-    return () => obs.disconnect();
-  }, []);
-
-  return (
-    <Link href={`/specialties/${item.slug}`} style={{ textDecoration: "none" }}>
-      <div
-        ref={ref}
-        onMouseEnter={() => setHovered(true)}
-        onMouseLeave={() => setHovered(false)}
-        style={{
-          background: "#fff",
-          borderRadius: 20,
-          overflow: "hidden",
-          border: "1px solid",
-          borderColor: hovered ? "#111111" : "rgba(17,17,17,0.1)",
-          boxShadow: hovered ? "0 24px 56px rgba(17,17,17,0.12)" : "0 2px 16px rgba(17,17,17,0.05)",
-          transform: hovered ? "translateY(-8px)" : visible ? "translateY(0)" : "translateY(32px)",
-          opacity: visible ? 1 : 0,
-          transition: `all 0.4s cubic-bezier(0.16,1,0.3,1) ${(index % 6) * 0.06}s`,
-          cursor: "pointer",
-          height: "100%",
-          display: "flex",
-          flexDirection: "column",
-        }}
-      >
-        {/* Image */}
-        <div style={{ position: "relative", height: 180, overflow: "hidden", flexShrink: 0 }}>
-          {!imgErr ? (
-            // Use a background image for the hero area so it covers the whole card nicely
-            <div
-              style={{
-                width: "100%",
-                height: "100%",
-                // use the actual item.image (works with local paths/public folder)
-                  backgroundImage: item.image ? `url('${item.image}')` : undefined,
-                backgroundSize: "cover",
-                // avoid fixed attachment which can cause rendering issues on some setups
-                backgroundAttachment: "scroll",
-                backgroundPosition: "center",
-                backgroundRepeat: "no-repeat",
-                display: "block",
-                transform: hovered ? "scale(1.08)" : "scale(1)",
-                transition: "transform 0.5s ease",
-              }}
-            />
-          ) : (
-            <div style={{ width: "100%", height: "100%", background: "linear-gradient(135deg,#F5F0E8,#F0EBE0)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 56 }}>
-              {item.icon}
-            </div>
-          )}
-          {/* Gradient overlay */}
-          <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, transparent 40%, rgba(17,17,17,0.55) 100%)" }} />
-          {/* Title over image */}
-          <div style={{ position: "absolute", bottom: 14, left: 16, right: 16 }}>
-            <h3 style={{ fontSize: 18, fontWeight: 800, color: "#fff", letterSpacing: -0.3, margin: 0, textShadow: "0 1px 4px rgba(0,0,0,0.3)" }}>{item.title}</h3>
-          </div>
-          {/* Icon pill */}
-          <div style={{ position: "absolute", top: 12, right: 12, background: "#F5E6A3", borderRadius: 100, width: 36, height: 36, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 18, boxShadow: "0 2px 8px rgba(0,0,0,0.15)" }}>
-            {item.icon}
-          </div>
-        </div>
-
-        {/* Content */}
-        <div style={{ padding: "20px 22px 22px", display: "flex", flexDirection: "column", flex: 1 }}>
-          <p style={{ fontSize: 13, color: "#666666", lineHeight: 1.7, flex: 1, margin: "0 0 16px" }}>{item.desc}</p>
-          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", paddingTop: 14, borderTop: "1px solid rgba(17,17,17,0.07)" }}>
-            <span style={{ fontSize: 12, fontWeight: 700, color: "#999999", textTransform: "uppercase", letterSpacing: 1 }}>Learn more</span>
-            <div style={{
-              width: 28, height: 28, borderRadius: "50%",
-              background: hovered ? "#111111" : "#F5E6A3",
-              display: "flex", alignItems: "center", justifyContent: "center",
-              fontSize: 13, fontWeight: 800,
-              color: hovered ? "#F5E6A3" : "#111111",
-              transition: "all 0.25s ease",
-            }}>→</div>
-          </div>
-        </div>
-      </div>
-    </Link>
-  );
-}
-
-export default function SpecialtiesPage() {
-  const [search, setSearch] = useState("");
-  const [searchFocused, setSearchFocused] = useState(false);
-
-  const heroReveal = useReveal(0.1);
-  const statsReveal = useReveal(0.2);
-  const whyReveal = useReveal(0.15);
-  const ctaReveal = useReveal(0.2);
-
-  const s1 = useCountUp(40, 1600, statsReveal.visible, "+");
-  const s2 = useCountUp(500, 1800, statsReveal.visible, "+");
-  const s3 = useCountUp(98, 1600, statsReveal.visible, "%");
-  const s4 = useCountUp(50, 1600, statsReveal.visible, "M+");
-
-  const filtered = SPECIALTIES.filter(s =>
-    s.title.toLowerCase().includes(search.toLowerCase())
-  );
-
-  return (
+  return(
     <>
-      <Navbar />
-      <main style={{ background: "#F5F0E8" }}>
-
-        {/* ── HERO ── */}
-        <section style={{
-            backgroundImage: `linear-gradient(160deg, rgba(245,240,232,0.86) 0%, rgba(253,250,245,0.82) 40%, rgba(240,235,224,0.9) 100%), url('https://images.unsplash.com/photo-1494173853739-c21f58b16055?auto=format&fit=crop&w=1600&q=80')`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            backgroundRepeat: "no-repeat",
-            backgroundAttachment: "fixed",
-            padding: "150px 24px 90px",
-            position: "relative",
-            overflow: "hidden",
-          }}>
-          <div style={{ position: "absolute", top: -120, right: -120, width: 600, height: 600, borderRadius: "50%", background: "radial-gradient(circle,rgba(245,230,163,0.3),transparent 70%)", pointerEvents: "none" }} />
-          <div style={{ position: "absolute", bottom: -60, left: -60, width: 380, height: 380, borderRadius: "50%", background: "radial-gradient(circle,rgba(17,17,17,0.04),transparent 70%)", pointerEvents: "none" }} />
-
-          <div ref={heroReveal.ref} style={{ maxWidth: 800, textAlign: "left", position: "relative", zIndex: 2 }}>
-            {/* Badge */}
-            <div style={{ opacity: heroReveal.visible ? 1 : 0, transform: heroReveal.visible ? "translateY(0)" : "translateY(20px)", transition: "all 0.6s ease 0.05s" }}>
-              <span style={{ fontSize: 12, fontWeight: 700, color: "#111111", background: "#F5E6A3", letterSpacing: "1.5px", textTransform: "uppercase", padding: "7px 18px", borderRadius: 100, display: "inline-block", marginBottom: 24, border: "1px solid rgba(17,17,17,0.12)" }}>
-                Medical Billing Specialties
-              </span>
+      <Navbar/>
+      <main>
+        {/* ══ HERO — new bg image, no grid overlay ══ */}
+        <section style={{position:"relative",minHeight:"56vh",display:"flex",alignItems:"center",backgroundImage:"linear-gradient(170deg,rgba(10,10,10,0.82) 15%,rgba(10,10,10,0.55) 60%,rgba(10,10,10,0.35) 100%), url('https://images.unsplash.com/photo-1666214280391-8ff5bd3c0bf0?w=1920&q=85')",backgroundSize:"cover",backgroundPosition:"center",backgroundAttachment:"fixed",padding:"140px 32px 70px"}}>
+          <div style={{maxWidth:1200,margin:"0 auto",width:"100%",position:"relative",zIndex:2}}>
+            <div style={{...rise(0),display:"inline-flex",alignItems:"center",gap:8,background:"rgba(255,255,255,0.1)",backdropFilter:"blur(8px)",border:"1px solid rgba(255,255,255,0.25)",borderRadius:100,padding:"7px 18px",marginBottom:26}}>
+              <span style={{width:7,height:7,borderRadius:"50%",background:"var(--white)",animation:"breathe 2s infinite"}}/><span style={{fontSize:12,fontWeight:700,color:"var(--white)",letterSpacing:1.5}}>40+ Specialties Served</span>
             </div>
-
-            {/* Headline */}
-            <h1 style={{ opacity: heroReveal.visible ? 1 : 0, transform: heroReveal.visible ? "translateY(0)" : "translateY(28px)", transition: "all 0.65s ease 0.15s", fontSize: "clamp(34px,5vw,62px)", fontWeight: 800, color: "#111111", lineHeight: 1.08, letterSpacing: -2, marginBottom: 22 }}>
-              Billing expertise for<br />
-              <span style={{ color: "#111111", opacity: 0.3 }}>every</span> specialty
-            </h1>
-
-            {/* Subtitle */}
-            <p style={{ opacity: heroReveal.visible ? 1 : 0, transform: heroReveal.visible ? "translateY(0)" : "translateY(24px)", transition: "all 0.65s ease 0.25s", fontSize: 17, color: "#666666", lineHeight: 1.8, maxWidth: 600, margin: "0 0 40px" }}>
-              Our certified billing professionals understand the unique payer rules, coding guidelines, and reimbursement models of each healthcare specialty — not just billing in general.
-            </p>
-
-            {/* Search bar */}
-            <div style={{ opacity: heroReveal.visible ? 1 : 0, transform: heroReveal.visible ? "translateY(0)" : "translateY(20px)", transition: "all 0.65s ease 0.35s", maxWidth: 480 }}>
-              <div style={{ position: "relative" }}>
-                <span style={{ position: "absolute", left: 18, top: "50%", transform: "translateY(-50%)", fontSize: 18, pointerEvents: "none" }}>🔍</span>
-                <input
-                  type="text"
-                  placeholder="Search specialties..."
-                  value={search}
-                  onChange={e => setSearch(e.target.value)}
-                  onFocus={() => setSearchFocused(true)}
-                  onBlur={() => setSearchFocused(false)}
-                  style={{
-                    width: "100%", padding: "15px 20px 15px 52px",
-                    border: `2px solid ${searchFocused ? "#111111" : "rgba(17,17,17,0.15)"}`,
-                    borderRadius: 100, fontSize: 15, outline: "none",
-                    fontFamily: "inherit", background: "#fff",
-                    color: "#111111", boxSizing: "border-box",
-                    boxShadow: searchFocused ? "0 4px 20px rgba(17,17,17,0.1)" : "0 2px 12px rgba(17,17,17,0.05)",
-                    transition: "border-color 0.2s, box-shadow 0.2s",
-                  }}
-                />
-                {search && (
-                  <button onClick={() => setSearch("")} style={{ position: "absolute", right: 16, top: "50%", transform: "translateY(-50%)", background: "none", border: "none", cursor: "pointer", fontSize: 18, color: "#999" }}>✕</button>
-                )}
-              </div>
-              {search && (
-                <p style={{ fontSize: 12, color: "#999999", marginTop: 10, textAlign: "center" }}>
-                  {filtered.length} result{filtered.length !== 1 ? "s" : ""} for "<strong style={{ color: "#111111" }}>{search}</strong>"
-                </p>
-              )}
-            </div>
+            <h1 style={{...rise(0.1),fontSize:"clamp(34px,6.5vw,78px)",fontWeight:800,color:"var(--white)",fontFamily:"'Sora',sans-serif",lineHeight:0.98,letterSpacing:"-0.03em",maxWidth:760}}>Billing expertise for every specialty.</h1>
           </div>
         </section>
 
-        {/* ── STATS ── */}
-        <section ref={statsReveal.ref} style={{ background: "#111111", padding: "56px 24px" }}>
-          <div style={{ maxWidth: 1100, margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 24, textAlign: "center" }}>
-            {[
-              { val: s1, label: "Specialties Supported" },
-              { val: s2, label: "Providers Served" },
-              { val: s3, label: "Clean Claim Rate" },
-              { val: `$${s4}`, label: "Revenue Recovered" },
-            ].map((item, i) => (
-              <div key={i} style={{ opacity: statsReveal.visible ? 1 : 0, transform: statsReveal.visible ? "translateY(0)" : "translateY(24px)", transition: `all 0.5s ease ${i * 0.08}s` }}>
-                <div style={{ color: "#fff", fontSize: 36, fontWeight: 800, letterSpacing: -1 }}>{item.val}</div>
-                <div style={{ color: "rgba(255,255,255,0.4)", fontSize: 11, fontWeight: 600, textTransform: "uppercase", marginTop: 6, letterSpacing: 1 }}>{item.label}</div>
+        {/* ══ ANIMATED STATS BAR ══ */}
+        <section ref={statsReveal.ref} style={{background:"var(--dark)",padding:"0",borderBottom:"1px solid rgba(255,255,255,0.06)"}}>
+          <div className="stats-thin" style={{maxWidth:900,margin:"0 auto",display:"grid",gridTemplateColumns:"repeat(4,1fr)"}}>
+            {[{val:40,suffix:"+",label:"Specialties"},{val:98,suffix:"%+",label:"First-pass rate"},{val:500,suffix:"+",label:"Providers"},{val:50,suffix:"M+",label:"Recovered"}].map((s,i)=>(
+              <div key={i} style={{padding:"18px 20px",borderRight:i<3?"1px solid rgba(255,255,255,0.06)":"none",textAlign:"center",opacity:statsReveal.visible?1:0,transform:statsReveal.visible?"translateY(0)":"translateY(14px)",transition:`all 0.6s cubic-bezier(0.16,1,0.3,1) ${i*0.1}s`}}>
+                <div style={{fontSize:20,fontWeight:800,color:"var(--white)",fontFamily:"'Sora',sans-serif"}}><CountUp target={s.val} suffix={s.suffix} start={statsReveal.visible} duration={1400+i*150}/></div>
+                <div style={{fontSize:10,color:"rgba(255,255,255,0.35)",fontWeight:600,textTransform:"uppercase",letterSpacing:0.6,marginTop:2}}>{s.label}</div>
               </div>
             ))}
           </div>
         </section>
 
-        {/* ── SPECIALTIES GRID ── */}
-        <section style={{ padding: "100px 24px", background: "#F5F0E8" }}>
-          <div style={{ maxWidth: 1240, margin: "0 auto" }}>
-            <div style={{ textAlign: "center", marginBottom: 64 }}>
-              <div style={{ display: "inline-flex", alignItems: "center", gap: 8, marginBottom: 14 }}>
-                <div style={{ width: 26, height: 2, background: "#111111", borderRadius: 2 }} />
-                <p style={{ fontSize: 12, fontWeight: 700, color: "#111111", letterSpacing: "2px", textTransform: "uppercase" }}>40+ Specialties</p>
-              </div>
-              <h2 style={{ fontSize: "clamp(28px,4vw,44px)", fontWeight: 800, color: "#111111", letterSpacing: -1, marginBottom: 14 }}>
-                {search ? `Results for "${search}"` : "Specialties we serve"}
-              </h2>
-              <p style={{ fontSize: 16, color: "#666666", maxWidth: 480, margin: "0 auto" }}>
-                Revenue cycle management precisely configured for your clinical scope.
-              </p>
-            </div>
+        {/* ══ SEARCH + ADVANCED ANIMATED CARDS ══ */}
+        <section style={{background:"var(--bg)",padding:"70px 32px 100px"}}>
+          <div style={{maxWidth:1160,margin:"0 auto"}}>
+            <Reveal>
+              <input type="text" value={search} onChange={e=>setSearch(e.target.value)} placeholder="Search specialties..." style={{width:"100%",maxWidth:520,display:"block",margin:"0 auto 48px",padding:"17px 24px",border:"1.5px solid var(--border)",borderRadius:100,fontSize:15,outline:"none",fontFamily:"inherit",background:"var(--white)",boxShadow:"var(--shadow)"}}/>
+            </Reveal>
 
-            {filtered.length > 0 ? (
-              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(300px,1fr))", gap: 22 }}>
-                {filtered.map((item, index) => (
-                  <SpecialtyCard key={item.slug} item={item} index={index} />
-                ))}
-              </div>
-            ) : (
-              <div style={{ textAlign: "center", padding: "60px 24px" }}>
-                <div style={{ fontSize: 48, marginBottom: 16 }}>🔍</div>
-                <h3 style={{ fontSize: 20, fontWeight: 700, color: "#111111", marginBottom: 8 }}>No specialties found</h3>
-                <p style={{ fontSize: 14, color: "#666666", marginBottom: 20 }}>Try a different search or contact us — we may still cover it.</p>
-                <button onClick={() => setSearch("")} style={{ background: "#111111", color: "#fff", border: "none", padding: "11px 24px", borderRadius: 100, fontSize: 14, fontWeight: 600, cursor: "pointer" }}>Clear search</button>
-              </div>
-            )}
-          </div>
-        </section>
-
-        {/* ── WHY TRUST US ── */}
-        <section ref={whyReveal.ref} style={{ background: "#fff", padding: "100px 24px", borderTop: "1px solid rgba(17,17,17,0.06)" }}>
-          <div style={{ maxWidth: 1000, margin: "0 auto" }}>
-            <div style={{ textAlign: "center", marginBottom: 56, opacity: whyReveal.visible ? 1 : 0, transform: whyReveal.visible ? "translateY(0)" : "translateY(24px)", transition: "all 0.6s ease" }}>
-              <div style={{ display: "inline-flex", alignItems: "center", gap: 8, marginBottom: 14 }}>
-                <div style={{ width: 26, height: 2, background: "#111111", borderRadius: 2 }} />
-                <p style={{ fontSize: 12, fontWeight: 700, color: "#111111", letterSpacing: "2px", textTransform: "uppercase" }}>Why MedCare</p>
-              </div>
-              <h2 style={{ fontSize: "clamp(26px,4vw,40px)", fontWeight: 800, color: "#111111", letterSpacing: -1, marginBottom: 12 }}>Why practices trust MedCare RCM</h2>
-              <p style={{ fontSize: 15, color: "#666666", maxWidth: 460, margin: "0 auto" }}>Every specialty gets the same commitment — maximum reimbursement, minimum hassle.</p>
-            </div>
-
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(280px,1fr))", gap: 16 }}>
-              {[
-                { icon: "🎯", title: "Specialty-specific expertise", desc: "Our billers are trained in your specialty's unique payer rules and coding guidelines — not generic billing." },
-                { icon: "✅", title: "Certified billing professionals", desc: "CPC and CCS certified coders who understand the clinical context behind every code they submit." },
-                { icon: "🔒", title: "HIPAA-compliant always", desc: "Every workflow and system meets the highest data security and compliance standards." },
-                { icon: "📉", title: "Lower denial rates", desc: "Specialty-specific scrubbing catches errors before submission — keeping your denial rate below 5%." },
-                { icon: "⚡", title: "Faster reimbursements", desc: "Optimized claim pathways and proactive follow-up cut your average AR days significantly." },
-                { icon: "📞", title: "Dedicated account manager", desc: "One person who knows your practice, your payers, and your billing history — always available." },
-              ].map((item, i) => (
-                <div key={i} style={{
-                  background: "#F5F0E8", border: "1px solid rgba(17,17,17,0.07)", borderRadius: 16, padding: "22px 22px",
-                  display: "flex", gap: 14, alignItems: "flex-start",
-                  opacity: whyReveal.visible ? 1 : 0, transform: whyReveal.visible ? "translateY(0)" : "translateY(24px)",
-                  transition: `all 0.5s ease ${0.06 + i * 0.07}s`,
-                }}>
-                  <div style={{ width: 40, height: 40, borderRadius: 10, background: "#F5E6A3", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 20, flexShrink: 0 }}>{item.icon}</div>
-                  <div>
-                    <h4 style={{ fontSize: 14, fontWeight: 700, color: "#111111", marginBottom: 5 }}>{item.title}</h4>
-                    <p style={{ fontSize: 13, color: "#666666", lineHeight: 1.65 }}>{item.desc}</p>
-                  </div>
-                </div>
+            <div className="spec-cards-grid" style={{display:"grid",gridTemplateColumns:"repeat(4,1fr)",gap:14}}>
+              {filtered.map((s,i)=>(
+                <Reveal key={s.n} delay={(i%12)*0.025}>
+                  <Link href={`/specialties/${slugify(s.n)}`} className="spec-card" style={{
+                    display:"block",position:"relative",background:"var(--white)",border:"1px solid var(--border)",borderRadius:20,
+                    padding:"26px 20px",textDecoration:"none",overflow:"hidden",transition:"all 0.4s cubic-bezier(0.16,1,0.3,1)",
+                  }}
+                    onMouseEnter={e=>{ e.currentTarget.style.transform="translateY(-8px)"; e.currentTarget.style.boxShadow="0 20px 48px rgba(0,0,0,0.12)"; e.currentTarget.style.borderColor="var(--dark)"; e.currentTarget.querySelector(".spec-bg-icon").style.transform="scale(1.3) rotate(8deg)"; e.currentTarget.querySelector(".spec-bg-icon").style.opacity="0.15"; e.currentTarget.querySelector(".spec-arrow").style.transform="translateX(4px)"; e.currentTarget.querySelector(".spec-arrow").style.opacity="1"; }}
+                    onMouseLeave={e=>{ e.currentTarget.style.transform="translateY(0)"; e.currentTarget.style.boxShadow="none"; e.currentTarget.style.borderColor="var(--border)"; e.currentTarget.querySelector(".spec-bg-icon").style.transform="scale(1) rotate(0deg)"; e.currentTarget.querySelector(".spec-bg-icon").style.opacity="0.06"; e.currentTarget.querySelector(".spec-arrow").style.transform="translateX(0)"; e.currentTarget.querySelector(".spec-arrow").style.opacity="0"; }}>
+                    {/* Giant background icon */}
+                    <div className="spec-bg-icon" style={{position:"absolute",bottom:-10,right:-10,fontSize:64,opacity:0.06,transition:"all 0.4s cubic-bezier(0.16,1,0.3,1)",pointerEvents:"none"}}>{s.icon}</div>
+                    <div style={{position:"relative",zIndex:2}}>
+                      <div style={{width:40,height:40,borderRadius:12,background:"var(--bg)",display:"flex",alignItems:"center",justifyContent:"center",fontSize:19,marginBottom:14}}>{s.icon}</div>
+                      <h4 style={{fontSize:13.5,fontWeight:800,color:"var(--dark)",fontFamily:"'Sora',sans-serif",lineHeight:1.3,marginBottom:8}}>{s.n}</h4>
+                      <span className="spec-arrow" style={{fontSize:12,fontWeight:700,color:"var(--text3)",opacity:0,transition:"all 0.3s",display:"inline-block"}}>View details →</span>
+                    </div>
+                  </Link>
+                </Reveal>
               ))}
             </div>
           </div>
         </section>
 
-        {/* ── CTA ── */}
-        <section ref={ctaReveal.ref} style={{ background: "#111111", padding: "100px 24px", position: "relative", overflow: "hidden" }}>
-          <div style={{ position: "absolute", top: -80, right: -80, width: 400, height: 400, borderRadius: "50%", background: "radial-gradient(circle,rgba(245,230,163,0.1),transparent 70%)", pointerEvents: "none" }} />
-          <div style={{
-            maxWidth: 680, margin: "0 auto", textAlign: "center",
-            opacity: ctaReveal.visible ? 1 : 0, transform: ctaReveal.visible ? "translateY(0) scale(1)" : "translateY(28px) scale(0.97)",
-            transition: "all 0.7s ease",
-          }}>
-            <div style={{ display: "inline-block", background: "#F5E6A3", borderRadius: 100, padding: "6px 18px", fontSize: 12, fontWeight: 700, color: "#111111", letterSpacing: 1.5, textTransform: "uppercase", marginBottom: 24 }}>
-              Don't see your specialty?
-            </div>
-            <h2 style={{ fontSize: "clamp(28px,4vw,46px)", fontWeight: 800, color: "#fff", letterSpacing: -1.5, marginBottom: 18, lineHeight: 1.1 }}>
-              We probably cover it.<br />
-              <span style={{ color: "rgba(255,255,255,0.4)" }}>Let's find out.</span>
-            </h2>
-            <p style={{ fontSize: 16, color: "rgba(255,255,255,0.5)", lineHeight: 1.75, marginBottom: 40, maxWidth: 520, margin: "0 auto 40px" }}>
-              We work with over 40 specialties and build custom billing workflows for practices with unique needs. Talk to our team — no obligation.
-            </p>
-            <div style={{ display: "flex", gap: 14, justifyContent: "center", flexWrap: "wrap" }}>
-              <Link href="/contact" style={{ background: "#F5E6A3", color: "#111111", padding: "15px 32px", borderRadius: 100, fontSize: 15, fontWeight: 800, display: "inline-flex", alignItems: "center", gap: 8 }}>
-                Get a free audit →
-              </Link>
-              <Link href="/contact" style={{ background: "transparent", color: "#fff", padding: "15px 28px", borderRadius: 100, fontSize: 15, fontWeight: 600, border: "1.5px solid rgba(255,255,255,0.2)", display: "inline-block" }}>
-                Talk to our team
-              </Link>
-            </div>
-          </div>
+        {/* ══ LUXURIOUS CTA ══ */}
+        <section style={{background:"var(--dark)",padding:"130px 32px",position:"relative",overflow:"hidden"}}>
+          <div style={{position:"absolute",top:"-30%",left:"50%",transform:"translateX(-50%)",width:800,height:800,borderRadius:"50%",background:"radial-gradient(circle,rgba(255,255,255,0.06),transparent 60%)",pointerEvents:"none"}}/>
+          <Reveal><div style={{maxWidth:600,margin:"0 auto",textAlign:"center",position:"relative",zIndex:2}}>
+            <h2 style={{fontSize:"clamp(28px,5vw,56px)",fontWeight:800,color:"var(--white)",fontFamily:"'Sora',sans-serif",letterSpacing:"-0.03em",marginBottom:24}}>Don't see your specialty?</h2>
+            <p style={{fontSize:15,color:"rgba(255,255,255,0.5)",marginBottom:36}}>We bill for practices beyond this list too — reach out and we'll confirm.</p>
+            <Link href="/contact" style={{display:"inline-flex",alignItems:"center",gap:10,background:"var(--white)",color:"var(--dark)",padding:"17px 32px",borderRadius:100,fontSize:14.5,fontWeight:800,fontFamily:"'Sora',sans-serif",boxShadow:"0 12px 36px rgba(255,255,255,0.15)"}}>Contact Us →</Link>
+          </div></Reveal>
         </section>
-
       </main>
-      <Footer />
-
+      <Footer/>
       <style>{`
-        @keyframes fadeSlideUp { from{opacity:0;transform:translateY(28px)} to{opacity:1;transform:translateY(0)} }
-        @media (max-width: 768px) {
-          .specialty-grid { grid-template-columns: 1fr !important; }
-        }
+        @keyframes breathe{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.35;transform:scale(1.5)}}
+        @media(max-width:900px){.spec-cards-grid{grid-template-columns:repeat(3,1fr) !important;}.stats-thin{grid-template-columns:1fr 1fr !important;}}
+        @media(max-width:640px){.spec-cards-grid{grid-template-columns:repeat(2,1fr) !important;}}
       `}</style>
     </>
   );
