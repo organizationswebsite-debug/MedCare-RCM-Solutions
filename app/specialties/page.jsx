@@ -53,39 +53,69 @@ export default function SpecialtiesPage(){
         </section>
 
         {/* ══ ANIMATED STATS BAR ══ */}
-        <section ref={statsReveal.ref} style={{background:"var(--dark)",padding:"0",borderBottom:"1px solid rgba(255,255,255,0.06)"}}>
-          <div className="stats-thin" style={{maxWidth:900,margin:"0 auto",display:"grid",gridTemplateColumns:"repeat(4,1fr)"}}>
+        <section ref={statsReveal.ref} style={{background:"var(--cream)",padding:"0",borderBottom:"1px solid rgba(17,17,17,0.06)"}}>
+          <div className="stats-thin" style={{maxWidth:1000,margin:"0 auto",display:"grid",gridTemplateColumns:"repeat(4,minmax(0,1fr))",padding:"8px 20px"}}>
             {[{val:40,suffix:"+",label:"Specialties"},{val:98,suffix:"%+",label:"First-pass rate"},{val:500,suffix:"+",label:"Providers"},{val:50,suffix:"M+",label:"Recovered"}].map((s,i)=>(
-              <div key={i} style={{padding:"18px 20px",borderRight:i<3?"1px solid rgba(255,255,255,0.06)":"none",textAlign:"center",opacity:statsReveal.visible?1:0,transform:statsReveal.visible?"translateY(0)":"translateY(14px)",transition:`all 0.6s cubic-bezier(0.16,1,0.3,1) ${i*0.1}s`}}>
-                <div style={{fontSize:20,fontWeight:800,color:"var(--white)",fontFamily:"'Sora',sans-serif"}}><CountUp target={s.val} suffix={s.suffix} start={statsReveal.visible} duration={1400+i*150}/></div>
-                <div style={{fontSize:10,color:"rgba(255,255,255,0.35)",fontWeight:600,textTransform:"uppercase",letterSpacing:0.6,marginTop:2}}>{s.label}</div>
+              <div key={i} style={{padding:"26px 20px 22px",borderRight:i<3?"1px solid rgba(17,17,17,0.06)":"none",textAlign:"center",opacity:statsReveal.visible?1:0,transform:statsReveal.visible?"translateY(0)":"translateY(14px)",transition:`all 0.6s cubic-bezier(0.16,1,0.3,1) ${i*0.1}s`}}>
+                <div style={{fontSize:20,fontWeight:800,color:"var(--dark)",fontFamily:"'Sora',sans-serif",letterSpacing:"-0.04em"}}><CountUp target={s.val} suffix={s.suffix} start={statsReveal.visible} duration={1400+i*150}/></div>
+                <div style={{fontSize:10,color:"rgba(17,17,17,0.55)",fontWeight:700,textTransform:"uppercase",letterSpacing:0.75,marginTop:4}}>{s.label}</div>
               </div>
             ))}
           </div>
         </section>
 
         {/* ══ SEARCH + ADVANCED ANIMATED CARDS ══ */}
-        <section style={{background:"var(--bg)",padding:"70px 32px 100px"}}>
+        <section style={{background:"var(--bg)",padding:"60px 32px 100px"}}>
           <div style={{maxWidth:1160,margin:"0 auto"}}>
             <Reveal>
-              <input type="text" value={search} onChange={e=>setSearch(e.target.value)} placeholder="Search specialties..." style={{width:"100%",maxWidth:520,display:"block",margin:"0 auto 48px",padding:"17px 24px",border:"1.5px solid var(--border)",borderRadius:100,fontSize:15,outline:"none",fontFamily:"inherit",background:"var(--white)",boxShadow:"var(--shadow)"}}/>
+              <input type="text" value={search} onChange={e=>setSearch(e.target.value)} placeholder="Search specialties..." style={{width:"100%",maxWidth:540,display:"block",margin:"0 auto 46px",padding:"17px 26px",border:"1.5px solid var(--border)",borderRadius:100,fontSize:15,outline:"none",fontFamily:"inherit",background:"rgba(255,255,255,0.5)",boxShadow:"0 10px 24px rgba(17,17,17,0.04)"}}/>
             </Reveal>
 
-            <div className="spec-cards-grid" style={{display:"grid",gridTemplateColumns:"repeat(4,1fr)",gap:14}}>
+            <div className="spec-cards-grid" style={{display:"grid",gridTemplateColumns:"repeat(4,minmax(0,1fr))",gap:16}}>
               {filtered.map((s,i)=>(
                 <Reveal key={s.n} delay={(i%12)*0.025}>
                   <Link href={`/specialties/${slugify(s.n)}`} className="spec-card" style={{
-                    display:"block",position:"relative",background:"var(--white)",border:"1px solid var(--border)",borderRadius:20,
-                    padding:"26px 20px",textDecoration:"none",overflow:"hidden",transition:"all 0.4s cubic-bezier(0.16,1,0.3,1)",
+                    display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",textAlign:"center",
+                    position:"relative",background:"var(--white)",border:"1px solid var(--border)",borderRadius:20,
+                    padding:"34px 18px",textDecoration:"none",overflow:"hidden",minHeight:150,
+                    transition:"all 0.45s cubic-bezier(0.16,1,0.3,1)",
                   }}
-                    onMouseEnter={e=>{ e.currentTarget.style.transform="translateY(-8px)"; e.currentTarget.style.boxShadow="0 20px 48px rgba(0,0,0,0.12)"; e.currentTarget.style.borderColor="var(--dark)"; e.currentTarget.querySelector(".spec-bg-icon").style.transform="scale(1.3) rotate(8deg)"; e.currentTarget.querySelector(".spec-bg-icon").style.opacity="0.15"; e.currentTarget.querySelector(".spec-arrow").style.transform="translateX(4px)"; e.currentTarget.querySelector(".spec-arrow").style.opacity="1"; }}
-                    onMouseLeave={e=>{ e.currentTarget.style.transform="translateY(0)"; e.currentTarget.style.boxShadow="none"; e.currentTarget.style.borderColor="var(--border)"; e.currentTarget.querySelector(".spec-bg-icon").style.transform="scale(1) rotate(0deg)"; e.currentTarget.querySelector(".spec-bg-icon").style.opacity="0.06"; e.currentTarget.querySelector(".spec-arrow").style.transform="translateX(0)"; e.currentTarget.querySelector(".spec-arrow").style.opacity="0"; }}>
-                    {/* Giant background icon */}
-                    <div className="spec-bg-icon" style={{position:"absolute",bottom:-10,right:-10,fontSize:64,opacity:0.06,transition:"all 0.4s cubic-bezier(0.16,1,0.3,1)",pointerEvents:"none"}}>{s.icon}</div>
-                    <div style={{position:"relative",zIndex:2}}>
-                      <div style={{width:40,height:40,borderRadius:12,background:"var(--bg)",display:"flex",alignItems:"center",justifyContent:"center",fontSize:19,marginBottom:14}}>{s.icon}</div>
-                      <h4 style={{fontSize:13.5,fontWeight:800,color:"var(--dark)",fontFamily:"'Sora',sans-serif",lineHeight:1.3,marginBottom:8}}>{s.n}</h4>
-                      <span className="spec-arrow" style={{fontSize:12,fontWeight:700,color:"var(--text3)",opacity:0,transition:"all 0.3s",display:"inline-block"}}>View details →</span>
+                    onMouseEnter={e=>{
+                      e.currentTarget.style.transform="translateY(-10px) scale(1.03)";
+                      e.currentTarget.style.boxShadow="0 24px 56px rgba(0,0,0,0.14)";
+                      e.currentTarget.style.borderColor="var(--dark)";
+                      e.currentTarget.style.background="var(--dark)";
+                      const bg=e.currentTarget.querySelector(".spec-bg-icon");
+                      bg.style.transform="scale(1.55) rotate(-6deg)";
+                      bg.style.opacity="0.9";
+                      bg.style.filter="grayscale(0) saturate(1.6) drop-shadow(0 0 18px rgba(245,230,163,0.5))";
+                      e.currentTarget.querySelector(".spec-name").style.color="#fff";
+                      const arr=e.currentTarget.querySelector(".spec-arrow");
+                      arr.style.transform="translateX(0)"; arr.style.opacity="1";
+                    }}
+                    onMouseLeave={e=>{
+                      e.currentTarget.style.transform="translateY(0) scale(1)";
+                      e.currentTarget.style.boxShadow="none";
+                      e.currentTarget.style.borderColor="var(--border)";
+                      e.currentTarget.style.background="var(--white)";
+                      const bg=e.currentTarget.querySelector(".spec-bg-icon");
+                      bg.style.transform="scale(1) rotate(0deg)";
+                      bg.style.opacity="0.1";
+                      bg.style.filter="grayscale(1) saturate(0.6)";
+                      e.currentTarget.querySelector(".spec-name").style.color="var(--dark)";
+                      const arr=e.currentTarget.querySelector(".spec-arrow");
+                      arr.style.transform="translateX(-6px)"; arr.style.opacity="0";
+                    }}>
+                    {/* Giant background icon — grayscale by default, bold + colored on hover */}
+                    <div className="spec-bg-icon" style={{
+                      position:"absolute", top:"50%", left:"50%", transform:"translate(-50%,-50%) scale(1) rotate(0deg)",
+                      fontSize:78, opacity:0.1, filter:"grayscale(1) saturate(0.6)",
+                      transition:"all 0.5s cubic-bezier(0.16,1,0.3,1)", pointerEvents:"none",
+                    }}>{s.icon}</div>
+
+                    <div style={{position:"relative",zIndex:2, animation:`floatIcon 3.5s ease-in-out infinite`, animationDelay:`${(i%8)*0.15}s`}}>
+                      <h4 className="spec-name" style={{fontSize:14,fontWeight:800,color:"var(--dark)",fontFamily:"'Sora',sans-serif",lineHeight:1.3,marginBottom:10,transition:"color 0.4s"}}>{s.n}</h4>
+                      <span className="spec-arrow" style={{fontSize:11.5,fontWeight:700,color:"var(--yellow)",opacity:0,transform:"translateX(-6px)",transition:"all 0.3s",display:"inline-block"}}>View details →</span>
                     </div>
                   </Link>
                 </Reveal>
@@ -107,8 +137,9 @@ export default function SpecialtiesPage(){
       <Footer/>
       <style>{`
         @keyframes breathe{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.35;transform:scale(1.5)}}
-        @media(max-width:900px){.spec-cards-grid{grid-template-columns:repeat(3,1fr) !important;}.stats-thin{grid-template-columns:1fr 1fr !important;}}
-        @media(max-width:640px){.spec-cards-grid{grid-template-columns:repeat(2,1fr) !important;}}
+        @keyframes floatIcon{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+        @media(max-width:900px){.spec-cards-grid{grid-template-columns:repeat(3,minmax(0,1fr)) !important;}.stats-thin{grid-template-columns:repeat(2,minmax(0,1fr)) !important;}}
+        @media(max-width:640px){.spec-cards-grid{grid-template-columns:repeat(2,minmax(0,1fr)) !important;}}
       `}</style>
     </>
   );

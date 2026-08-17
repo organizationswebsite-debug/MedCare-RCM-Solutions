@@ -16,6 +16,12 @@
   --cream-2: #FDFAF5;
   --cream-3: #F0EBE0;
   --black:   #111111;
+  --white:   #FFFFFF;
+  --dark:    #111111;
+  --bg:      #F5F0E8;
+  --border:  rgba(17, 17, 17, 0.12);
+  --shadow:  0 18px 38px rgba(17, 17, 17, 0.08);
+  --text2:   #666666;
   --yellow:  #F5E6A3;
   --font:    var(--font-inter), -apple-system, BlinkMacSystemFont, sans-serif;
 }
