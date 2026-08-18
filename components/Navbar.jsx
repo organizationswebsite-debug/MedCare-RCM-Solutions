@@ -201,9 +201,10 @@ export default function Navbar() {
                 border:"1px solid rgba(17,17,17,0.12)",
                 alignItems:"center", justifyContent:"center",
                 cursor:"pointer", flexShrink:0, position:"relative",
-                transition:"background 0.25s, transform 0.25s",
-                transform: menuOpen ? "rotate(90deg)" : "rotate(0)",
+                transition:"background 0.25s, transform 0.35s cubic-bezier(0.34,1.56,0.64,1)",
+                transform: menuOpen ? "rotate(90deg) scale(1.05)" : "rotate(0) scale(1)",
               }}>
+              {!menuOpen && <span className="ham-pulse-ring" />}
               {/* Animated burger lines */}
               <div style={{ width:18, height:14, position:"relative", display:"flex", flexDirection:"column", justifyContent:"space-between" }}>
                 {[0,1,2].map(i=>(
@@ -235,9 +236,9 @@ export default function Navbar() {
         <div onClick={()=>setMenuOpen(false)} style={{
           position:"absolute", inset:0,
           background:"rgba(17,17,17,0.45)",
-          backdropFilter:"blur(4px)",
+          backdropFilter: menuOpen ? "blur(6px)" : "blur(0px)",
           opacity: menuOpen ? 1 : 0,
-          transition:"opacity 0.18s ease",
+          transition:"opacity 0.3s ease, backdrop-filter 0.4s ease",
         }} />
 
         {/* Slide-down drawer */}
@@ -247,13 +248,23 @@ export default function Navbar() {
           borderRadius:"0 0 28px 28px",
           boxShadow:"0 24px 60px rgba(17,17,17,0.2)",
           transform: menuOpen ? "translateY(0)" : "translateY(-100%)",
-          transition:"transform 0.22s cubic-bezier(0.2, 0.8, 0.2, 1)",
+          transition: menuOpen ? "transform 0.5s cubic-bezier(0.22,1.4,0.36,1)" : "transform 0.3s cubic-bezier(0.4,0,0.2,1)",
           overflow:"hidden",
           maxHeight:"92vh", overflowY:"auto",
         }}>
           {/* Top bar */}
           <div style={{ padding:"16px 20px 12px", display:"flex", alignItems:"center", justifyContent:"space-between", borderBottom:"1px solid rgba(17,17,17,0.08)", position:"sticky", top:0, background:"rgba(253,250,245,0.96)", backdropFilter:"blur(12px)", zIndex:2 }}>
-            <div style={{ width:140, height:44 }} />
+            <div style={{
+              display:"flex", alignItems:"center", gap:9,
+              opacity: menuOpen ? 1 : 0,
+              transform: menuOpen ? "scale(1) translateX(0)" : "scale(0.7) translateX(-10px)",
+              transition:"opacity 0.4s ease 0.08s, transform 0.45s cubic-bezier(0.34,1.56,0.64,1) 0.08s",
+            }}>
+              <div style={{ width:32, height:32, borderRadius:"50%", background:"#111111", display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0 }}>
+                <span style={{ fontSize:13, fontWeight:800, color:"#F5E6A3" }}>M</span>
+              </div>
+              <span style={{ fontSize:14.5, fontWeight:800, color:"#111111" }}>MedCare RCM</span>
+            </div>
             <button onClick={()=>setMenuOpen(false)}
               style={{ width:36, height:36, borderRadius:"50%", background:"rgba(17,17,17,0.08)", border:"none", cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"center", fontSize:16, color:"#111111", transition:"background 0.2s, transform 0.2s" }}
               onMouseEnter={e=>{ e.currentTarget.style.background="rgba(17,17,17,0.15)"; e.currentTarget.style.transform="rotate(90deg)"; }}
@@ -283,7 +294,12 @@ export default function Navbar() {
                 }}
                 onMouseEnter={e=>e.currentTarget.style.background="rgba(17,17,17,0.05)"}
                 onMouseLeave={e=>e.currentTarget.style.background="transparent"}>
-                <div style={{ width:40, height:40, borderRadius:12, background:"#F5F0E8", display:"flex", alignItems:"center", justifyContent:"center", fontSize:18, flexShrink:0 }}>{l.icon}</div>
+                <div style={{
+                  width:40, height:40, borderRadius:12, background:"#F5F0E8",
+                  display:"flex", alignItems:"center", justifyContent:"center", fontSize:18, flexShrink:0,
+                  transform: menuOpen ? "scale(1) rotate(0deg)" : "scale(0.5) rotate(-15deg)",
+                  transition:`transform 0.45s cubic-bezier(0.34,1.56,0.64,1) ${l.delay + 0.06}s`,
+                }}>{l.icon}</div>
                 {l.label}
               </Link>
             ))}
@@ -347,12 +363,12 @@ export default function Navbar() {
               transition:"opacity 0.4s ease 0.22s, transform 0.4s ease 0.22s",
             }}>
               <Link href="/contact" onClick={()=>setMenuOpen(false)}
-                style={{ background:"#111111", color:"#fff", padding:"16px 20px", borderRadius:100, fontSize:15, fontWeight:700, textAlign:"center", display:"flex", alignItems:"center", justifyContent:"center", gap:8, boxShadow:"0 6px 20px rgba(17,17,17,0.2)" }}>
+                className="mobile-tap" style={{ background:"#111111", color:"#fff", padding:"16px 20px", borderRadius:100, fontSize:15, fontWeight:700, textAlign:"center", display:"flex", alignItems:"center", justifyContent:"center", gap:8, boxShadow:"0 6px 20px rgba(17,17,17,0.2)" }}>
                 Get Free Billing Audit
                 <span style={{ width:24, height:24, borderRadius:"50%", background:"#F5E6A3", color:"#111111", display:"inline-flex", alignItems:"center", justifyContent:"center", fontSize:12, fontWeight:800 }}>→</span>
               </Link>
               <Link href="tel:+14094193788" onClick={()=>setMenuOpen(false)}
-                style={{ background:"#F5F0E8", color:"#111111", padding:"14px 20px", borderRadius:100, fontSize:14, fontWeight:600, textAlign:"center", border:"1.5px solid rgba(17,17,17,0.1)", display:"flex", alignItems:"center", justifyContent:"center", gap:8 }}>
+                className="mobile-tap" style={{ background:"#F5F0E8", color:"#111111", padding:"14px 20px", borderRadius:100, fontSize:14, fontWeight:600, textAlign:"center", border:"1.5px solid rgba(17,17,17,0.1)", display:"flex", alignItems:"center", justifyContent:"center", gap:8 }}>
                 <span style={{ fontSize:16 }}>📞</span> Call +1 (409) 419-3788
               </Link>
 
@@ -366,6 +382,25 @@ export default function Navbar() {
         </div>
       </div>
 
+      <style>{`
+        @keyframes hamPulse {
+          0%   { box-shadow: 0 0 0 0 rgba(17,17,17,0.18); }
+          70%  { box-shadow: 0 0 0 8px rgba(17,17,17,0); }
+          100% { box-shadow: 0 0 0 0 rgba(17,17,17,0); }
+        }
+        .ham-pulse-ring {
+          position: absolute;
+          inset: -3px;
+          border-radius: 50%;
+          animation: hamPulse 2.2s ease-out infinite;
+          pointer-events: none;
+        }
+        .mobile-tap { transition: transform 0.15s ease, box-shadow 0.15s ease; }
+        .mobile-tap:active { transform: scale(0.96); }
+        @media (min-width: 901px) {
+          .ham-pulse-ring { display: none; }
+        }
+      `}</style>
     </>
   );
 }
@@ -387,7 +422,7 @@ function MobileAccordion({ label, icon, open, onToggle, menuOpen, delay, childre
         display:"flex", alignItems:"center", gap:14,
         transition:"background 0.2s",
       }}>
-        <div style={{ width:40, height:40, borderRadius:12, background: open ? "#F5E6A3" : "#F5F0E8", display:"flex", alignItems:"center", justifyContent:"center", fontSize:18, flexShrink:0, transition:"background 0.25s" }}>{icon}</div>
+        <div style={{ width:40, height:40, borderRadius:12, background: open ? "#F5E6A3" : "#F5F0E8", display:"flex", alignItems:"center", justifyContent:"center", fontSize:18, flexShrink:0, transform: open ? "scale(1.1) rotate(-6deg)" : "scale(1) rotate(0deg)", transition:"background 0.25s, transform 0.35s cubic-bezier(0.34,1.56,0.64,1)" }}>{icon}</div>
         <span style={{ flex:1 }}>{label}</span>
         <svg width="14" height="14" viewBox="0 0 12 12" fill="none"
           style={{ transform:open?"rotate(180deg)":"rotate(0)", transition:"transform 0.3s cubic-bezier(0.16,1,0.3,1)", flexShrink:0 }}>
@@ -398,7 +433,7 @@ function MobileAccordion({ label, icon, open, onToggle, menuOpen, delay, childre
         overflow:"hidden",
         maxHeight: open ? "600px" : "0px",
         opacity: open ? 1 : 0,
-        transition:"max-height 0.2s ease, opacity 0.16s ease",
+        transition: open ? "max-height 0.4s cubic-bezier(0.16,1,0.3,1), opacity 0.3s ease 0.05s" : "max-height 0.25s ease, opacity 0.15s ease",
         padding: open ? "0 8px" : "0",
       }}>
         {children}
