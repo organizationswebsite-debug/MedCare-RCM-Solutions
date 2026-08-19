@@ -1,0 +1,11 @@
+import LegalPage from "@/components/LegalPage";
+
+export const metadata = { title: "HIPAA Compliance | MedCare RCM Solutions", description: "Learn how MedCare RCM Solutions approaches HIPAA-aware healthcare data handling and security.", alternates: { canonical: "https://www.medcarercm.com/hipaa-compliance" } };
+const sections = [
+  { id: "commitment", heading: "Our commitment", paragraphs: ["MedCare RCM Solutions supports healthcare organizations with privacy-conscious revenue cycle operations. We design our workflows around the principle that protected health information should be accessed only for a legitimate, authorized business purpose."] },
+  { id: "safeguards", heading: "Administrative and technical safeguards", items: ["Role-based access and least-privilege practices.", "Workforce awareness and confidentiality expectations.", "Secure handling and transmission of client-provided information.", "Monitoring, review, and response procedures for suspected incidents.", "Vendor and workflow reviews appropriate to the services we provide."] },
+  { id: "business-associates", heading: "Business associate relationships", paragraphs: ["When our work involves protected health information on behalf of a covered entity, the parties document responsibilities in the applicable agreement, including a business associate agreement where required. Client systems and data remain governed by the terms of that engagement."] },
+  { id: "client-role", heading: "Shared responsibility", paragraphs: ["HIPAA compliance is a shared responsibility. Clients should provide accurate access instructions, use approved channels, notify us of changes, and avoid sending unnecessary patient information through public website forms."] },
+  { id: "report", heading: "Security questions and reports", paragraphs: ["If you believe information has been sent to us in error or you have a security concern, contact us promptly at info@medcarercmsolutions.com or +1 (409) 419-3788. Please do not include unnecessary patient details in an initial email."] },
+];
+export default function HipaaPage() { return <LegalPage eyebrow="Security & trust" title="HIPAA Compliance" intro="We take the privacy and security of healthcare information seriously, with practical safeguards built into our billing workflows." updated="August 18, 2026" sections={sections} />; }

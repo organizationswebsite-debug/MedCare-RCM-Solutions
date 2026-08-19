@@ -71,9 +71,9 @@ const FOOTER_COLS = [
       { label:"+1 (409) 419-3788",          href:"tel:+14094193788" },
       { label:"Mon–Fri, 9am–6pm EST",       href:"#" },
       { label:"USA-Based Team",             href:"/about" },
-      { label:"HIPAA Compliance",           href:"/faq" },
-      { label:"Privacy Policy",             href:"#" },
-      { label:"Terms of Service",           href:"#" },
+      { label:"HIPAA Compliance",           href:"/hipaa-compliance" },
+      { label:"Privacy Policy",             href:"/privacy-policy" },
+      { label:"Terms of Service",           href:"/terms-of-service" },
     ],
   },
 ];
@@ -310,12 +310,17 @@ export default function Footer() {
             © {new Date().getFullYear()} MedCare RCM Solutions. All rights reserved.
           </p>
           <div style={{ display:"flex", gap:18, flexWrap:"wrap" }}>
-            {["Privacy Policy","Terms of Service","HIPAA Compliance","Sitemap"].map((l,i)=>(
-              <Link key={i} href="#"
+            { [
+              { label:"Privacy Policy", href:"/privacy-policy" },
+              { label:"Terms of Service", href:"/terms-of-service" },
+              { label:"HIPAA Compliance", href:"/hipaa-compliance" },
+              { label:"Sitemap", href:"/sitemap" },
+            ].map((link) => (
+              <Link key={link.href} href={link.href}
                 style={{ fontSize:12.5, color:"rgba(255,255,255,0.2)", transition:"color 0.2s" }}
                 onMouseEnter={e=>e.currentTarget.style.color="#F5E6A3"}
                 onMouseLeave={e=>e.currentTarget.style.color="rgba(255,255,255,0.2)"}>
-                {l}
+                {link.label}
               </Link>
             ))}
           </div>

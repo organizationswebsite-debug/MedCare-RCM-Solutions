@@ -1,0 +1,12 @@
+import LegalPage from "@/components/LegalPage";
+
+export const metadata = { title: "Terms of Service | MedCare RCM Solutions", description: "The terms that govern use of the MedCare RCM Solutions website and services.", alternates: { canonical: "https://www.medcarercm.com/terms-of-service" } };
+const sections = [
+  { id: "acceptance", heading: "Acceptance of these terms", paragraphs: ["By accessing this website or engaging MedCare RCM Solutions, you agree to these Terms of Service and any written service agreement that applies to your engagement. If you do not agree, please do not use the website."] },
+  { id: "website", heading: "Website information", paragraphs: ["Our website is provided for general information about medical billing and revenue cycle management. Content is not medical, legal, tax, or financial advice, and does not create a provider-client relationship by itself."] },
+  { id: "services", heading: "Our services", paragraphs: ["Specific services, responsibilities, fees, timelines, data requirements, and deliverables are governed by the applicable written agreement. We work with clients to confirm scope before services begin."] },
+  { id: "acceptable-use", heading: "Acceptable use", items: ["Use the website lawfully and respectfully.", "Do not attempt to access systems, data, or accounts without authorization.", "Do not copy, distribute, or misuse our content, branding, or intellectual property.", "Do not submit information that you are not authorized to share."] },
+  { id: "liability", heading: "Disclaimers and limitations", paragraphs: ["We work to keep website information accurate and available, but we do not promise that every page will always be complete, current, or uninterrupted. To the fullest extent permitted by law, MedCare RCM Solutions is not liable for indirect or consequential loss arising from use of the website."] },
+  { id: "changes", heading: "Changes and contact", paragraphs: ["We may update these terms as our website or services change. Continued use after an update means you accept the revised terms. Questions can be sent to info@medcarercmsolutions.com."] },
+];
+export default function TermsPage() { return <LegalPage eyebrow="Agreement" title="Terms of Service" intro="These terms keep expectations clear for everyone who visits our website or partners with our team." updated="August 18, 2026" sections={sections} />; }

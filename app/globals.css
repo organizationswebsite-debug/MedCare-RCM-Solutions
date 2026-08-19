@@ -327,12 +327,52 @@ img[loading="lazy"].loaded {
 .nav-hamburger { display: none !important; }
 .footer-mobile-cols { display: none !important; }
 
+/* ── Legal pages ── */
+.legal-page { background: var(--cream); min-height: 100vh; }
+.legal-container { width: min(1120px, calc(100% - 40px)); margin: 0 auto; }
+.legal-hero { position: relative; overflow: hidden; background: var(--black); color: var(--white); }
+.legal-hero-glow { position: absolute; width: 520px; height: 520px; right: -120px; top: -260px; border-radius: 50%; background: radial-gradient(circle, rgba(245,230,163,.32), transparent 68%); }
+.legal-hero-content { position: relative; padding: 116px 0 88px; }
+.legal-eyebrow { display: inline-block; margin-bottom: 20px; color: var(--yellow); font-size: 12px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; }
+.legal-hero h1 { max-width: 760px; margin-bottom: 18px; color: var(--white); font-size: clamp(38px, 6vw, 72px); line-height: 1.02; }
+.legal-hero p { max-width: 690px; color: rgba(255,255,255,.7); font-size: clamp(16px, 2vw, 20px); line-height: 1.75; }
+.legal-updated { display: block; margin-top: 24px; color: rgba(255,255,255,.42); font-size: 12px; }
+.legal-content-section { padding: 72px 0 96px; }
+.legal-content-grid { display: grid; grid-template-columns: 220px minmax(0, 720px); gap: 80px; align-items: start; justify-content: center; }
+.legal-side-nav { position: sticky; top: 110px; display: flex; flex-direction: column; gap: 12px; padding-left: 16px; border-left: 2px solid rgba(17,17,17,.12); }
+.legal-side-nav span { margin-bottom: 5px; color: var(--black); font-size: 12px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; }
+.legal-side-nav a { color: var(--text2); font-size: 13px; line-height: 1.4; }
+.legal-side-nav a:hover { color: var(--black); }
+.legal-section { scroll-margin-top: 100px; padding-bottom: 36px; margin-bottom: 36px; border-bottom: 1px solid var(--border); }
+.legal-section h2, .sitemap-group h2 { margin-bottom: 14px; color: var(--black); font-size: 24px; }
+.legal-section p, .legal-section li { color: #555; font-size: 15px; line-height: 1.85; }
+.legal-section p + p { margin-top: 12px; }
+.legal-section ul { display: grid; gap: 10px; padding-left: 20px; }
+.legal-contact-box { padding: 26px; border: 1px solid rgba(17,17,17,.1); border-radius: 8px; background: var(--cream-2); }
+.legal-contact-box strong { display: block; margin-bottom: 8px; font-size: 18px; }
+.legal-contact-box p { margin-bottom: 16px; color: var(--text2); font-size: 14px; line-height: 1.6; }
+.legal-contact-box a, .sitemap-group a { color: var(--black); font-weight: 700; }
+.legal-contact-box a:hover, .sitemap-group a:hover { color: #8b741c; }
+.legal-contact-box a span, .sitemap-group a span { margin-left: 8px; color: #8b741c; }
+.sitemap-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; max-width: 1000px; }
+.sitemap-group { padding: 28px; border-top: 3px solid var(--yellow); background: var(--cream-2); }
+.sitemap-group > div { display: grid; gap: 15px; }
+.sitemap-group a { display: flex; justify-content: space-between; font-size: 14px; }
+
 @media (max-width: 880px) {
   /* Navbar: show hamburger, hide desktop links */
   .nav-desktop { display: none !important; }
   .pricing-cards { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 16px !important; }
   .nav-hamburger { display: flex !important; }
   nav { padding: 8px 12px !important; }
+
+  .legal-container { width: min(100% - 32px, 720px); }
+  .legal-hero-content { padding: 76px 0 64px; }
+  .legal-content-section { padding: 48px 0 64px; }
+  .legal-content-grid { display: block; }
+  .legal-side-nav { position: static; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px 18px; margin-bottom: 42px; padding: 0 0 20px; border-left: 0; border-bottom: 1px solid var(--border); }
+  .legal-side-nav span { grid-column: 1 / -1; }
+  .sitemap-grid { grid-template-columns: 1fr; gap: 16px; }
 
   /* Footer: show mobile columns, hide desktop columns */
   .footer-desktop-cols { display: none !important; }
