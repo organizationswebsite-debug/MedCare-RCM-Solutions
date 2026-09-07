@@ -376,21 +376,21 @@ function Specialties() {
             <Reveal key={i} delay={i*0.08}>
               <Link href={`/specialties/${sp.slug}`} style={{ display:"block", textDecoration:"none" }}>
                 <div className="img-card" style={{ position:"relative", height:240, borderRadius:22, overflow:"hidden", border:"1px solid rgba(17,17,17,0.1)", boxShadow:"0 4px 20px rgba(17,17,17,0.07)", transition:"all 0.35s cubic-bezier(0.16,1,0.3,1)", cursor:"pointer" }}
-                  onMouseEnter={e=>{ e.currentTarget.style.transform="translateY(-7px) scale(1.01)"; e.currentTarget.style.boxShadow="0 24px 52px rgba(17,17,17,0.15)"; }}
-                  onMouseLeave={e=>{ e.currentTarget.style.transform="translateY(0) scale(1)"; e.currentTarget.style.boxShadow="0 4px 20px rgba(17,17,17,0.07)"; }}>
+                  onMouseEnter={e=>{ e.currentTarget.style.transform="translateY(-7px) scale(1.01)"; e.currentTarget.style.boxShadow="0 24px 52px rgba(17,17,17,0.15)"; e.currentTarget.querySelector(".home-specialty-badge").style.transform="scale(1.08) rotate(-2deg)"; e.currentTarget.querySelector(".home-specialty-cta").style.transform="translateX(5px)"; e.currentTarget.querySelector(".home-specialty-cta").style.background="rgba(245,230,163,0.92)"; }}
+                  onMouseLeave={e=>{ e.currentTarget.style.transform="translateY(0) scale(1)"; e.currentTarget.style.boxShadow="0 4px 20px rgba(17,17,17,0.07)"; e.currentTarget.querySelector(".home-specialty-badge").style.transform="scale(1) rotate(0deg)"; e.currentTarget.querySelector(".home-specialty-cta").style.transform="translateX(0)"; e.currentTarget.querySelector(".home-specialty-cta").style.background="rgba(255,255,255,0.18)"; }}>
                   <div style={{ position:"relative", width:"100%", height:"100%", overflow:"hidden", backgroundColor:"#f3f4f6" }}>
                     <img loading="lazy" src={sp.img} alt={sp.title} style={{ width:"100%", height:"100%", objectFit:"cover", transition:"transform 0.5s ease" }}
                       onMouseEnter={e=>e.currentTarget.style.transform="scale(1.05)"}
                       onMouseLeave={e=>e.currentTarget.style.transform="scale(1)"} />
                     <div style={{ position:"absolute", inset:0, background:"linear-gradient(to bottom, rgba(17,17,17,0.16) 0%, rgba(17,17,17,0.5) 100%)" }} />
-                    <div style={{ position:"absolute", top:14, left:14, background:"rgba(255,255,255,0.9)", borderRadius:100, padding:"6px 14px", display:"inline-flex", alignItems:"center", gap:8, fontSize:12, fontWeight:700, color:"#111111" }}>
+                    <div className="home-specialty-badge" style={{ position:"absolute", top:14, left:14, background:"rgba(255,255,255,0.9)", borderRadius:100, padding:"6px 14px", display:"inline-flex", alignItems:"center", gap:8, fontSize:12, fontWeight:700, color:"#111111", transition:"transform 0.45s cubic-bezier(0.16,1,0.3,1)" }}>
                       <span>{sp.icon}</span> {sp.stat}
                     </div>
                   </div>
                   {/* Title bottom */}
                   <div style={{ position:"absolute", bottom:0, left:0, right:0, padding:"20px 20px", background:"linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.72) 80%)" }}>
                     <h3 style={{ fontSize:19, fontWeight:800, color:"#ffffff", marginBottom:6 }}>{sp.title}</h3>
-                    <div style={{ display:"inline-flex", alignItems:"center", gap:5, background:"rgba(255,255,255,0.18)", backdropFilter:"blur(8px)", border:"1px solid rgba(255,255,255,0.22)", borderRadius:100, padding:"5px 14px", fontSize:12, fontWeight:700, color:"#ffffff" }}>
+                    <div className="home-specialty-cta" style={{ display:"inline-flex", alignItems:"center", gap:5, background:"rgba(255,255,255,0.18)", backdropFilter:"blur(8px)", border:"1px solid rgba(255,255,255,0.22)", borderRadius:100, padding:"5px 14px", fontSize:12, fontWeight:700, color:"#ffffff", transition:"transform 0.3s cubic-bezier(0.16,1,0.3,1), background 0.3s ease" }}>
                       View billing info →
                     </div>
                   </div>
