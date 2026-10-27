@@ -16,7 +16,7 @@ export async function generateMetadata({ params }) {
   return {
     title:       meta.title,
     description: meta.description,
-    alternates:  { canonical:`https://www.medcarercm.com/about/team/${params.member}` },
+    alternates:  { canonical:`https://www.medcarercmsolutions.com/about/team/${params.member}` },
     openGraph:   { title:meta.title, description:meta.description, url:`https://www.medcarercm.com/about/team/${params.member}` },
   };
 }
