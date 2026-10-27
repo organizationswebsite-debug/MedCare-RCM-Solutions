@@ -363,6 +363,7 @@ const SPECIALTIES_DATA = [
 function Specialties() {
   return (
     <section style={{ background:"#F5F0E8", padding:"100px 20px" }}>
+      <style>{`@keyframes homeSpecFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}`}</style>
       <div style={{ maxWidth:1180, margin:"0 auto" }}>
         <Reveal>
           <div style={{ textAlign:"center", marginBottom:60 }}>
@@ -374,26 +375,55 @@ function Specialties() {
         <div className="cards-3" style={{ display:"grid", gridTemplateColumns:"repeat(3,1fr)", gap:20 }}>
           {SPECIALTIES_DATA.map((sp,i)=>(
             <Reveal key={i} delay={i*0.08}>
-              <Link href={`/specialties/${sp.slug}`} style={{ display:"block", textDecoration:"none" }}>
-                <div className="img-card" style={{ position:"relative", height:240, borderRadius:22, overflow:"hidden", border:"1px solid rgba(17,17,17,0.1)", boxShadow:"0 4px 20px rgba(17,17,17,0.07)", transition:"all 0.35s cubic-bezier(0.16,1,0.3,1)", cursor:"pointer" }}
-                  onMouseEnter={e=>{ e.currentTarget.style.transform="translateY(-7px) scale(1.01)"; e.currentTarget.style.boxShadow="0 24px 52px rgba(17,17,17,0.15)"; e.currentTarget.querySelector(".home-specialty-badge").style.transform="scale(1.08) rotate(-2deg)"; e.currentTarget.querySelector(".home-specialty-cta").style.transform="translateX(5px)"; e.currentTarget.querySelector(".home-specialty-cta").style.background="rgba(245,230,163,0.92)"; }}
-                  onMouseLeave={e=>{ e.currentTarget.style.transform="translateY(0) scale(1)"; e.currentTarget.style.boxShadow="0 4px 20px rgba(17,17,17,0.07)"; e.currentTarget.querySelector(".home-specialty-badge").style.transform="scale(1) rotate(0deg)"; e.currentTarget.querySelector(".home-specialty-cta").style.transform="translateX(0)"; e.currentTarget.querySelector(".home-specialty-cta").style.background="rgba(255,255,255,0.18)"; }}>
-                  <div style={{ position:"relative", width:"100%", height:"100%", overflow:"hidden", backgroundColor:"#f3f4f6" }}>
-                    <img loading="lazy" src={sp.img} alt={sp.title} style={{ width:"100%", height:"100%", objectFit:"cover", transition:"transform 0.5s ease" }}
-                      onMouseEnter={e=>e.currentTarget.style.transform="scale(1.05)"}
-                      onMouseLeave={e=>e.currentTarget.style.transform="scale(1)"} />
-                    <div style={{ position:"absolute", inset:0, background:"linear-gradient(to bottom, rgba(17,17,17,0.16) 0%, rgba(17,17,17,0.5) 100%)" }} />
-                    <div className="home-specialty-badge" style={{ position:"absolute", top:14, left:14, background:"rgba(255,255,255,0.9)", borderRadius:100, padding:"6px 14px", display:"inline-flex", alignItems:"center", gap:8, fontSize:12, fontWeight:700, color:"#111111", transition:"transform 0.45s cubic-bezier(0.16,1,0.3,1)" }}>
-                      <span>{sp.icon}</span> {sp.stat}
-                    </div>
-                  </div>
-                  {/* Title bottom */}
-                  <div style={{ position:"absolute", bottom:0, left:0, right:0, padding:"20px 20px", background:"linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.72) 80%)" }}>
-                    <h3 style={{ fontSize:19, fontWeight:800, color:"#ffffff", marginBottom:6 }}>{sp.title}</h3>
-                    <div className="home-specialty-cta" style={{ display:"inline-flex", alignItems:"center", gap:5, background:"rgba(255,255,255,0.18)", backdropFilter:"blur(8px)", border:"1px solid rgba(255,255,255,0.22)", borderRadius:100, padding:"5px 14px", fontSize:12, fontWeight:700, color:"#ffffff", transition:"transform 0.3s cubic-bezier(0.16,1,0.3,1), background 0.3s ease" }}>
-                      View billing info →
-                    </div>
-                  </div>
+              <Link href={`/specialties/${sp.slug}`} className="home-spec-card"
+                style={{
+                  display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", textAlign:"center",
+                  position:"relative", background:"#ffffff", border:"1px solid rgba(17,17,17,0.1)", borderRadius:22,
+                  padding:"40px 20px", minHeight:210, textDecoration:"none", overflow:"hidden",
+                  boxShadow:"0 4px 20px rgba(17,17,17,0.05)",
+                  transition:"all 0.45s cubic-bezier(0.16,1,0.3,1)", cursor:"pointer",
+                }}
+                onMouseEnter={e=>{
+                  const c=e.currentTarget;
+                  c.style.transform="translateY(-10px) scale(1.03)";
+                  c.style.boxShadow="0 24px 56px rgba(17,17,17,0.18)";
+                  c.style.borderColor="#111111";
+                  c.style.background="#111111";
+                  const bg=c.querySelector(".home-spec-bg-icon");
+                  bg.style.transform="translate(-50%,-50%) scale(1.55) rotate(-6deg)";
+                  bg.style.opacity="0.9";
+                  bg.style.filter="grayscale(0) saturate(1.6) drop-shadow(0 0 18px rgba(245,230,163,0.5))";
+                  c.querySelector(".home-spec-name").style.color="#ffffff";
+                  c.querySelector(".home-spec-stat").style.color="#F5E6A3";
+                  const arr=c.querySelector(".home-spec-arrow");
+                  arr.style.transform="translateX(0)"; arr.style.opacity="1";
+                }}
+                onMouseLeave={e=>{
+                  const c=e.currentTarget;
+                  c.style.transform="translateY(0) scale(1)";
+                  c.style.boxShadow="0 4px 20px rgba(17,17,17,0.05)";
+                  c.style.borderColor="rgba(17,17,17,0.1)";
+                  c.style.background="#ffffff";
+                  const bg=c.querySelector(".home-spec-bg-icon");
+                  bg.style.transform="translate(-50%,-50%) scale(1) rotate(0deg)";
+                  bg.style.opacity="0.1";
+                  bg.style.filter="grayscale(1) saturate(0.6)";
+                  c.querySelector(".home-spec-name").style.color="#111111";
+                  c.querySelector(".home-spec-stat").style.color="#999999";
+                  const arr=c.querySelector(".home-spec-arrow");
+                  arr.style.transform="translateX(-6px)"; arr.style.opacity="0";
+                }}>
+                {/* Giant background icon — grayscale by default, bold + colored on hover */}
+                <div className="home-spec-bg-icon" style={{
+                  position:"absolute", top:"50%", left:"50%", transform:"translate(-50%,-50%) scale(1) rotate(0deg)",
+                  fontSize:96, lineHeight:1, opacity:0.1, filter:"grayscale(1) saturate(0.6)",
+                  transition:"all 0.5s cubic-bezier(0.16,1,0.3,1)", pointerEvents:"none",
+                }}>{sp.icon}</div>
+
+                <div style={{ position:"relative", zIndex:2, animation:"homeSpecFloat 3.5s ease-in-out infinite", animationDelay:`${i*0.18}s` }}>
+                  <h3 className="home-spec-name" style={{ fontSize:19, fontWeight:800, color:"#111111", lineHeight:1.25, marginBottom:6, transition:"color 0.4s" }}>{sp.title}</h3>
+                  <div className="home-spec-stat" style={{ fontSize:12.5, fontWeight:600, color:"#999999", marginBottom:12, transition:"color 0.4s" }}>{sp.stat}</div>
+                  <span className="home-spec-arrow" style={{ fontSize:12, fontWeight:700, color:"#F5E6A3", opacity:0, transform:"translateX(-6px)", transition:"all 0.3s", display:"inline-block" }}>View billing info →</span>
                 </div>
               </Link>
             </Reveal>
