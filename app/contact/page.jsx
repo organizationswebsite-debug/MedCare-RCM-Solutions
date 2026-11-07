@@ -157,7 +157,7 @@ export default function ContactPage() {
         {/* ══ HERO ══ */}
         <section style={{ position:"relative", backgroundImage:"linear-gradient(160deg, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.55) 100%), linear-gradient(160deg,#F5F0E8 0%,#FDFAF5 50%,#F0EBE0 100%)", padding:"140px 24px 90px", overflow:"hidden", minHeight:"60vh", display:"flex", alignItems:"center" }}>
           {/* Animated dot grid */}
-          <div style={{ position:"absolute", inset:0, zIndex:-2, backgroundImage:"url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVwon4p1db_Do8FDa-XUGx2seXZIQKcH-S1PUAuftlsc7Y5LCo942lCkFc&s=10')", backgroundSize:"cover", backgroundPosition:"center", backgroundAttachment: "fixed" }} />
+          <div style={{ position:"absolute", inset:0, zIndex:-2, backgroundImage:"url('/contacthero.jpg')", backgroundSize:"cover", backgroundPosition:"center", backgroundAttachment: "fixed" }} />
           {/* Glow */}
           <div style={{ position:"absolute", top:-100, right:-100, width:560, height:560, borderRadius:"50%", background:"radial-gradient(circle,rgba(245,230,163,0.35),transparent 70%)", pointerEvents:"none" }} />
           <div style={{ position:"absolute", bottom:-80, left:-60, width:400, height:400, borderRadius:"50%", background:"radial-gradient(circle,rgba(17,17,17,0.04),transparent 65%)", pointerEvents:"none" }} />
