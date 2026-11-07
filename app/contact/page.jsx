@@ -175,7 +175,7 @@ export default function ContactPage() {
                 your <span style={{ color:"#F5E6A3" }}>revenue cycle.</span>
               </h1>
               <p style={{ ...rise(0.28), fontSize:17, color:"#ffffff", lineHeight:1.8, marginBottom:36, maxWidth:460 }}>
-                Get a free, no-obligation billing audit from our certified specialists — we'll identify exactly where revenue is being lost and show you how to recover it.
+                Get a free, no-obligation billing audit from our certified specialists. We'll identify exactly where revenue is being lost and show you how to recover it.
               </p>
               {/* Quick contact info */}
               <div style={{ ...rise(0.38), display:"flex", flexDirection:"column", gap:14 }}>
@@ -204,7 +204,7 @@ export default function ContactPage() {
                   ))}
                 </div>
                 <h3 style={{ fontSize:16, fontWeight:800, color:"#111111", marginBottom:6 }}>Free Billing Audit</h3>
-                <p style={{ fontSize:13, color:"#666666", lineHeight:1.65, marginBottom:16 }}>We'll analyze your entire revenue cycle and show you exactly where money is being lost — completely free.</p>
+                <p style={{ fontSize:13, color:"#666666", lineHeight:1.65, marginBottom:16 }}>We'll analyze your entire revenue cycle and show you exactly where money is being lost completely free.</p>
                 <div style={{ display:"flex", alignItems:"center", gap:8 }}>
                   <div style={{ width:28, height:28, borderRadius:"50%", background:"#F5E6A3", display:"flex", alignItems:"center", justifyContent:"center", fontSize:12, fontWeight:800 }}>→</div>
                   <span style={{ fontSize:13, fontWeight:700, color:"#111111" }}>Takes less than 5 minutes to request</span>
